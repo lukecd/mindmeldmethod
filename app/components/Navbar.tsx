@@ -13,6 +13,7 @@ export default function Navbar() {
     { name: 'Crypto Podcasts', href: '/crypto-podcasts' },
     { name: 'Challenges', href: '/challenges' },
     { name: 'Your Words', href: '/your-words' },
+    { name: 'About', href: '/about' },
   ]
 
   return (

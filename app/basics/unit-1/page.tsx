@@ -5,6 +5,7 @@ import Image from 'next/image'
 import nounsData from '@/public/data/01_nouns.json'
 import verbsData from '@/public/data/01_verbs.json'
 import adjectivesData from '@/public/data/01_adjectives.json'
+import Link from 'next/link'
 
 // Combine all words from the three files
 const flashcards = [
@@ -40,8 +41,8 @@ export default function Unit1Page() {
   const progress = (currentCard / flashcards.length) * 100
 
   return (
-    <div className="min-h-screen bg-[#2D1B36] pt-20 px-4">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-[#2D1B36] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
+      <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-2 bg-[#E94F37] p-4">
           <h1 className="text-2xl font-scifi text-[#F6E8EA] mb-2">Unit 1: Essential Basics</h1>
@@ -54,31 +55,6 @@ export default function Unit1Page() {
               />
             </div>
             <div className="text-[#F6E8EA]/80 text-sm">{currentCard + 1} / {flashcards.length}</div>
-          </div>
-        </div>
-
-        {/* Visual Cues Section */}
-        <div className="mb-4">
-          <div className="bg-[#E94F37] p-8 text-center mb-2">
-            <h2 className="text-3xl font-scifi text-[#F6E8EA]">
-              Our flashcards use visual cues to help trick your brain into memorizing faster.
-            </h2>
-          </div>
-          <div className="text-[#F6E8EA]/60 text-xs text-center">
-            Visual learning technique inspired by{' '}
-            <a href="https://www.amazon.com/Fluent-Forever-Learn-Language-Forget/dp/0385348118" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               className="text-[#F6E8EA]/80 hover:underline">
-              Fluent Forever
-            </a>
-            {' '}and{' '}
-            <a href="https://www.youtube.com/watch?v=29tITqtnJU4"
-               target="_blank"
-               rel="noopener noreferrer"
-               className="text-[#F6E8EA]/80 hover:underline">
-              LanguageJones
-            </a>
           </div>
         </div>
 
@@ -183,6 +159,21 @@ export default function Unit1Page() {
                 Got Both
               </button>
             </div>
+          </div>
+        </div>
+
+        {/* Visual Cues Section */}
+        <div className="mb-4">
+          <div className="bg-[#E94F37] p-8 text-center mb-2 mt-3">
+            <h2 className="text-xl font-scifi text-[#F6E8EA]">
+              Our flashcards use visual cues to help trick your brain into memorizing faster.
+            </h2>
+          </div>
+          <div className="text-[#F6E8EA]/60 text-xs text-center">
+            Learn more about our method in the{' '}
+            <Link href="/about" className="text-[#F6E8EA]/80 hover:underline">
+              About page
+            </Link>
           </div>
         </div>
 
