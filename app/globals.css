@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  /* Mind Meld Method Colors */
+  --color-coral: #F26B3C;
+  --color-yellow: #FFE66D;
+  --color-cyan: #7FDBDA;
+  --color-blue: #4A6DD9;
+  --color-navy: #2A324B;
+  
+  /* Fonts */
+  --font-display: "Orbitron", sans-serif;
+}
+
+/* Base styles */
+body {
+  background-color: var(--color-navy);
+  color: white;
+}
+
+nav {
+  background-color: var(--color-coral);
+}
+
+.mobile-menu {
+  background-color: var(--color-coral);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Flip card styles */
+.perspective {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.rotate-y-0 {
+  transform: rotateY(0deg);
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}

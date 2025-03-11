@@ -1,0 +1,104 @@
+{
+  "words": [
+    {
+      "id": "grande",
+      "english": "big",
+      "spanish": "grande",
+      "rank": 1,
+      "type": "adjective",
+      "imagePrompt": "A grand piano eating smaller instruments",
+      "clue": "A GRAND (GRANDE) piano is so BIG it's eating other instruments. GRANDE = GRAND + E",
+      "imagePath": "/images/adjectives/grande.webp"
+    },
+    {
+      "id": "nuevo",
+      "english": "new",
+      "spanish": "nuevo",
+      "rank": 2,
+      "type": "adjective",
+      "imagePrompt": "A newborn baby wearing boxing gloves, stepping into a boxing ring for the first time",
+      "clue": "A NEWBORN (NUE-vo) baby is NEW to boxing. NUEVO = NEWBORN + VO",
+      "imagePath": "/images/adjectives/nuevo.webp"
+    },   
+    {
+      "id": "bueno",
+      "english": "good",
+      "spanish": "bueno",
+      "rank": 3,
+      "type": "adjective",
+      "imagePrompt": "A buoy in the ocean rescuing swimmers",
+      "clue": "A BUOY (BUE-no) saving people is doing something GOOD. BUENO = BUOY + NO",
+      "imagePath": "/images/adjectives/bueno.webp"
+    },
+    {
+      "id": "alto",
+      "english": "tall/high",
+      "spanish": "alto",
+      "rank": 4,
+      "type": "adjective",
+      "imagePrompt": "An alto saxophone growing up through the clouds",
+      "clue": "An ALTO saxophone grows so TALL it reaches the clouds. It's exactly like the musical term!",
+      "imagePath": "/images/adjectives/alto.webp"
+    },
+    {
+      "id": "pequeño",
+      "english": "small",
+      "spanish": "pequeño",
+      "rank": 5,
+      "type": "adjective",
+      "imagePrompt": "A peek-a-boo ninja hiding in a tiny box",
+      "clue": "A PEEK-A-BOO (PE-que-ÑO) ninja is so SMALL they can hide anywhere. PEQUEÑO sounds like PEEK + ÑO",
+      "imagePath": "/images/adjectives/pequeno.webp"
+    },
+    {
+      "id": "viejo",
+      "english": "old",
+      "spanish": "viejo",
+      "rank": 6,
+      "type": "adjective",
+      "imagePrompt": "A viagra pill with a senior citizen card",
+      "clue": "The VI (from viagra) makes this OLD guy say 'EH-HO!' VIEJO = VI + EH + JO",
+      "imagePath": "/images/adjectives/viejo.webp"
+    },
+    {
+      "id": "feliz",
+      "english": "happy",
+      "spanish": "feliz",
+      "rank": 7,
+      "type": "adjective",
+      "imagePrompt": "A female lizard wearing a party hat and grinning",
+      "clue": "This FEMALE LIZARD (FE-LIZ) is super HAPPY. FELIZ = FEMALE + LIZ(ard)",
+      "imagePath": "/images/adjectives/feliz.webp"
+    },
+    {
+      "id": "rojo",
+      "english": "red",
+      "spanish": "rojo",
+      "rank": 8,
+      "type": "adjective",
+      "imagePrompt": "A row of judges wearing embarrassed, blushing faces",
+      "clue": "A ROW (RO-jo) of judges blush RED with embarrassment. ROJO = ROW + JO",
+      "imagePath": "/images/adjectives/rojo.webp"
+    },
+    {
+      "id": "largo",
+      "english": "long",
+      "spanish": "largo",
+      "rank": 9,
+      "type": "adjective",
+      "imagePrompt": "A large go-kart stretching like rubber",
+      "clue": "A LARGE (LAR-go) go-kart stretches until it's super LONG. LARGO = LARGE without the 'e'",
+      "imagePath": "/images/adjectives/largo.webp"
+    },
+    {
+      "id": "fácil",
+      "english": "easy",
+      "spanish": "fácil",
+      "rank": 10,
+      "type": "adjective",
+      "imagePrompt": "A face getting slapped with a fish, looking surprisingly calm",
+      "clue": "Getting slapped with a FISH is EASY for this FACE (FÁ-cil). FÁCIL = FACE getting hit by fish",
+      "imagePath": "/images/adjectives/facil.webp"
+    }
+  ]
+} 

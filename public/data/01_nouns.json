@@ -1,0 +1,104 @@
+{
+  "words": [
+    {
+      "id": "tiempo",
+      "english": "time",
+      "spanish": "tiempo",
+      "rank": 1,
+      "type": "noun",
+      "imagePrompt": "A team of players racing against a giant clock",
+      "clue": "A TEAM (sounds like 'ti') racing against time, saying 'PO!' as they run. TIEMPO = TEAM + PO",
+      "imagePath": "/images/nouns/tiempo.webp"
+    },
+    {
+      "id": "persona",
+      "english": "person",
+      "spanish": "persona",
+      "rank": 2,
+      "type": "noun",
+      "imagePrompt": "A purse owner showing ID to enter a club",
+      "clue": "A PURSE OWNER (sounds like 'persona') showing ID to prove they're a PERSON. PERSONA = PURSE + OWNER",
+      "imagePath": "/images/nouns/persona.webp"
+    },
+    {
+      "id": "año",
+      "english": "year",
+      "spanish": "año",
+      "rank": 3,
+      "type": "noun",
+      "imagePrompt": "A crying child saying 'I know, I know' while looking at a calendar",
+      "clue": "The kid cries 'AÑO!' (sounds like 'I know!') while looking at how many YEARS have passed. AÑO sounds just like I KNOW",
+      "imagePath": "/images/nouns/ano.webp"
+    },
+    {
+      "id": "día",
+      "english": "day",
+      "spanish": "día",
+      "rank": 4,
+      "type": "noun",
+      "imagePrompt": "A deer jumping over a rising sun",
+      "clue": "A DEER ('día' sounds like 'deer') jumps over the rising sun to start a new DAY. DÍA sounds just like DEER",
+      "imagePath": "/images/nouns/dia.webp"
+    },
+    {
+      "id": "cosa",
+      "english": "thing",
+      "spanish": "cosa",
+      "rank": 5,
+      "type": "noun",
+      "imagePrompt": "A confused person opening a box saying 'What's so special?'",
+      "clue": "Looking at this THING in the box saying 'What's SO special?' COSA = CO + SA (sounds like 'so')",
+      "imagePath": "/images/nouns/cosa.webp"
+    },
+    {
+      "id": "vida",
+      "english": "life",
+      "spanish": "vida",
+      "rank": 6,
+      "type": "noun",
+      "imagePrompt": "A video game character with multiple hearts collecting extra lives",
+      "clue": "A VIDEO game (VI-da) character collecting extra LIVES. VIDA = VIDEO + DA",
+      "imagePath": "/images/nouns/vida.webp"
+    },
+    {
+      "id": "mundo",
+      "english": "world",
+      "spanish": "mundo",
+      "rank": 7,
+      "type": "noun",
+      "imagePrompt": "Monday written on a globe-shaped calendar",
+      "clue": "It's MON-day (MUN sounds like 'Mon') in the whole WORLD. MUNDO = MONDAY without the 'ay'",
+      "imagePath": "/images/nouns/mundo.webp"
+    },
+    {
+      "id": "forma",
+      "english": "form",
+      "spanish": "forma",
+      "rank": 8,
+      "type": "noun",
+      "imagePrompt": "A farmer shaping crops into geometric patterns",
+      "clue": "A FARMER (FOR-ma) giving FORM to the crops. FORMA = FARMER without the 'er'",
+      "imagePath": "/images/nouns/forma.webp"
+    },
+    {
+      "id": "casa",
+      "english": "house",
+      "spanish": "casa",
+      "rank": 9,
+      "type": "noun",
+      "imagePrompt": "A castle made of playing cards",
+      "clue": "A CASTLE (CA-sa) made of cards is still a HOUSE. CASA = CASTLE without 'tle'",
+      "imagePath": "/images/nouns/casa.webp"
+    },
+    {
+      "id": "parte",
+      "english": "part",
+      "spanish": "parte",
+      "rank": 10,
+      "type": "noun",
+      "imagePrompt": "A party where everyone has one piece of a puzzle",
+      "clue": "At this PARTY (PARTE), everyone has their PART of the puzzle. PARTE = PARTY without the 'y'",
+      "imagePath": "/images/nouns/parte.webp"
+    }
+  ]
+} 
