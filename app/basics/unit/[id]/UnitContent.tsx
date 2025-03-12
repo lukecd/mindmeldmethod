@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import wordsData from '@/public/data/01_words.json'
 import Link from 'next/link'
 
 // Fisher-Yates shuffle algorithm
@@ -15,19 +14,46 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
-export default function Unit1Page() {
+interface Flashcard {
+  english: string
+  spanish: string
+  imagePath: string
+  clue: string
+}
+
+interface WordsData {
+  words: Flashcard[]
+}
+
+interface UnitContentProps {
+  unitId: string
+  unitTitle: string
+}
+
+export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
+  // Load word data
+  const [wordsData, setWordsData] = useState<WordsData | null>(null)
+  useEffect(() => {
+    fetch(`/data/${unitId.padStart(2, '0')}_words.json`)
+      .then(res => res.json())
+      .then(data => setWordsData(data))
+      .catch(console.error)
+  }, [unitId])
+
   // Initialize flashcards in state
-  const [flashcards, setFlashcards] = useState(wordsData.words)
+  const [flashcards, setFlashcards] = useState<Flashcard[]>([])
   const [currentCard, setCurrentCard] = useState(0)
   const [isEnglishFlipped, setIsEnglishFlipped] = useState(false)
   const [isSpanishFlipped, setIsSpanishFlipped] = useState(false)
   const [showClue, setShowClue] = useState(false)
   const [ratings, setRatings] = useState<Record<number, string>>({})
 
-  // Shuffle cards when component mounts
+  // Shuffle cards when data is loaded
   useEffect(() => {
-    setFlashcards(shuffleArray(wordsData.words))
-  }, [])
+    if (wordsData?.words?.length) {
+      setFlashcards(shuffleArray(wordsData.words))
+    }
+  }, [wordsData])
 
   const handleRate = (rating: 'no-idea' | 'got-one' | 'got-both') => {
     // Store the rating for the current card
@@ -46,14 +72,31 @@ export default function Unit1Page() {
   }
 
   // Calculate progress percentage
-  const progress = ((currentCard + 1) / flashcards.length * 100)
+  const progress = flashcards.length ? ((currentCard + 1) / flashcards.length * 100) : 0
+
+  if (!wordsData || !flashcards.length) {
+    return (
+      <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 flex items-center justify-center">
+        <div className="text-[color:var(--color-text-inverse)]">Loading...</div>
+      </div>
+    )
+  }
+
+  const currentFlashcard = flashcards[currentCard]
+  if (!currentFlashcard) {
+    return (
+      <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 flex items-center justify-center">
+        <div className="text-[color:var(--color-text-inverse)]">Error loading flashcard data</div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
       <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-2 bg-[color:var(--color-bg-nav)] p-4">
-          <h1 className="text-2xl font-title text-[color:var(--color-text-inverse)] mb-2">Unit 1: Essential Basics</h1>
+          <h1 className="text-2xl font-title text-[color:var(--color-text-inverse)] mb-2">Unit {unitId}: {unitTitle}</h1>
           <div className="flex items-center gap-2">
             <div className="text-[color:var(--color-text-inverse)]/80 text-sm">Progress</div>
             <div className="flex-1 h-2 bg-[color:var(--color-bg-card)]">
@@ -71,8 +114,8 @@ export default function Unit1Page() {
           {/* Left Column - Image */}
           <div className="aspect-square bg-[color:var(--color-bg-card)] relative">
             <Image 
-              src={flashcards[currentCard].imagePath} 
-              alt={flashcards[currentCard].english}
+              src={currentFlashcard.imagePath} 
+              alt={currentFlashcard.english}
               fill
               className="object-cover"
             />
@@ -89,7 +132,7 @@ export default function Unit1Page() {
                 {showClue ? 'Hide Clue' : 'Show Clue'}
               </div>
               {showClue && (
-                <div className="text-[color:var(--color-text-inverse)] text-sm">{flashcards[currentCard].clue}</div>
+                <div className="text-[color:var(--color-text-inverse)] text-sm">{currentFlashcard.clue}</div>
               )}
             </button>
 
@@ -115,7 +158,7 @@ export default function Unit1Page() {
                     className="absolute w-full h-full bg-[color:var(--color-bg-nav)] p-2 flex items-center justify-center 
                              text-base font-bold text-[color:var(--color-text-inverse)] backface-hidden [transform:rotateY(180deg)]"
                   >
-                    {flashcards[currentCard].english}
+                    {currentFlashcard.english}
                   </div>
                 </div>
               </div>
@@ -140,7 +183,7 @@ export default function Unit1Page() {
                     className="absolute w-full h-full bg-[color:var(--color-bg-nav)] p-2 flex items-center justify-center 
                              text-base font-bold text-[color:var(--color-text-inverse)] backface-hidden [transform:rotateY(180deg)]"
                   >
-                    {flashcards[currentCard].spanish}
+                    {currentFlashcard.spanish}
                   </div>
                 </div>
               </div>

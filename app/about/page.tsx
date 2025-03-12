@@ -101,7 +101,7 @@ export default function AboutPage() {
               Ready to npm install some Spanish?
             </h2>
             <Link 
-              href="/basics/unit-1" 
+              href="/basics/" 
               className="inline-block bg-[color:var(--color-bg-card)] text-[color:var(--color-text-on-dark)] px-6 py-3 rounded hover:bg-[color:var(--color-bg-nav)] transition-colors"
             >
               Start Learning →

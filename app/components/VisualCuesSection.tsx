@@ -16,7 +16,7 @@ export default function VisualCuesSection() {
           {/* Image card */}
           <div className="col-span-12 lg:col-span-8 relative aspect-[16/9] overflow-hidden bg-[color:var(--color-bg-card)]">
             <Image
-              src="/images/nouns/dia.webp"
+              src="/images/01/dia.webp"
               alt="Visual representation of 'día' using a deer"
               fill
               className="object-cover"

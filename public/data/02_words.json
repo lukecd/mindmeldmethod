@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "hombre",
+            "english": "man",
+            "spanish": "hombre",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A strong man with a giant hummer (truck) parked next to him, showing off his toughness.",
+            "clue": "A MAN with a HUMMER (HOMBRE) is easy to remember—HOMBRE = HUMMER + BRAY!",
+            "imagePath": "/images/02/hombre.webp"
+        },
+        {
+            "id": "mujer",
+            "english": "woman",
+            "spanish": "mujer",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A woman with a cow tangled in her hair, looking frustrated but elegant.",
+            "clue": "A WOMAN with a MOO-HAIR (MUJER) is easy to remember! MUJER = MOO + HAIR!",
+            "imagePath": "/images/02/mujer.webp"
+        },
+        {
+            "id": "niño",
+            "english": "boy",
+            "spanish": "niño",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A little boy kneeling ('knee') on a yo-yo, riding it like a skateboard.",
+            "clue": "A BOY riding a KNEE-YO (NIÑO) makes it stick! NIÑO = KNEE + YO!",
+            "imagePath": "/images/02/niño.webp"
+        },
+        {
+            "id": "niña",
+            "english": "girl",
+            "spanish": "niña",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A girl balancing on a knee while holding a banana like a microphone and singing.",
+            "clue": "A GIRL with a KNEE-NA (NIÑA) makes it memorable! NIÑA = KNEE + NA!",
+            "imagePath": "/images/02/niña.webp"
+        },
+        {
+            "id": "amigo",
+            "english": "friend",
+            "spanish": "amigo",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A friendly cartoon arm (with a face) hugging a goat.",
+            "clue": "Think of an ARM and a GOAT as best friends—AMIGO = ARM + GO!",
+            "imagePath": "/images/02/amigo.webp"
+        },
+        {
+            "id": "padre",
+            "english": "father",
+            "spanish": "padre",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A father holding a pad and drawing a ray of sun on it, smiling proudly.",
+            "clue": "A FATHER with a PAD drawing a RAY of sun—PADRE = PAD + RE!",
+            "imagePath": "/images/02/padre.webp"
+        },
+        {
+            "id": "madre",
+            "english": "mother",
+            "spanish": "madre",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A mother baking a loaf of bread, but instead of dough, it's made of mud.",
+            "clue": "A MOTHER baking MUD-BREAD (MADRE) makes it easy to remember! MADRE = MUD + RE!",
+            "imagePath": "/images/02/madre.webp"
+        },
+        {
+            "id": "hermano",
+            "english": "brother",
+            "spanish": "hermano",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A brother heroically saving the day while wearing a cape that says 'MANO' (hand).",
+            "clue": "A BROTHER is a HERO with a MANO (hand)! HERMANO = HERO + MANO!",
+            "imagePath": "/images/02/hermano.webp"
+        },
+        {
+            "id": "hermana",
+            "english": "sister",
+            "spanish": "hermana",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A sister wearing a superhero cape that says 'MANNA' while helping others.",
+            "clue": "A SISTER is a HERO with MANNA (like a gift)! HERMANA = HERO + MANNA!",
+            "imagePath": "/images/02/hermana.webp"
+        },
+        {
+            "id": "gente",
+            "english": "people",
+            "spanish": "gente",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A group of polite people holding signs that say 'Gentle'.",
+            "clue": "GENTE sounds like GENTLE—easy way to remember PEOPLE!",
+            "imagePath": "/images/02/gente.webp"
+        },
+        {
+            "id": "trabajo",
+            "english": "work",
+            "spanish": "trabajo",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A person wearing a tie and holding a giant tray of bagels while working at a bakery.",
+            "clue": "WORKING with a TRAY of BAGELS (TRABAJO) makes it easy to remember! TRABAJO = TRAY + BAGEL!",
+            "imagePath": "/images/02/trabajo.webp"
+        },
+        {
+            "id": "ciudad",
+            "english": "city",
+            "spanish": "ciudad",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'ciudad'-shaped city standing in a field.",
+            "clue": "This city is shaped like 'ciudad', making it easy to remember!",
+            "imagePath": "/images/02/ciudad.webp"
+        },
+        {
+            "id": "país",
+            "english": "country",
+            "spanish": "país",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A country holding a sign with their name.",
+            "clue": "The country is showing their name, just like 'país'.",
+            "imagePath": "/images/02/país.webp"
+        },
+        {
+            "id": "coche",
+            "english": "car",
+            "spanish": "coche",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'coche'-shaped car standing in a field.",
+            "clue": "This car is shaped like 'coche', making it easy to remember!",
+            "imagePath": "/images/02/coche.webp"
+        },
+        {
+            "id": "agua",
+            "english": "water",
+            "spanish": "agua",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A water holding a sign with their name.",
+            "clue": "The water is showing their name, just like 'agua'.",
+            "imagePath": "/images/02/agua.webp"
+        },
+        {
+            "id": "comida",
+            "english": "food",
+            "spanish": "comida",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'comida'-shaped food standing in a field.",
+            "clue": "This food is shaped like 'comida', making it easy to remember!",
+            "imagePath": "/images/02/comida.webp"
+        },
+        {
+            "id": "dinero",
+            "english": "money",
+            "spanish": "dinero",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'dinero' while pointing at a money.",
+            "clue": "A teacher teaches about 'dinero', which means money.",
+            "imagePath": "/images/02/dinero.webp"
+        },
+        {
+            "id": "historia",
+            "english": "history",
+            "spanish": "historia",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A historian reading a storybook filled with historical events.",
+            "clue": "HISTORIA sounds like STORY—imagine HISTORY written as a STORY!",
+            "imagePath": "/images/02/historia.webp"
+        },
+        {
+            "id": "noche",
+            "english": "night",
+            "spanish": "noche",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'noche'-shaped night standing in a field.",
+            "clue": "This night is shaped like 'noche', making it easy to remember!",
+            "imagePath": "/images/02/noche.webp"
+        },
+        {
+            "id": "mañana",
+            "english": "morning",
+            "spanish": "mañana",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'mañana'-shaped morning standing in a field.",
+            "clue": "This morning is shaped like 'mañana', making it easy to remember!",
+            "imagePath": "/images/02/mañana.webp"
+        },
+        {
+            "id": "camino",
+            "english": "road",
+            "spanish": "camino",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'camino'-shaped road standing in a field.",
+            "clue": "This road is shaped like 'camino', making it easy to remember!",
+            "imagePath": "/images/02/camino.webp"
+        },
+        {
+            "id": "cuerpo",
+            "english": "body",
+            "spanish": "cuerpo",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'cuerpo' while pointing at a body.",
+            "clue": "A teacher teaches about 'cuerpo', which means body.",
+            "imagePath": "/images/02/cuerpo.webp"
+        },
+        {
+            "id": "corazón",
+            "english": "heart",
+            "spanish": "corazón",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'corazón'-shaped heart standing in a field.",
+            "clue": "This heart is shaped like 'corazón', making it easy to remember!",
+            "imagePath": "/images/02/corazón.webp"
+        },
+        {
+            "id": "idea",
+            "english": "idea",
+            "spanish": "idea",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A idea holding a sign with their name.",
+            "clue": "The idea is showing their name, just like 'idea'.",
+            "imagePath": "/images/02/idea.webp"
+        },
+        {
+            "id": "problema",
+            "english": "problem",
+            "spanish": "problema",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A giant 'problema'-shaped problem standing in a field.",
+            "clue": "This problem is shaped like 'problema', making it easy to remember!",
+            "imagePath": "/images/02/problema.webp"
+        },
+        {
+            "id": "pregunta",
+            "english": "question",
+            "spanish": "pregunta",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A penguin holding up a giant question mark, looking confused.",
+            "clue": "A PENGUIN asking a QUESTION—PREGUNTA sounds like PENGUIN!",
+            "imagePath": "/images/02/pregunta.webp"
+        },
+        {
+            "id": "respuesta",
+            "english": "answer",
+            "spanish": "respuesta",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A restaurant where customers only get food if they correctly answer a quiz.",
+            "clue": "A RESTAURANT giving food for the right ANSWER—RESPUESTA sounds like RESTAURANT!",
+            "imagePath": "/images/02/respuesta.webp"
+        },
+        {
+            "id": "amor",
+            "english": "love",
+            "spanish": "amor",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A heart-shaped box filled with more hearts, radiating warmth and happiness.",
+            "clue": "AMOR is LOVE—think of a HEART filled with more hearts!",
+            "imagePath": "/images/02/amor.webp"
+        },
+        {
+            "id": "felicidad",
+            "english": "happiness",
+            "spanish": "felicidad",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A festival with people dancing, throwing confetti, and laughing with joy.",
+            "clue": "FELICIDAD sounds like FESTIVE—think of a HAPPY celebration!",
+            "imagePath": "/images/02/felicidad.webp"
+        },
+        {
+            "id": "escuchar",
+            "english": "to listen",
+            "spanish": "escuchar",
+            "rank": 2,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'escuchar!' while pointing at a to listen.",
+            "clue": "Pirates love saying 'escuchar!', and it means to listen.",
+            "imagePath": "/images/02/escuchar.webp"
+        }
+    ]
+}

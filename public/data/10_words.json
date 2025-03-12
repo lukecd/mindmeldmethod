@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "afilado",
+            "english": "sharp",
+            "spanish": "afilado",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'afilado'-shaped sharp standing in a field.",
+            "clue": "This sharp is shaped like 'afilado', making it easy to remember!",
+            "imagePath": "/images/lesson_10/afilado.webp"
+        },
+        {
+            "id": "desafilado",
+            "english": "dull",
+            "spanish": "desafilado",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'desafilado'-shaped dull standing in a field.",
+            "clue": "This dull is shaped like 'desafilado', making it easy to remember!",
+            "imagePath": "/images/lesson_10/desafilado.webp"
+        },
+        {
+            "id": "quebradizo",
+            "english": "brittle",
+            "spanish": "quebradizo",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'quebradizo'-shaped brittle standing in a field.",
+            "clue": "This brittle is shaped like 'quebradizo', making it easy to remember!",
+            "imagePath": "/images/lesson_10/quebradizo.webp"
+        },
+        {
+            "id": "flexible",
+            "english": "flexible",
+            "spanish": "flexible",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'flexible'-shaped flexible standing in a field.",
+            "clue": "This flexible is shaped like 'flexible', making it easy to remember!",
+            "imagePath": "/images/lesson_10/flexible.webp"
+        },
+        {
+            "id": "resistente",
+            "english": "sturdy",
+            "spanish": "resistente",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'resistente'-shaped sturdy standing in a field.",
+            "clue": "This sturdy is shaped like 'resistente', making it easy to remember!",
+            "imagePath": "/images/lesson_10/resistente.webp"
+        },
+        {
+            "id": "redondo",
+            "english": "round",
+            "spanish": "redondo",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'redondo'-shaped round standing in a field.",
+            "clue": "This round is shaped like 'redondo', making it easy to remember!",
+            "imagePath": "/images/lesson_10/redondo.webp"
+        },
+        {
+            "id": "cuadrado",
+            "english": "square",
+            "spanish": "cuadrado",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'cuadrado'-shaped square standing in a field.",
+            "clue": "This square is shaped like 'cuadrado', making it easy to remember!",
+            "imagePath": "/images/lesson_10/cuadrado.webp"
+        },
+        {
+            "id": "triangular",
+            "english": "triangular",
+            "spanish": "triangular",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'triangular!' while pointing at a triangular.",
+            "clue": "Pirates love saying 'triangular!', and it means triangular.",
+            "imagePath": "/images/lesson_10/triangular.webp"
+        },
+        {
+            "id": "áspero",
+            "english": "rough",
+            "spanish": "áspero",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'áspero' while pointing at a rough.",
+            "clue": "A teacher teaches about 'áspero', which means rough.",
+            "imagePath": "/images/lesson_10/áspero.webp"
+        },
+        {
+            "id": "suave",
+            "english": "smooth",
+            "spanish": "suave",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'suave'-shaped smooth standing in a field.",
+            "clue": "This smooth is shaped like 'suave', making it easy to remember!",
+            "imagePath": "/images/lesson_10/suave.webp"
+        },
+        {
+            "id": "pesado",
+            "english": "heavy",
+            "spanish": "pesado",
+            "rank": 10,
+            "type": "noun",
+            "imagePrompt": "A giant 'pesado'-shaped heavy standing in a field.",
+            "clue": "This heavy is shaped like 'pesado', making it easy to remember!",
+            "imagePath": "/images/lesson_10/pesado.webp"
+        },
+        {
+            "id": "ligero",
+            "english": "light",
+            "spanish": "ligero",
+            "rank": 10,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'ligero' while pointing at a light.",
+            "clue": "A teacher teaches about 'ligero', which means light.",
+            "imagePath": "/images/lesson_10/ligero.webp"
+        },
+        {
+            "id": "angosto",
+            "english": "narrow",
+            "spanish": "angosto",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'angosto'-shaped narrow standing in a field.",
+            "clue": "This narrow is shaped like 'angosto', making it easy to remember!",
+            "imagePath": "/images/lesson_10/angosto.webp"
+        },
+        {
+            "id": "amplio",
+            "english": "spacious",
+            "spanish": "amplio",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'amplio'-shaped spacious standing in a field.",
+            "clue": "This spacious is shaped like 'amplio', making it easy to remember!",
+            "imagePath": "/images/lesson_10/amplio.webp"
+        },
+        {
+            "id": "compacto",
+            "english": "compact",
+            "spanish": "compacto",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'compacto'-shaped compact standing in a field.",
+            "clue": "This compact is shaped like 'compacto', making it easy to remember!",
+            "imagePath": "/images/lesson_10/compacto.webp"
+        },
+        {
+            "id": "brillante",
+            "english": "shiny",
+            "spanish": "brillante",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'brillante'-shaped shiny standing in a field.",
+            "clue": "This shiny is shaped like 'brillante', making it easy to remember!",
+            "imagePath": "/images/lesson_10/brillante.webp"
+        },
+        {
+            "id": "opaco",
+            "english": "opaque",
+            "spanish": "opaco",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'opaco'-shaped opaque standing in a field.",
+            "clue": "This opaque is shaped like 'opaco', making it easy to remember!",
+            "imagePath": "/images/lesson_10/opaco.webp"
+        },
+        {
+            "id": "desordenado",
+            "english": "messy",
+            "spanish": "desordenado",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'desordenado'-shaped messy standing in a field.",
+            "clue": "This messy is shaped like 'desordenado', making it easy to remember!",
+            "imagePath": "/images/lesson_10/desordenado.webp"
+        },
+        {
+            "id": "ordenado",
+            "english": "organized",
+            "spanish": "ordenado",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'ordenado'-shaped organized standing in a field.",
+            "clue": "This organized is shaped like 'ordenado', making it easy to remember!",
+            "imagePath": "/images/lesson_10/ordenado.webp"
+        },
+        {
+            "id": "peligroso",
+            "english": "dangerous",
+            "spanish": "peligroso",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'peligroso'-shaped dangerous standing in a field.",
+            "clue": "This dangerous is shaped like 'peligroso', making it easy to remember!",
+            "imagePath": "/images/lesson_10/peligroso.webp"
+        },
+        {
+            "id": "seguro",
+            "english": "safe",
+            "spanish": "seguro",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'seguro'-shaped safe standing in a field.",
+            "clue": "This safe is shaped like 'seguro', making it easy to remember!",
+            "imagePath": "/images/lesson_10/seguro.webp"
+        },
+        {
+            "id": "alegre",
+            "english": "cheerful",
+            "spanish": "alegre",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'alegre'-shaped cheerful standing in a field.",
+            "clue": "This cheerful is shaped like 'alegre', making it easy to remember!",
+            "imagePath": "/images/lesson_10/alegre.webp"
+        },
+        {
+            "id": "sombrío",
+            "english": "gloomy",
+            "spanish": "sombrío",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'sombrío'-shaped gloomy standing in a field.",
+            "clue": "This gloomy is shaped like 'sombrío', making it easy to remember!",
+            "imagePath": "/images/lesson_10/sombrío.webp"
+        },
+        {
+            "id": "gigante",
+            "english": "gigantic",
+            "spanish": "gigante",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'gigante'-shaped gigantic standing in a field.",
+            "clue": "This gigantic is shaped like 'gigante', making it easy to remember!",
+            "imagePath": "/images/lesson_10/gigante.webp"
+        },
+        {
+            "id": "minúsculo",
+            "english": "tiny",
+            "spanish": "minúsculo",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'minúsculo'-shaped tiny standing in a field.",
+            "clue": "This tiny is shaped like 'minúsculo', making it easy to remember!",
+            "imagePath": "/images/lesson_10/minúsculo.webp"
+        },
+        {
+            "id": "delicioso",
+            "english": "delicious",
+            "spanish": "delicioso",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'delicioso'-shaped delicious standing in a field.",
+            "clue": "This delicious is shaped like 'delicioso', making it easy to remember!",
+            "imagePath": "/images/lesson_10/delicioso.webp"
+        },
+        {
+            "id": "horrible",
+            "english": "horrible",
+            "spanish": "horrible",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'horrible'-shaped horrible standing in a field.",
+            "clue": "This horrible is shaped like 'horrible', making it easy to remember!",
+            "imagePath": "/images/lesson_10/horrible.webp"
+        },
+        {
+            "id": "pegajoso",
+            "english": "sticky",
+            "spanish": "pegajoso",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'pegajoso'-shaped sticky standing in a field.",
+            "clue": "This sticky is shaped like 'pegajoso', making it easy to remember!",
+            "imagePath": "/images/lesson_10/pegajoso.webp"
+        },
+        {
+            "id": "resbaladizo",
+            "english": "slippery",
+            "spanish": "resbaladizo",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'resbaladizo'-shaped slippery standing in a field.",
+            "clue": "This slippery is shaped like 'resbaladizo', making it easy to remember!",
+            "imagePath": "/images/lesson_10/resbaladizo.webp"
+        },
+        {
+            "id": "metálico",
+            "english": "metallic",
+            "spanish": "metálico",
+            "rank": 10,
+            "type": "adjective",
+            "imagePrompt": "A giant 'metálico'-shaped metallic standing in a field.",
+            "clue": "This metallic is shaped like 'metálico', making it easy to remember!",
+            "imagePath": "/images/lesson_10/metálico.webp"
+        }
+    ]
+}

@@ -12,7 +12,7 @@ export default function CTASection() {
           Start with the basics and work your way up to understanding crypto content in Spanish.
         </p>
         <Link 
-          href="/basics/unit-1" 
+          href="/basics/" 
           className="inline-block bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] px-8 py-4 text-xl hover:bg-[color:var(--color-button-hover)] transition-colors"
         >
           Begin Your Journey →

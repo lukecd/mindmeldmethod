@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "estrella",
+            "english": "star",
+            "spanish": "estrella",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'estrella'-shaped star standing in a field.",
+            "clue": "This star is shaped like 'estrella', making it easy to remember!",
+            "imagePath": "/images/lesson_5/estrella.webp"
+        },
+        {
+            "id": "lluvia",
+            "english": "rain",
+            "spanish": "lluvia",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'lluvia'-shaped rain standing in a field.",
+            "clue": "This rain is shaped like 'lluvia', making it easy to remember!",
+            "imagePath": "/images/lesson_5/lluvia.webp"
+        },
+        {
+            "id": "viento",
+            "english": "wind",
+            "spanish": "viento",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'viento'-shaped wind standing in a field.",
+            "clue": "This wind is shaped like 'viento', making it easy to remember!",
+            "imagePath": "/images/lesson_5/viento.webp"
+        },
+        {
+            "id": "nube",
+            "english": "cloud",
+            "spanish": "nube",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A cloud holding a sign with their name.",
+            "clue": "The cloud is showing their name, just like 'nube'.",
+            "imagePath": "/images/lesson_5/nube.webp"
+        },
+        {
+            "id": "hoja",
+            "english": "leaf",
+            "spanish": "hoja",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A leaf holding a sign with their name.",
+            "clue": "The leaf is showing their name, just like 'hoja'.",
+            "imagePath": "/images/lesson_5/hoja.webp"
+        },
+        {
+            "id": "flor",
+            "english": "flower",
+            "spanish": "flor",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A flower holding a sign with their name.",
+            "clue": "The flower is showing their name, just like 'flor'.",
+            "imagePath": "/images/lesson_5/flor.webp"
+        },
+        {
+            "id": "piedra",
+            "english": "stone",
+            "spanish": "piedra",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'piedra'-shaped stone standing in a field.",
+            "clue": "This stone is shaped like 'piedra', making it easy to remember!",
+            "imagePath": "/images/lesson_5/piedra.webp"
+        },
+        {
+            "id": "arena",
+            "english": "sand",
+            "spanish": "arena",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'arena!' while pointing at a sand.",
+            "clue": "Pirates love saying 'arena!', and it means sand.",
+            "imagePath": "/images/lesson_5/arena.webp"
+        },
+        {
+            "id": "metal",
+            "english": "metal",
+            "spanish": "metal",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'metal'-shaped metal standing in a field.",
+            "clue": "This metal is shaped like 'metal', making it easy to remember!",
+            "imagePath": "/images/lesson_5/metal.webp"
+        },
+        {
+            "id": "madera",
+            "english": "wood",
+            "spanish": "madera",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'madera' while pointing at a wood.",
+            "clue": "A teacher teaches about 'madera', which means wood.",
+            "imagePath": "/images/lesson_5/madera.webp"
+        },
+        {
+            "id": "bailar",
+            "english": "to dance",
+            "spanish": "bailar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'bailar!' while pointing at a to dance.",
+            "clue": "Pirates love saying 'bailar!', and it means to dance.",
+            "imagePath": "/images/lesson_5/bailar.webp"
+        },
+        {
+            "id": "cantar",
+            "english": "to sing",
+            "spanish": "cantar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'cantar!' while pointing at a to sing.",
+            "clue": "Pirates love saying 'cantar!', and it means to sing.",
+            "imagePath": "/images/lesson_5/cantar.webp"
+        },
+        {
+            "id": "dibujar",
+            "english": "to draw",
+            "spanish": "dibujar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'dibujar!' while pointing at a to draw.",
+            "clue": "Pirates love saying 'dibujar!', and it means to draw.",
+            "imagePath": "/images/lesson_5/dibujar.webp"
+        },
+        {
+            "id": "escribir",
+            "english": "to write",
+            "spanish": "escribir",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'escribir'-shaped to write standing in a field.",
+            "clue": "This to write is shaped like 'escribir', making it easy to remember!",
+            "imagePath": "/images/lesson_5/escribir.webp"
+        },
+        {
+            "id": "leer",
+            "english": "to read",
+            "spanish": "leer",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A to read holding a sign with their name.",
+            "clue": "The to read is showing their name, just like 'leer'.",
+            "imagePath": "/images/lesson_5/leer.webp"
+        },
+        {
+            "id": "correr",
+            "english": "to run",
+            "spanish": "correr",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'correr' while pointing at a to run.",
+            "clue": "A teacher teaches about 'correr', which means to run.",
+            "imagePath": "/images/lesson_5/correr.webp"
+        },
+        {
+            "id": "saltar",
+            "english": "to jump",
+            "spanish": "saltar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'saltar!' while pointing at a to jump.",
+            "clue": "Pirates love saying 'saltar!', and it means to jump.",
+            "imagePath": "/images/lesson_5/saltar.webp"
+        },
+        {
+            "id": "nadar",
+            "english": "to swim",
+            "spanish": "nadar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'nadar!' while pointing at a to swim.",
+            "clue": "Pirates love saying 'nadar!', and it means to swim.",
+            "imagePath": "/images/lesson_5/nadar.webp"
+        },
+        {
+            "id": "caminar",
+            "english": "to walk",
+            "spanish": "caminar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'caminar!' while pointing at a to walk.",
+            "clue": "Pirates love saying 'caminar!', and it means to walk.",
+            "imagePath": "/images/lesson_5/caminar.webp"
+        },
+        {
+            "id": "soñar",
+            "english": "to dream",
+            "spanish": "soñar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'soñar!' while pointing at a to dream.",
+            "clue": "Pirates love saying 'soñar!', and it means to dream.",
+            "imagePath": "/images/lesson_5/soñar.webp"
+        },
+        {
+            "id": "dormir",
+            "english": "to sleep",
+            "spanish": "dormir",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'dormir'-shaped to sleep standing in a field.",
+            "clue": "This to sleep is shaped like 'dormir', making it easy to remember!",
+            "imagePath": "/images/lesson_5/dormir.webp"
+        },
+        {
+            "id": "despertar",
+            "english": "to wake up",
+            "spanish": "despertar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'despertar!' while pointing at a to wake up.",
+            "clue": "Pirates love saying 'despertar!', and it means to wake up.",
+            "imagePath": "/images/lesson_5/despertar.webp"
+        },
+        {
+            "id": "reír",
+            "english": "to laugh",
+            "spanish": "reír",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A to laugh holding a sign with their name.",
+            "clue": "The to laugh is showing their name, just like 'reír'.",
+            "imagePath": "/images/lesson_5/reír.webp"
+        },
+        {
+            "id": "llorar",
+            "english": "to cry",
+            "spanish": "llorar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'llorar!' while pointing at a to cry.",
+            "clue": "Pirates love saying 'llorar!', and it means to cry.",
+            "imagePath": "/images/lesson_5/llorar.webp"
+        },
+        {
+            "id": "conducir",
+            "english": "to drive",
+            "spanish": "conducir",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'conducir'-shaped to drive standing in a field.",
+            "clue": "This to drive is shaped like 'conducir', making it easy to remember!",
+            "imagePath": "/images/lesson_5/conducir.webp"
+        },
+        {
+            "id": "volar",
+            "english": "to fly",
+            "spanish": "volar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'volar!' while pointing at a to fly.",
+            "clue": "Pirates love saying 'volar!', and it means to fly.",
+            "imagePath": "/images/lesson_5/volar.webp"
+        },
+        {
+            "id": "pescar",
+            "english": "to fish",
+            "spanish": "pescar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'pescar!' while pointing at a to fish.",
+            "clue": "Pirates love saying 'pescar!', and it means to fish.",
+            "imagePath": "/images/lesson_5/pescar.webp"
+        },
+        {
+            "id": "cocinar",
+            "english": "to cook",
+            "spanish": "cocinar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'cocinar!' while pointing at a to cook.",
+            "clue": "Pirates love saying 'cocinar!', and it means to cook.",
+            "imagePath": "/images/lesson_5/cocinar.webp"
+        },
+        {
+            "id": "pintar",
+            "english": "to paint",
+            "spanish": "pintar",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'pintar!' while pointing at a to paint.",
+            "clue": "Pirates love saying 'pintar!', and it means to paint.",
+            "imagePath": "/images/lesson_5/pintar.webp"
+        },
+        {
+            "id": "construir",
+            "english": "to build",
+            "spanish": "construir",
+            "rank": 5,
+            "type": "adjective",
+            "imagePrompt": "A giant 'construir'-shaped to build standing in a field.",
+            "clue": "This to build is shaped like 'construir', making it easy to remember!",
+            "imagePath": "/images/lesson_5/construir.webp"
+        }
+    ]
+}

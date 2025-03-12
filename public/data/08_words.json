@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "cine",
+            "english": "cinema",
+            "spanish": "cine",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A cinema holding a sign with their name.",
+            "clue": "The cinema is showing their name, just like 'cine'.",
+            "imagePath": "/images/lesson_8/cine.webp"
+        },
+        {
+            "id": "teatro",
+            "english": "theater",
+            "spanish": "teatro",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'teatro'-shaped theater standing in a field.",
+            "clue": "This theater is shaped like 'teatro', making it easy to remember!",
+            "imagePath": "/images/lesson_8/teatro.webp"
+        },
+        {
+            "id": "hospital",
+            "english": "hospital",
+            "spanish": "hospital",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'hospital'-shaped hospital standing in a field.",
+            "clue": "This hospital is shaped like 'hospital', making it easy to remember!",
+            "imagePath": "/images/lesson_8/hospital.webp"
+        },
+        {
+            "id": "mercado",
+            "english": "market",
+            "spanish": "mercado",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'mercado' while pointing at a market.",
+            "clue": "A teacher teaches about 'mercado', which means market.",
+            "imagePath": "/images/lesson_8/mercado.webp"
+        },
+        {
+            "id": "tienda",
+            "english": "store",
+            "spanish": "tienda",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'tienda'-shaped store standing in a field.",
+            "clue": "This store is shaped like 'tienda', making it easy to remember!",
+            "imagePath": "/images/lesson_8/tienda.webp"
+        },
+        {
+            "id": "descansar",
+            "english": "to rest",
+            "spanish": "descansar",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'descansar!' while pointing at a to rest.",
+            "clue": "Pirates love saying 'descansar!', and it means to rest.",
+            "imagePath": "/images/lesson_8/descansar.webp"
+        },
+        {
+            "id": "levantar",
+            "english": "to lift",
+            "spanish": "levantar",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'levantar!' while pointing at a to lift.",
+            "clue": "Pirates love saying 'levantar!', and it means to lift.",
+            "imagePath": "/images/lesson_8/levantar.webp"
+        },
+        {
+            "id": "bajar",
+            "english": "to lower",
+            "spanish": "bajar",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'bajar!' while pointing at a to lower.",
+            "clue": "Pirates love saying 'bajar!', and it means to lower.",
+            "imagePath": "/images/lesson_8/bajar.webp"
+        },
+        {
+            "id": "subir",
+            "english": "to climb",
+            "spanish": "subir",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'subir'-shaped to climb standing in a field.",
+            "clue": "This to climb is shaped like 'subir', making it easy to remember!",
+            "imagePath": "/images/lesson_8/subir.webp"
+        },
+        {
+            "id": "atar",
+            "english": "to tie",
+            "spanish": "atar",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A to tie holding a sign with their name.",
+            "clue": "The to tie is showing their name, just like 'atar'.",
+            "imagePath": "/images/lesson_8/atar.webp"
+        },
+        {
+            "id": "denso",
+            "english": "dense",
+            "spanish": "denso",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'denso'-shaped dense standing in a field.",
+            "clue": "This dense is shaped like 'denso', making it easy to remember!",
+            "imagePath": "/images/lesson_8/denso.webp"
+        },
+        {
+            "id": "esponjoso",
+            "english": "spongy",
+            "spanish": "esponjoso",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'esponjoso'-shaped spongy standing in a field.",
+            "clue": "This spongy is shaped like 'esponjoso', making it easy to remember!",
+            "imagePath": "/images/lesson_8/esponjoso.webp"
+        },
+        {
+            "id": "delgado",
+            "english": "thin",
+            "spanish": "delgado",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'delgado'-shaped thin standing in a field.",
+            "clue": "This thin is shaped like 'delgado', making it easy to remember!",
+            "imagePath": "/images/lesson_8/delgado.webp"
+        },
+        {
+            "id": "grueso",
+            "english": "thick",
+            "spanish": "grueso",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'grueso'-shaped thick standing in a field.",
+            "clue": "This thick is shaped like 'grueso', making it easy to remember!",
+            "imagePath": "/images/lesson_8/grueso.webp"
+        },
+        {
+            "id": "sucio",
+            "english": "dirty",
+            "spanish": "sucio",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'sucio'-shaped dirty standing in a field.",
+            "clue": "This dirty is shaped like 'sucio', making it easy to remember!",
+            "imagePath": "/images/lesson_8/sucio.webp"
+        },
+        {
+            "id": "limpio",
+            "english": "clean",
+            "spanish": "limpio",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'limpio'-shaped clean standing in a field.",
+            "clue": "This clean is shaped like 'limpio', making it easy to remember!",
+            "imagePath": "/images/lesson_8/limpio.webp"
+        },
+        {
+            "id": "mojado",
+            "english": "wet",
+            "spanish": "mojado",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'mojado'-shaped wet standing in a field.",
+            "clue": "This wet is shaped like 'mojado', making it easy to remember!",
+            "imagePath": "/images/lesson_8/mojado.webp"
+        },
+        {
+            "id": "seco",
+            "english": "dry",
+            "spanish": "seco",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A dry holding a sign with their name.",
+            "clue": "The dry is showing their name, just like 'seco'.",
+            "imagePath": "/images/lesson_8/seco.webp"
+        },
+        {
+            "id": "alejado",
+            "english": "far",
+            "spanish": "alejado",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'alejado'-shaped far standing in a field.",
+            "clue": "This far is shaped like 'alejado', making it easy to remember!",
+            "imagePath": "/images/lesson_8/alejado.webp"
+        },
+        {
+            "id": "cercano",
+            "english": "near",
+            "spanish": "cercano",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'cercano' while pointing at a near.",
+            "clue": "A teacher teaches about 'cercano', which means near.",
+            "imagePath": "/images/lesson_8/cercano.webp"
+        },
+        {
+            "id": "rueda",
+            "english": "wheel",
+            "spanish": "rueda",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'rueda'-shaped wheel standing in a field.",
+            "clue": "This wheel is shaped like 'rueda', making it easy to remember!",
+            "imagePath": "/images/lesson_8/rueda.webp"
+        },
+        {
+            "id": "botón",
+            "english": "button",
+            "spanish": "botón",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'botón'-shaped button standing in a field.",
+            "clue": "This button is shaped like 'botón', making it easy to remember!",
+            "imagePath": "/images/lesson_8/botón.webp"
+        },
+        {
+            "id": "humo",
+            "english": "smoke",
+            "spanish": "humo",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A smoke holding a sign with their name.",
+            "clue": "The smoke is showing their name, just like 'humo'.",
+            "imagePath": "/images/lesson_8/humo.webp"
+        },
+        {
+            "id": "ceniza",
+            "english": "ash",
+            "spanish": "ceniza",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'ceniza'-shaped ash standing in a field.",
+            "clue": "This ash is shaped like 'ceniza', making it easy to remember!",
+            "imagePath": "/images/lesson_8/ceniza.webp"
+        },
+        {
+            "id": "nieve",
+            "english": "snow",
+            "spanish": "nieve",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'nieve'-shaped snow standing in a field.",
+            "clue": "This snow is shaped like 'nieve', making it easy to remember!",
+            "imagePath": "/images/lesson_8/nieve.webp"
+        },
+        {
+            "id": "cuerda",
+            "english": "rope",
+            "spanish": "cuerda",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'cuerda' while pointing at a rope.",
+            "clue": "A teacher teaches about 'cuerda', which means rope.",
+            "imagePath": "/images/lesson_8/cuerda.webp"
+        },
+        {
+            "id": "ventilador",
+            "english": "fan",
+            "spanish": "ventilador",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'ventilador'-shaped fan standing in a field.",
+            "clue": "This fan is shaped like 'ventilador', making it easy to remember!",
+            "imagePath": "/images/lesson_8/ventilador.webp"
+        },
+        {
+            "id": "charco",
+            "english": "puddle",
+            "spanish": "charco",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'charco!' while pointing at a puddle.",
+            "clue": "Pirates love saying 'charco!', and it means puddle.",
+            "imagePath": "/images/lesson_8/charco.webp"
+        },
+        {
+            "id": "cuchara",
+            "english": "spoon",
+            "spanish": "cuchara",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'cuchara!' while pointing at a spoon.",
+            "clue": "Pirates love saying 'cuchara!', and it means spoon.",
+            "imagePath": "/images/lesson_8/cuchara.webp"
+        },
+        {
+            "id": "tenedor",
+            "english": "fork",
+            "spanish": "tenedor",
+            "rank": 8,
+            "type": "adjective",
+            "imagePrompt": "A giant 'tenedor'-shaped fork standing in a field.",
+            "clue": "This fork is shaped like 'tenedor', making it easy to remember!",
+            "imagePath": "/images/lesson_8/tenedor.webp"
+        }
+    ]
+}

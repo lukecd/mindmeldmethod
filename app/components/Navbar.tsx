@@ -17,7 +17,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="p-4 fixed w-full top-0 z-50 bg-[color:var(--color-nav-bg)] text-[color:var(--color-text-inverse)]">
+    <nav className="p-4 fixed w-full top-0 z-50 bg-[color:var(--color-bg-nav)] text-[color:var(--color-text-inverse)]">
       <div className="container mx-auto flex justify-between items-center">
         {/* Hamburger Menu */}
         <button
@@ -37,7 +37,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="mobile-menu absolute top-full left-0 w-64 bg-[color:var(--color-nav-bg)] border-t border-[color:var(--color-border-light)] shadow-lg">
+          <div className="mobile-menu absolute top-full left-0 w-64 bg-[color:var(--color-bg-nav)] border-t border-[color:var(--color-border-light)] shadow-lg z-50">
             <div className="py-2">
               {menuItems.map((item) => (
                 <Link 

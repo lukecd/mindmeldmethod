@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "girar",
+            "english": "to turn",
+            "spanish": "girar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'girar!' while pointing at a to turn.",
+            "clue": "Pirates love saying 'girar!', and it means to turn.",
+            "imagePath": "/images/lesson_7/girar.webp"
+        },
+        {
+            "id": "tocar",
+            "english": "to touch",
+            "spanish": "tocar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'tocar!' while pointing at a to touch.",
+            "clue": "Pirates love saying 'tocar!', and it means to touch.",
+            "imagePath": "/images/lesson_7/tocar.webp"
+        },
+        {
+            "id": "arrojar",
+            "english": "to throw",
+            "spanish": "arrojar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'arrojar!' while pointing at a to throw.",
+            "clue": "Pirates love saying 'arrojar!', and it means to throw.",
+            "imagePath": "/images/lesson_7/arrojar.webp"
+        },
+        {
+            "id": "romper",
+            "english": "to break",
+            "spanish": "romper",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'romper' while pointing at a to break.",
+            "clue": "A teacher teaches about 'romper', which means to break.",
+            "imagePath": "/images/lesson_7/romper.webp"
+        },
+        {
+            "id": "arreglar",
+            "english": "to fix",
+            "spanish": "arreglar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'arreglar!' while pointing at a to fix.",
+            "clue": "Pirates love saying 'arreglar!', and it means to fix.",
+            "imagePath": "/images/lesson_7/arreglar.webp"
+        },
+        {
+            "id": "explicar",
+            "english": "to explain",
+            "spanish": "explicar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'explicar!' while pointing at a to explain.",
+            "clue": "Pirates love saying 'explicar!', and it means to explain.",
+            "imagePath": "/images/lesson_7/explicar.webp"
+        },
+        {
+            "id": "mostrar",
+            "english": "to show",
+            "spanish": "mostrar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'mostrar!' while pointing at a to show.",
+            "clue": "Pirates love saying 'mostrar!', and it means to show.",
+            "imagePath": "/images/lesson_7/mostrar.webp"
+        },
+        {
+            "id": "preguntar",
+            "english": "to ask",
+            "spanish": "preguntar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'preguntar!' while pointing at a to ask.",
+            "clue": "Pirates love saying 'preguntar!', and it means to ask.",
+            "imagePath": "/images/lesson_7/preguntar.webp"
+        },
+        {
+            "id": "responder",
+            "english": "to answer",
+            "spanish": "responder",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'responder' while pointing at a to answer.",
+            "clue": "A teacher teaches about 'responder', which means to answer.",
+            "imagePath": "/images/lesson_7/responder.webp"
+        },
+        {
+            "id": "decidir",
+            "english": "to decide",
+            "spanish": "decidir",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'decidir'-shaped to decide standing in a field.",
+            "clue": "This to decide is shaped like 'decidir', making it easy to remember!",
+            "imagePath": "/images/lesson_7/decidir.webp"
+        },
+        {
+            "id": "blando",
+            "english": "soft",
+            "spanish": "blando",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'blando'-shaped soft standing in a field.",
+            "clue": "This soft is shaped like 'blando', making it easy to remember!",
+            "imagePath": "/images/lesson_7/blando.webp"
+        },
+        {
+            "id": "duro",
+            "english": "hard",
+            "spanish": "duro",
+            "rank": 7,
+            "type": "noun",
+            "imagePrompt": "A hard holding a sign with their name.",
+            "clue": "The hard is showing their name, just like 'duro'.",
+            "imagePath": "/images/lesson_7/duro.webp"
+        },
+        {
+            "id": "fresco",
+            "english": "fresh",
+            "spanish": "fresco",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'fresco'-shaped fresh standing in a field.",
+            "clue": "This fresh is shaped like 'fresco', making it easy to remember!",
+            "imagePath": "/images/lesson_7/fresco.webp"
+        },
+        {
+            "id": "calmado",
+            "english": "calm",
+            "spanish": "calmado",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'calmado'-shaped calm standing in a field.",
+            "clue": "This calm is shaped like 'calmado', making it easy to remember!",
+            "imagePath": "/images/lesson_7/calmado.webp"
+        },
+        {
+            "id": "violento",
+            "english": "violent",
+            "spanish": "violento",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'violento'-shaped violent standing in a field.",
+            "clue": "This violent is shaped like 'violento', making it easy to remember!",
+            "imagePath": "/images/lesson_7/violento.webp"
+        },
+        {
+            "id": "brillante",
+            "english": "bright",
+            "spanish": "brillante",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'brillante'-shaped bright standing in a field.",
+            "clue": "This bright is shaped like 'brillante', making it easy to remember!",
+            "imagePath": "/images/lesson_7/brillante.webp"
+        },
+        {
+            "id": "opaco",
+            "english": "dull",
+            "spanish": "opaco",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'opaco'-shaped dull standing in a field.",
+            "clue": "This dull is shaped like 'opaco', making it easy to remember!",
+            "imagePath": "/images/lesson_7/opaco.webp"
+        },
+        {
+            "id": "pesimista",
+            "english": "pessimistic",
+            "spanish": "pesimista",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'pesimista'-shaped pessimistic standing in a field.",
+            "clue": "This pessimistic is shaped like 'pesimista', making it easy to remember!",
+            "imagePath": "/images/lesson_7/pesimista.webp"
+        },
+        {
+            "id": "optimista",
+            "english": "optimistic",
+            "spanish": "optimista",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'optimista'-shaped optimistic standing in a field.",
+            "clue": "This optimistic is shaped like 'optimista', making it easy to remember!",
+            "imagePath": "/images/lesson_7/optimista.webp"
+        },
+        {
+            "id": "educado",
+            "english": "polite",
+            "spanish": "educado",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'educado'-shaped polite standing in a field.",
+            "clue": "This polite is shaped like 'educado', making it easy to remember!",
+            "imagePath": "/images/lesson_7/educado.webp"
+        },
+        {
+            "id": "herramienta",
+            "english": "tool",
+            "spanish": "herramienta",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'herramienta' while pointing at a tool.",
+            "clue": "A teacher teaches about 'herramienta', which means tool.",
+            "imagePath": "/images/lesson_7/herramienta.webp"
+        },
+        {
+            "id": "llave",
+            "english": "key",
+            "spanish": "llave",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'llave'-shaped key standing in a field.",
+            "clue": "This key is shaped like 'llave', making it easy to remember!",
+            "imagePath": "/images/lesson_7/llave.webp"
+        },
+        {
+            "id": "jardín",
+            "english": "garden",
+            "spanish": "jardín",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'jardín!' while pointing at a garden.",
+            "clue": "Pirates love saying 'jardín!', and it means garden.",
+            "imagePath": "/images/lesson_7/jardín.webp"
+        },
+        {
+            "id": "puente",
+            "english": "bridge",
+            "spanish": "puente",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'puente'-shaped bridge standing in a field.",
+            "clue": "This bridge is shaped like 'puente', making it easy to remember!",
+            "imagePath": "/images/lesson_7/puente.webp"
+        },
+        {
+            "id": "calle",
+            "english": "street",
+            "spanish": "calle",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A giant 'calle'-shaped street standing in a field.",
+            "clue": "This street is shaped like 'calle', making it easy to remember!",
+            "imagePath": "/images/lesson_7/calle.webp"
+        },
+        {
+            "id": "gritar",
+            "english": "to shout",
+            "spanish": "gritar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'gritar!' while pointing at a to shout.",
+            "clue": "Pirates love saying 'gritar!', and it means to shout.",
+            "imagePath": "/images/lesson_7/gritar.webp"
+        },
+        {
+            "id": "susurrar",
+            "english": "to whisper",
+            "spanish": "susurrar",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'susurrar!' while pointing at a to whisper.",
+            "clue": "Pirates love saying 'susurrar!', and it means to whisper.",
+            "imagePath": "/images/lesson_7/susurrar.webp"
+        },
+        {
+            "id": "barrer",
+            "english": "to sweep",
+            "spanish": "barrer",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'barrer!' while pointing at a to sweep.",
+            "clue": "Pirates love saying 'barrer!', and it means to sweep.",
+            "imagePath": "/images/lesson_7/barrer.webp"
+        },
+        {
+            "id": "coser",
+            "english": "to sew",
+            "spanish": "coser",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'coser' while pointing at a to sew.",
+            "clue": "A teacher teaches about 'coser', which means to sew.",
+            "imagePath": "/images/lesson_7/coser.webp"
+        },
+        {
+            "id": "encender",
+            "english": "to turn on",
+            "spanish": "encender",
+            "rank": 7,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'encender' while pointing at a to turn on.",
+            "clue": "A teacher teaches about 'encender', which means to turn on.",
+            "imagePath": "/images/lesson_7/encender.webp"
+        }
+    ]
+}

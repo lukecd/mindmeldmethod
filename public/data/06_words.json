@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "ancho",
+            "english": "wide",
+            "spanish": "ancho",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'ancho'-shaped wide standing in a field.",
+            "clue": "This wide is shaped like 'ancho', making it easy to remember!",
+            "imagePath": "/images/lesson_6/ancho.webp"
+        },
+        {
+            "id": "estrecho",
+            "english": "narrow",
+            "spanish": "estrecho",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'estrecho'-shaped narrow standing in a field.",
+            "clue": "This narrow is shaped like 'estrecho', making it easy to remember!",
+            "imagePath": "/images/lesson_6/estrecho.webp"
+        },
+        {
+            "id": "alegre",
+            "english": "joyful",
+            "spanish": "alegre",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'alegre'-shaped joyful standing in a field.",
+            "clue": "This joyful is shaped like 'alegre', making it easy to remember!",
+            "imagePath": "/images/lesson_6/alegre.webp"
+        },
+        {
+            "id": "serio",
+            "english": "serious",
+            "spanish": "serio",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'serio' while pointing at a serious.",
+            "clue": "A teacher teaches about 'serio', which means serious.",
+            "imagePath": "/images/lesson_6/serio.webp"
+        },
+        {
+            "id": "tranquilo",
+            "english": "calm",
+            "spanish": "tranquilo",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'tranquilo'-shaped calm standing in a field.",
+            "clue": "This calm is shaped like 'tranquilo', making it easy to remember!",
+            "imagePath": "/images/lesson_6/tranquilo.webp"
+        },
+        {
+            "id": "nervioso",
+            "english": "nervous",
+            "spanish": "nervioso",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'nervioso' while pointing at a nervous.",
+            "clue": "A teacher teaches about 'nervioso', which means nervous.",
+            "imagePath": "/images/lesson_6/nervioso.webp"
+        },
+        {
+            "id": "sabio",
+            "english": "wise",
+            "spanish": "sabio",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'sabio'-shaped wise standing in a field.",
+            "clue": "This wise is shaped like 'sabio', making it easy to remember!",
+            "imagePath": "/images/lesson_6/sabio.webp"
+        },
+        {
+            "id": "tonto",
+            "english": "foolish",
+            "spanish": "tonto",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'tonto'-shaped foolish standing in a field.",
+            "clue": "This foolish is shaped like 'tonto', making it easy to remember!",
+            "imagePath": "/images/lesson_6/tonto.webp"
+        },
+        {
+            "id": "rico",
+            "english": "rich",
+            "spanish": "rico",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A rich holding a sign with their name.",
+            "clue": "The rich is showing their name, just like 'rico'.",
+            "imagePath": "/images/lesson_6/rico.webp"
+        },
+        {
+            "id": "pobre",
+            "english": "poor",
+            "spanish": "pobre",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'pobre'-shaped poor standing in a field.",
+            "clue": "This poor is shaped like 'pobre', making it easy to remember!",
+            "imagePath": "/images/lesson_6/pobre.webp"
+        },
+        {
+            "id": "moderno",
+            "english": "modern",
+            "spanish": "moderno",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'moderno' while pointing at a modern.",
+            "clue": "A teacher teaches about 'moderno', which means modern.",
+            "imagePath": "/images/lesson_6/moderno.webp"
+        },
+        {
+            "id": "antiguo",
+            "english": "ancient",
+            "spanish": "antiguo",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'antiguo'-shaped ancient standing in a field.",
+            "clue": "This ancient is shaped like 'antiguo', making it easy to remember!",
+            "imagePath": "/images/lesson_6/antiguo.webp"
+        },
+        {
+            "id": "sano",
+            "english": "healthy",
+            "spanish": "sano",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A healthy holding a sign with their name.",
+            "clue": "The healthy is showing their name, just like 'sano'.",
+            "imagePath": "/images/lesson_6/sano.webp"
+        },
+        {
+            "id": "enfermo",
+            "english": "sick",
+            "spanish": "enfermo",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'enfermo' while pointing at a sick.",
+            "clue": "A teacher teaches about 'enfermo', which means sick.",
+            "imagePath": "/images/lesson_6/enfermo.webp"
+        },
+        {
+            "id": "ruidoso",
+            "english": "noisy",
+            "spanish": "ruidoso",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'ruidoso'-shaped noisy standing in a field.",
+            "clue": "This noisy is shaped like 'ruidoso', making it easy to remember!",
+            "imagePath": "/images/lesson_6/ruidoso.webp"
+        },
+        {
+            "id": "silencioso",
+            "english": "silent",
+            "spanish": "silencioso",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'silencioso'-shaped silent standing in a field.",
+            "clue": "This silent is shaped like 'silencioso', making it easy to remember!",
+            "imagePath": "/images/lesson_6/silencioso.webp"
+        },
+        {
+            "id": "amable",
+            "english": "kind",
+            "spanish": "amable",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'amable'-shaped kind standing in a field.",
+            "clue": "This kind is shaped like 'amable', making it easy to remember!",
+            "imagePath": "/images/lesson_6/amable.webp"
+        },
+        {
+            "id": "cruel",
+            "english": "cruel",
+            "spanish": "cruel",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'cruel'-shaped cruel standing in a field.",
+            "clue": "This cruel is shaped like 'cruel', making it easy to remember!",
+            "imagePath": "/images/lesson_6/cruel.webp"
+        },
+        {
+            "id": "inteligente",
+            "english": "intelligent",
+            "spanish": "inteligente",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'inteligente'-shaped intelligent standing in a field.",
+            "clue": "This intelligent is shaped like 'inteligente', making it easy to remember!",
+            "imagePath": "/images/lesson_6/inteligente.webp"
+        },
+        {
+            "id": "torpe",
+            "english": "clumsy",
+            "spanish": "torpe",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'torpe'-shaped clumsy standing in a field.",
+            "clue": "This clumsy is shaped like 'torpe', making it easy to remember!",
+            "imagePath": "/images/lesson_6/torpe.webp"
+        },
+        {
+            "id": "ventana",
+            "english": "window",
+            "spanish": "ventana",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'ventana'-shaped window standing in a field.",
+            "clue": "This window is shaped like 'ventana', making it easy to remember!",
+            "imagePath": "/images/lesson_6/ventana.webp"
+        },
+        {
+            "id": "puerta",
+            "english": "door",
+            "spanish": "puerta",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'puerta' while pointing at a door.",
+            "clue": "A teacher teaches about 'puerta', which means door.",
+            "imagePath": "/images/lesson_6/puerta.webp"
+        },
+        {
+            "id": "pared",
+            "english": "wall",
+            "spanish": "pared",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'pared!' while pointing at a wall.",
+            "clue": "Pirates love saying 'pared!', and it means wall.",
+            "imagePath": "/images/lesson_6/pared.webp"
+        },
+        {
+            "id": "techo",
+            "english": "roof",
+            "spanish": "techo",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'techo'-shaped roof standing in a field.",
+            "clue": "This roof is shaped like 'techo', making it easy to remember!",
+            "imagePath": "/images/lesson_6/techo.webp"
+        },
+        {
+            "id": "suelo",
+            "english": "floor",
+            "spanish": "suelo",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'suelo'-shaped floor standing in a field.",
+            "clue": "This floor is shaped like 'suelo', making it easy to remember!",
+            "imagePath": "/images/lesson_6/suelo.webp"
+        },
+        {
+            "id": "mesa",
+            "english": "table",
+            "spanish": "mesa",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A table holding a sign with their name.",
+            "clue": "The table is showing their name, just like 'mesa'.",
+            "imagePath": "/images/lesson_6/mesa.webp"
+        },
+        {
+            "id": "silla",
+            "english": "chair",
+            "spanish": "silla",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'silla'-shaped chair standing in a field.",
+            "clue": "This chair is shaped like 'silla', making it easy to remember!",
+            "imagePath": "/images/lesson_6/silla.webp"
+        },
+        {
+            "id": "cama",
+            "english": "bed",
+            "spanish": "cama",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A bed holding a sign with their name.",
+            "clue": "The bed is showing their name, just like 'cama'.",
+            "imagePath": "/images/lesson_6/cama.webp"
+        },
+        {
+            "id": "espejo",
+            "english": "mirror",
+            "spanish": "espejo",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'espejo'-shaped mirror standing in a field.",
+            "clue": "This mirror is shaped like 'espejo', making it easy to remember!",
+            "imagePath": "/images/lesson_6/espejo.webp"
+        },
+        {
+            "id": "reloj",
+            "english": "clock",
+            "spanish": "reloj",
+            "rank": 6,
+            "type": "adjective",
+            "imagePrompt": "A giant 'reloj'-shaped clock standing in a field.",
+            "clue": "This clock is shaped like 'reloj', making it easy to remember!",
+            "imagePath": "/images/lesson_6/reloj.webp"
+        }
+    ]
+}

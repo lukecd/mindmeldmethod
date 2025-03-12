@@ -8,9 +8,16 @@ const units = [
     isActive: true,
     progress: 0
   },
-  ...Array(9).fill(null).map((_, i) => ({
-    id: i + 2,
-    title: `Unit ${i + 2}`,
+  {
+    id: 2,
+    title: "Unit 2",
+    subtitle: "Building Vocabulary",
+    isActive: true,
+    progress: 0
+  },
+  ...Array(8).fill(null).map((_, i) => ({
+    id: i + 3,
+    title: `Unit ${i + 3}`,
     subtitle: "Locked",
     isActive: false,
     progress: 0
@@ -57,7 +64,7 @@ export default function BasicsPage() {
                   `}
                 >
                   {unit.isActive ? (
-                    <Link href={`/basics/unit-${unit.id}`} className="block group">
+                    <Link href={`/basics/unit/${unit.id}`} className="block group">
                       <div className="bg-[color:var(--color-bg-nav)] p-4 mb-4">
                         <h2 className="text-3xl font-title text-[color:var(--color-text-inverse)]">{unit.title}</h2>
                         <p className="text-[color:var(--color-text-inverse)]/80 font-medium">{unit.subtitle}</p>

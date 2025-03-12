@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "cuchillo",
+            "english": "knife",
+            "spanish": "cuchillo",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'cuchillo'-shaped knife standing in a field.",
+            "clue": "This knife is shaped like 'cuchillo', making it easy to remember!",
+            "imagePath": "/images/lesson_9/cuchillo.webp"
+        },
+        {
+            "id": "escalera",
+            "english": "ladder",
+            "spanish": "escalera",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'escalera' while pointing at a ladder.",
+            "clue": "A teacher teaches about 'escalera', which means ladder.",
+            "imagePath": "/images/lesson_9/escalera.webp"
+        },
+        {
+            "id": "piedra",
+            "english": "rock",
+            "spanish": "piedra",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'piedra'-shaped rock standing in a field.",
+            "clue": "This rock is shaped like 'piedra', making it easy to remember!",
+            "imagePath": "/images/lesson_9/piedra.webp"
+        },
+        {
+            "id": "fósforo",
+            "english": "matchstick",
+            "spanish": "fósforo",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'fósforo'-shaped matchstick standing in a field.",
+            "clue": "This matchstick is shaped like 'fósforo', making it easy to remember!",
+            "imagePath": "/images/lesson_9/fósforo.webp"
+        },
+        {
+            "id": "nudo",
+            "english": "knot",
+            "spanish": "nudo",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A knot holding a sign with their name.",
+            "clue": "The knot is showing their name, just like 'nudo'.",
+            "imagePath": "/images/lesson_9/nudo.webp"
+        },
+        {
+            "id": "tijeras",
+            "english": "scissors",
+            "spanish": "tijeras",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'tijeras' while pointing at a scissors.",
+            "clue": "A teacher teaches about 'tijeras', which means scissors.",
+            "imagePath": "/images/lesson_9/tijeras.webp"
+        },
+        {
+            "id": "martillo",
+            "english": "hammer",
+            "spanish": "martillo",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'martillo!' while pointing at a hammer.",
+            "clue": "Pirates love saying 'martillo!', and it means hammer.",
+            "imagePath": "/images/lesson_9/martillo.webp"
+        },
+        {
+            "id": "clavo",
+            "english": "nail",
+            "spanish": "clavo",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'clavo'-shaped nail standing in a field.",
+            "clue": "This nail is shaped like 'clavo', making it easy to remember!",
+            "imagePath": "/images/lesson_9/clavo.webp"
+        },
+        {
+            "id": "tubo",
+            "english": "pipe",
+            "spanish": "tubo",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pipe holding a sign with their name.",
+            "clue": "The pipe is showing their name, just like 'tubo'.",
+            "imagePath": "/images/lesson_9/tubo.webp"
+        },
+        {
+            "id": "manguera",
+            "english": "hose",
+            "spanish": "manguera",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'manguera' while pointing at a hose.",
+            "clue": "A teacher teaches about 'manguera', which means hose.",
+            "imagePath": "/images/lesson_9/manguera.webp"
+        },
+        {
+            "id": "barril",
+            "english": "barrel",
+            "spanish": "barril",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'barril!' while pointing at a barrel.",
+            "clue": "Pirates love saying 'barril!', and it means barrel.",
+            "imagePath": "/images/lesson_9/barril.webp"
+        },
+        {
+            "id": "silla de ruedas",
+            "english": "wheelchair",
+            "spanish": "silla de ruedas",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'silla de ruedas'-shaped wheelchair standing in a field.",
+            "clue": "This wheelchair is shaped like 'silla de ruedas', making it easy to remember!",
+            "imagePath": "/images/lesson_9/silla de ruedas.webp"
+        },
+        {
+            "id": "candado",
+            "english": "padlock",
+            "spanish": "candado",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'candado'-shaped padlock standing in a field.",
+            "clue": "This padlock is shaped like 'candado', making it easy to remember!",
+            "imagePath": "/images/lesson_9/candado.webp"
+        },
+        {
+            "id": "llavero",
+            "english": "keychain",
+            "spanish": "llavero",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'llavero' while pointing at a keychain.",
+            "clue": "A teacher teaches about 'llavero', which means keychain.",
+            "imagePath": "/images/lesson_9/llavero.webp"
+        },
+        {
+            "id": "caja",
+            "english": "box",
+            "spanish": "caja",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A box holding a sign with their name.",
+            "clue": "The box is showing their name, just like 'caja'.",
+            "imagePath": "/images/lesson_9/caja.webp"
+        },
+        {
+            "id": "apagar",
+            "english": "to turn off",
+            "spanish": "apagar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'apagar!' while pointing at a to turn off.",
+            "clue": "Pirates love saying 'apagar!', and it means to turn off.",
+            "imagePath": "/images/lesson_9/apagar.webp"
+        },
+        {
+            "id": "agarrar",
+            "english": "to grab",
+            "spanish": "agarrar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'agarrar!' while pointing at a to grab.",
+            "clue": "Pirates love saying 'agarrar!', and it means to grab.",
+            "imagePath": "/images/lesson_9/agarrar.webp"
+        },
+        {
+            "id": "masticar",
+            "english": "to chew",
+            "spanish": "masticar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'masticar!' while pointing at a to chew.",
+            "clue": "Pirates love saying 'masticar!', and it means to chew.",
+            "imagePath": "/images/lesson_9/masticar.webp"
+        },
+        {
+            "id": "soplar",
+            "english": "to blow",
+            "spanish": "soplar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'soplar!' while pointing at a to blow.",
+            "clue": "Pirates love saying 'soplar!', and it means to blow.",
+            "imagePath": "/images/lesson_9/soplar.webp"
+        },
+        {
+            "id": "envolver",
+            "english": "to wrap",
+            "spanish": "envolver",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'envolver' while pointing at a to wrap.",
+            "clue": "A teacher teaches about 'envolver', which means to wrap.",
+            "imagePath": "/images/lesson_9/envolver.webp"
+        },
+        {
+            "id": "colgar",
+            "english": "to hang",
+            "spanish": "colgar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'colgar!' while pointing at a to hang.",
+            "clue": "Pirates love saying 'colgar!', and it means to hang.",
+            "imagePath": "/images/lesson_9/colgar.webp"
+        },
+        {
+            "id": "descolgar",
+            "english": "to unhook",
+            "spanish": "descolgar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'descolgar!' while pointing at a to unhook.",
+            "clue": "Pirates love saying 'descolgar!', and it means to unhook.",
+            "imagePath": "/images/lesson_9/descolgar.webp"
+        },
+        {
+            "id": "rodar",
+            "english": "to roll",
+            "spanish": "rodar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'rodar!' while pointing at a to roll.",
+            "clue": "Pirates love saying 'rodar!', and it means to roll.",
+            "imagePath": "/images/lesson_9/rodar.webp"
+        },
+        {
+            "id": "deslizar",
+            "english": "to slide",
+            "spanish": "deslizar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'deslizar!' while pointing at a to slide.",
+            "clue": "Pirates love saying 'deslizar!', and it means to slide.",
+            "imagePath": "/images/lesson_9/deslizar.webp"
+        },
+        {
+            "id": "sujetar",
+            "english": "to hold",
+            "spanish": "sujetar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'sujetar!' while pointing at a to hold.",
+            "clue": "Pirates love saying 'sujetar!', and it means to hold.",
+            "imagePath": "/images/lesson_9/sujetar.webp"
+        },
+        {
+            "id": "desatar",
+            "english": "to untie",
+            "spanish": "desatar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'desatar!' while pointing at a to untie.",
+            "clue": "Pirates love saying 'desatar!', and it means to untie.",
+            "imagePath": "/images/lesson_9/desatar.webp"
+        },
+        {
+            "id": "hundir",
+            "english": "to sink",
+            "spanish": "hundir",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A giant 'hundir'-shaped to sink standing in a field.",
+            "clue": "This to sink is shaped like 'hundir', making it easy to remember!",
+            "imagePath": "/images/lesson_9/hundir.webp"
+        },
+        {
+            "id": "flotar",
+            "english": "to float",
+            "spanish": "flotar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'flotar!' while pointing at a to float.",
+            "clue": "Pirates love saying 'flotar!', and it means to float.",
+            "imagePath": "/images/lesson_9/flotar.webp"
+        },
+        {
+            "id": "rasgar",
+            "english": "to tear",
+            "spanish": "rasgar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'rasgar!' while pointing at a to tear.",
+            "clue": "Pirates love saying 'rasgar!', and it means to tear.",
+            "imagePath": "/images/lesson_9/rasgar.webp"
+        },
+        {
+            "id": "cepillar",
+            "english": "to brush",
+            "spanish": "cepillar",
+            "rank": 9,
+            "type": "adjective",
+            "imagePrompt": "A pirate saying 'cepillar!' while pointing at a to brush.",
+            "clue": "Pirates love saying 'cepillar!', and it means to brush.",
+            "imagePath": "/images/lesson_9/cepillar.webp"
+        }
+    ]
+}

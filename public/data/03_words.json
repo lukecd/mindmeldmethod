@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "hablar",
+            "english": "to speak",
+            "spanish": "hablar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'hablar!' while pointing at a to speak.",
+            "clue": "Pirates love saying 'hablar!', and it means to speak.",
+            "imagePath": "/images/lesson_3/hablar.webp"
+        },
+        {
+            "id": "comer",
+            "english": "to eat",
+            "spanish": "comer",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'comer' while pointing at a to eat.",
+            "clue": "A teacher teaches about 'comer', which means to eat.",
+            "imagePath": "/images/lesson_3/comer.webp"
+        },
+        {
+            "id": "beber",
+            "english": "to drink",
+            "spanish": "beber",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'beber' while pointing at a to drink.",
+            "clue": "A teacher teaches about 'beber', which means to drink.",
+            "imagePath": "/images/lesson_3/beber.webp"
+        },
+        {
+            "id": "vivir",
+            "english": "to live",
+            "spanish": "vivir",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'vivir'-shaped to live standing in a field.",
+            "clue": "This to live is shaped like 'vivir', making it easy to remember!",
+            "imagePath": "/images/lesson_3/vivir.webp"
+        },
+        {
+            "id": "morir",
+            "english": "to die",
+            "spanish": "morir",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'morir'-shaped to die standing in a field.",
+            "clue": "This to die is shaped like 'morir', making it easy to remember!",
+            "imagePath": "/images/lesson_3/morir.webp"
+        },
+        {
+            "id": "trabajar",
+            "english": "to work",
+            "spanish": "trabajar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'trabajar!' while pointing at a to work.",
+            "clue": "Pirates love saying 'trabajar!', and it means to work.",
+            "imagePath": "/images/lesson_3/trabajar.webp"
+        },
+        {
+            "id": "viajar",
+            "english": "to travel",
+            "spanish": "viajar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'viajar!' while pointing at a to travel.",
+            "clue": "Pirates love saying 'viajar!', and it means to travel.",
+            "imagePath": "/images/lesson_3/viajar.webp"
+        },
+        {
+            "id": "pensar",
+            "english": "to think",
+            "spanish": "pensar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'pensar!' while pointing at a to think.",
+            "clue": "Pirates love saying 'pensar!', and it means to think.",
+            "imagePath": "/images/lesson_3/pensar.webp"
+        },
+        {
+            "id": "sentir",
+            "english": "to feel",
+            "spanish": "sentir",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'sentir'-shaped to feel standing in a field.",
+            "clue": "This to feel is shaped like 'sentir', making it easy to remember!",
+            "imagePath": "/images/lesson_3/sentir.webp"
+        },
+        {
+            "id": "esperar",
+            "english": "to wait",
+            "spanish": "esperar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'esperar!' while pointing at a to wait.",
+            "clue": "Pirates love saying 'esperar!', and it means to wait.",
+            "imagePath": "/images/lesson_3/esperar.webp"
+        },
+        {
+            "id": "buscar",
+            "english": "to search",
+            "spanish": "buscar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'buscar!' while pointing at a to search.",
+            "clue": "Pirates love saying 'buscar!', and it means to search.",
+            "imagePath": "/images/lesson_3/buscar.webp"
+        },
+        {
+            "id": "encontrar",
+            "english": "to find",
+            "spanish": "encontrar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'encontrar!' while pointing at a to find.",
+            "clue": "Pirates love saying 'encontrar!', and it means to find.",
+            "imagePath": "/images/lesson_3/encontrar.webp"
+        },
+        {
+            "id": "recordar",
+            "english": "to remember",
+            "spanish": "recordar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'recordar!' while pointing at a to remember.",
+            "clue": "Pirates love saying 'recordar!', and it means to remember.",
+            "imagePath": "/images/lesson_3/recordar.webp"
+        },
+        {
+            "id": "olvidar",
+            "english": "to forget",
+            "spanish": "olvidar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'olvidar!' while pointing at a to forget.",
+            "clue": "Pirates love saying 'olvidar!', and it means to forget.",
+            "imagePath": "/images/lesson_3/olvidar.webp"
+        },
+        {
+            "id": "llamar",
+            "english": "to call",
+            "spanish": "llamar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'llamar!' while pointing at a to call.",
+            "clue": "Pirates love saying 'llamar!', and it means to call.",
+            "imagePath": "/images/lesson_3/llamar.webp"
+        },
+        {
+            "id": "usar",
+            "english": "to use",
+            "spanish": "usar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A to use holding a sign with their name.",
+            "clue": "The to use is showing their name, just like 'usar'.",
+            "imagePath": "/images/lesson_3/usar.webp"
+        },
+        {
+            "id": "cambiar",
+            "english": "to change",
+            "spanish": "cambiar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'cambiar!' while pointing at a to change.",
+            "clue": "Pirates love saying 'cambiar!', and it means to change.",
+            "imagePath": "/images/lesson_3/cambiar.webp"
+        },
+        {
+            "id": "ayudar",
+            "english": "to help",
+            "spanish": "ayudar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'ayudar!' while pointing at a to help.",
+            "clue": "Pirates love saying 'ayudar!', and it means to help.",
+            "imagePath": "/images/lesson_3/ayudar.webp"
+        },
+        {
+            "id": "mirar",
+            "english": "to look",
+            "spanish": "mirar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'mirar!' while pointing at a to look.",
+            "clue": "Pirates love saying 'mirar!', and it means to look.",
+            "imagePath": "/images/lesson_3/mirar.webp"
+        },
+        {
+            "id": "abrir",
+            "english": "to open",
+            "spanish": "abrir",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'abrir'-shaped to open standing in a field.",
+            "clue": "This to open is shaped like 'abrir', making it easy to remember!",
+            "imagePath": "/images/lesson_3/abrir.webp"
+        },
+        {
+            "id": "cerrar",
+            "english": "to close",
+            "spanish": "cerrar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'cerrar!' while pointing at a to close.",
+            "clue": "Pirates love saying 'cerrar!', and it means to close.",
+            "imagePath": "/images/lesson_3/cerrar.webp"
+        },
+        {
+            "id": "jugar",
+            "english": "to play",
+            "spanish": "jugar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'jugar!' while pointing at a to play.",
+            "clue": "Pirates love saying 'jugar!', and it means to play.",
+            "imagePath": "/images/lesson_3/jugar.webp"
+        },
+        {
+            "id": "ganar",
+            "english": "to win",
+            "spanish": "ganar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'ganar!' while pointing at a to win.",
+            "clue": "Pirates love saying 'ganar!', and it means to win.",
+            "imagePath": "/images/lesson_3/ganar.webp"
+        },
+        {
+            "id": "perder",
+            "english": "to lose",
+            "spanish": "perder",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'perder' while pointing at a to lose.",
+            "clue": "A teacher teaches about 'perder', which means to lose.",
+            "imagePath": "/images/lesson_3/perder.webp"
+        },
+        {
+            "id": "comprar",
+            "english": "to buy",
+            "spanish": "comprar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'comprar!' while pointing at a to buy.",
+            "clue": "Pirates love saying 'comprar!', and it means to buy.",
+            "imagePath": "/images/lesson_3/comprar.webp"
+        },
+        {
+            "id": "vender",
+            "english": "to sell",
+            "spanish": "vender",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'vender' while pointing at a to sell.",
+            "clue": "A teacher teaches about 'vender', which means to sell.",
+            "imagePath": "/images/lesson_3/vender.webp"
+        },
+        {
+            "id": "enviar",
+            "english": "to send",
+            "spanish": "enviar",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'enviar!' while pointing at a to send.",
+            "clue": "Pirates love saying 'enviar!', and it means to send.",
+            "imagePath": "/images/lesson_3/enviar.webp"
+        },
+        {
+            "id": "recibir",
+            "english": "to receive",
+            "spanish": "recibir",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'recibir'-shaped to receive standing in a field.",
+            "clue": "This to receive is shaped like 'recibir', making it easy to remember!",
+            "imagePath": "/images/lesson_3/recibir.webp"
+        },
+        {
+            "id": "rápido",
+            "english": "fast",
+            "spanish": "rápido",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'rápido'-shaped fast standing in a field.",
+            "clue": "This fast is shaped like 'rápido', making it easy to remember!",
+            "imagePath": "/images/lesson_3/rápido.webp"
+        },
+        {
+            "id": "lento",
+            "english": "slow",
+            "spanish": "lento",
+            "rank": 3,
+            "type": "noun",
+            "imagePrompt": "A giant 'lento'-shaped slow standing in a field.",
+            "clue": "This slow is shaped like 'lento', making it easy to remember!",
+            "imagePath": "/images/lesson_3/lento.webp"
+        }
+    ]
+}

@@ -1,0 +1,304 @@
+{
+    "words": [
+        {
+            "id": "caliente",
+            "english": "hot",
+            "spanish": "caliente",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'caliente'-shaped hot standing in a field.",
+            "clue": "This hot is shaped like 'caliente', making it easy to remember!",
+            "imagePath": "/images/lesson_4/caliente.webp"
+        },
+        {
+            "id": "frío",
+            "english": "cold",
+            "spanish": "frío",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A cold holding a sign with their name.",
+            "clue": "The cold is showing their name, just like 'frío'.",
+            "imagePath": "/images/lesson_4/frío.webp"
+        },
+        {
+            "id": "fuerte",
+            "english": "strong",
+            "spanish": "fuerte",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'fuerte' while pointing at a strong.",
+            "clue": "A teacher teaches about 'fuerte', which means strong.",
+            "imagePath": "/images/lesson_4/fuerte.webp"
+        },
+        {
+            "id": "débil",
+            "english": "weak",
+            "spanish": "débil",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'débil'-shaped weak standing in a field.",
+            "clue": "This weak is shaped like 'débil', making it easy to remember!",
+            "imagePath": "/images/lesson_4/débil.webp"
+        },
+        {
+            "id": "triste",
+            "english": "sad",
+            "spanish": "triste",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'triste'-shaped sad standing in a field.",
+            "clue": "This sad is shaped like 'triste', making it easy to remember!",
+            "imagePath": "/images/lesson_4/triste.webp"
+        },
+        {
+            "id": "claro",
+            "english": "clear",
+            "spanish": "claro",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'claro!' while pointing at a clear.",
+            "clue": "Pirates love saying 'claro!', and it means clear.",
+            "imagePath": "/images/lesson_4/claro.webp"
+        },
+        {
+            "id": "oscuro",
+            "english": "dark",
+            "spanish": "oscuro",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'oscuro'-shaped dark standing in a field.",
+            "clue": "This dark is shaped like 'oscuro', making it easy to remember!",
+            "imagePath": "/images/lesson_4/oscuro.webp"
+        },
+        {
+            "id": "barato",
+            "english": "cheap",
+            "spanish": "barato",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A pirate saying 'barato!' while pointing at a cheap.",
+            "clue": "Pirates love saying 'barato!', and it means cheap.",
+            "imagePath": "/images/lesson_4/barato.webp"
+        },
+        {
+            "id": "caro",
+            "english": "expensive",
+            "spanish": "caro",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A expensive holding a sign with their name.",
+            "clue": "The expensive is showing their name, just like 'caro'.",
+            "imagePath": "/images/lesson_4/caro.webp"
+        },
+        {
+            "id": "difícil",
+            "english": "difficult",
+            "spanish": "difícil",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'difícil'-shaped difficult standing in a field.",
+            "clue": "This difficult is shaped like 'difícil', making it easy to remember!",
+            "imagePath": "/images/lesson_4/difícil.webp"
+        },
+        {
+            "id": "sencillo",
+            "english": "simple",
+            "spanish": "sencillo",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'sencillo'-shaped simple standing in a field.",
+            "clue": "This simple is shaped like 'sencillo', making it easy to remember!",
+            "imagePath": "/images/lesson_4/sencillo.webp"
+        },
+        {
+            "id": "pesado",
+            "english": "heavy",
+            "spanish": "pesado",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'pesado'-shaped heavy standing in a field.",
+            "clue": "This heavy is shaped like 'pesado', making it easy to remember!",
+            "imagePath": "/images/lesson_4/pesado.webp"
+        },
+        {
+            "id": "ligero",
+            "english": "light",
+            "spanish": "ligero",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'ligero' while pointing at a light.",
+            "clue": "A teacher teaches about 'ligero', which means light.",
+            "imagePath": "/images/lesson_4/ligero.webp"
+        },
+        {
+            "id": "bonito",
+            "english": "pretty",
+            "spanish": "bonito",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'bonito'-shaped pretty standing in a field.",
+            "clue": "This pretty is shaped like 'bonito', making it easy to remember!",
+            "imagePath": "/images/lesson_4/bonito.webp"
+        },
+        {
+            "id": "feo",
+            "english": "ugly",
+            "spanish": "feo",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A ugly holding a sign with their name.",
+            "clue": "The ugly is showing their name, just like 'feo'.",
+            "imagePath": "/images/lesson_4/feo.webp"
+        },
+        {
+            "id": "duro",
+            "english": "hard",
+            "spanish": "duro",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A hard holding a sign with their name.",
+            "clue": "The hard is showing their name, just like 'duro'.",
+            "imagePath": "/images/lesson_4/duro.webp"
+        },
+        {
+            "id": "corto",
+            "english": "short",
+            "spanish": "corto",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'corto'-shaped short standing in a field.",
+            "clue": "This short is shaped like 'corto', making it easy to remember!",
+            "imagePath": "/images/lesson_4/corto.webp"
+        },
+        {
+            "id": "triste",
+            "english": "sad",
+            "spanish": "triste",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A giant 'triste'-shaped sad standing in a field.",
+            "clue": "This sad is shaped like 'triste', making it easy to remember!",
+            "imagePath": "/images/lesson_4/triste.webp"
+        },
+        {
+            "id": "abierto",
+            "english": "open",
+            "spanish": "abierto",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'abierto' while pointing at a open.",
+            "clue": "A teacher teaches about 'abierto', which means open.",
+            "imagePath": "/images/lesson_4/abierto.webp"
+        },
+        {
+            "id": "cerrado",
+            "english": "closed",
+            "spanish": "cerrado",
+            "rank": 4,
+            "type": "noun",
+            "imagePrompt": "A teacher explaining 'cerrado' while pointing at a closed.",
+            "clue": "A teacher teaches about 'cerrado', which means closed.",
+            "imagePath": "/images/lesson_4/cerrado.webp"
+        },
+        {
+            "id": "tierra",
+            "english": "earth",
+            "spanish": "tierra",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A teacher explaining 'tierra' while pointing at a earth.",
+            "clue": "A teacher teaches about 'tierra', which means earth.",
+            "imagePath": "/images/lesson_4/tierra.webp"
+        },
+        {
+            "id": "sol",
+            "english": "sun",
+            "spanish": "sol",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A sun holding a sign with their name.",
+            "clue": "The sun is showing their name, just like 'sol'.",
+            "imagePath": "/images/lesson_4/sol.webp"
+        },
+        {
+            "id": "luz",
+            "english": "light",
+            "spanish": "luz",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A light holding a sign with their name.",
+            "clue": "The light is showing their name, just like 'luz'.",
+            "imagePath": "/images/lesson_4/luz.webp"
+        },
+        {
+            "id": "sombra",
+            "english": "shadow",
+            "spanish": "sombra",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A giant 'sombra'-shaped shadow standing in a field.",
+            "clue": "This shadow is shaped like 'sombra', making it easy to remember!",
+            "imagePath": "/images/lesson_4/sombra.webp"
+        },
+        {
+            "id": "fuego",
+            "english": "fire",
+            "spanish": "fuego",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A giant 'fuego'-shaped fire standing in a field.",
+            "clue": "This fire is shaped like 'fuego', making it easy to remember!",
+            "imagePath": "/images/lesson_4/fuego.webp"
+        },
+        {
+            "id": "montaña",
+            "english": "mountain",
+            "spanish": "montaña",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A giant 'montaña'-shaped mountain standing in a field.",
+            "clue": "This mountain is shaped like 'montaña', making it easy to remember!",
+            "imagePath": "/images/lesson_4/montaña.webp"
+        },
+        {
+            "id": "río",
+            "english": "river",
+            "spanish": "río",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A river holding a sign with their name.",
+            "clue": "The river is showing their name, just like 'río'.",
+            "imagePath": "/images/lesson_4/río.webp"
+        },
+        {
+            "id": "playa",
+            "english": "beach",
+            "spanish": "playa",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A giant 'playa'-shaped beach standing in a field.",
+            "clue": "This beach is shaped like 'playa', making it easy to remember!",
+            "imagePath": "/images/lesson_4/playa.webp"
+        },
+        {
+            "id": "bosque",
+            "english": "forest",
+            "spanish": "bosque",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A giant 'bosque'-shaped forest standing in a field.",
+            "clue": "This forest is shaped like 'bosque', making it easy to remember!",
+            "imagePath": "/images/lesson_4/bosque.webp"
+        },
+        {
+            "id": "cielo",
+            "english": "sky",
+            "spanish": "cielo",
+            "rank": 4,
+            "type": "adjective",
+            "imagePrompt": "A giant 'cielo'-shaped sky standing in a field.",
+            "clue": "This sky is shaped like 'cielo', making it easy to remember!",
+            "imagePath": "/images/lesson_4/cielo.webp"
+        }
+    ]
+}

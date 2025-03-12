@@ -30,7 +30,7 @@ export default function HeroSection() {
               Visual memory hacks, real-world crypto content, and onchain progress tracking.
             </p>
             <Link 
-              href="/basics/unit-1" 
+              href="/basics/" 
               className="inline-block bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] px-8 py-4 text-xl hover:bg-[color:var(--color-button-hover)] transition-colors"
             >
               Start Learning →
