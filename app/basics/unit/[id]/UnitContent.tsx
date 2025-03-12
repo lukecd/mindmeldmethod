@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import LoadingSpinner from '../../../components/LoadingSpinner'
 
 // Fisher-Yates shuffle algorithm
 function shuffleArray<T>(array: T[]): T[] {
@@ -47,6 +48,7 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
   const [isSpanishFlipped, setIsSpanishFlipped] = useState(false)
   const [showClue, setShowClue] = useState(false)
   const [ratings, setRatings] = useState<Record<number, string>>({})
+  const [isImageLoading, setIsImageLoading] = useState(true)
 
   // Shuffle cards when data is loaded
   useEffect(() => {
@@ -55,7 +57,14 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
     }
   }, [wordsData])
 
+  const handleImageLoad = () => {
+    setIsImageLoading(false)
+  }
+
   const handleRate = (rating: 'no-idea' | 'got-one' | 'got-both') => {
+    // Only allow rating if image is loaded
+    if (isImageLoading) return
+
     // Store the rating for the current card
     setRatings(prev => ({
       ...prev,
@@ -68,6 +77,7 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
       setIsEnglishFlipped(false)
       setIsSpanishFlipped(false)
       setShowClue(false)
+      setIsImageLoading(true)
     }
   }
 
@@ -113,11 +123,14 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
         <div className="grid grid-cols-2 gap-2">
           {/* Left Column - Image */}
           <div className="aspect-square bg-[color:var(--color-bg-card)] relative">
+            {isImageLoading && <LoadingSpinner />}
             <Image 
               src={currentFlashcard.imagePath} 
               alt={currentFlashcard.english}
               fill
-              className="object-cover"
+              className={`object-cover transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
+              onLoadingComplete={handleImageLoad}
+              priority
             />
           </div>
 
@@ -193,19 +206,25 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => handleRate('no-idea')}
-                className="bg-[color:var(--color-button-secondary)] text-[color:var(--color-text-inverse)] font-bold p-2"
+                disabled={isImageLoading}
+                className={`bg-[color:var(--color-button-secondary)] text-[color:var(--color-text-inverse)] font-bold p-2 
+                  ${isImageLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 No Idea
               </button>
               <button
                 onClick={() => handleRate('got-one')}
-                className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] font-bold p-2"
+                disabled={isImageLoading}
+                className={`bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] font-bold p-2
+                  ${isImageLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 Got One
               </button>
               <button
                 onClick={() => handleRate('got-both')}
-                className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] font-bold p-2"
+                disabled={isImageLoading}
+                className={`bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] font-bold p-2
+                  ${isImageLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 Got Both
               </button>

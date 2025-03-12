@@ -95,3 +95,22 @@ h1, h2, h3, h4, h5, h6 {
 .transform-style-3d {
   transform-style: preserve-3d;
 }
+
+/* Spinner animations */
+@keyframes spinner-dot1 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(24px, 0); }
+  66% { transform: translate(12px, 20px); }
+}
+
+@keyframes spinner-dot2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-12px, 20px); }
+  66% { transform: translate(-24px, 0); }
+}
+
+@keyframes spinner-dot3 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(12px, -20px); }
+  66% { transform: translate(-12px, -20px); }
+}
