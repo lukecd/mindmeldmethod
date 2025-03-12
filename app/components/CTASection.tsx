@@ -8,7 +8,7 @@ export default function CTASection() {
           Ready to Start Learning?
         </h2>
         <p className="text-[color:var(--color-text-inverse)]/80 text-xl mb-8 max-w-2xl mx-auto">
-          Join us on this journey to master Spanish through a developer's mindset. 
+          Join us on this journey to master Spanish through a developer&apos;s mindset. 
           Start with the basics and work your way up to understanding crypto content in Spanish.
         </p>
         <Link 

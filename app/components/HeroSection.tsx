@@ -24,10 +24,9 @@ export default function HeroSection() {
               Devconnect is coming ...
             </h1>
             <p className="text-[color:var(--color-text-secondary)] text-xl mb-8">
-              Don't be "that dude" who walks around asking for for things in progressively louder English. Learn some Spanish and 10x your trip.
-              </p>
-              <p className="text-[color:var(--color-text-secondary)] text-xl mb-8">
-
+              Don&apos;t be &quot;that dude&quot; who walks around asking for for things in progressively louder English. Learn some Spanish and 10x your trip.
+            </p>
+            <p className="text-[color:var(--color-text-secondary)] text-xl mb-8">
               Visual memory hacks, real-world crypto content, and onchain progress tracking.
             </p>
             <Link 
