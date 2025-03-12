@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-[color:var(--color-bg-main)] py-20 px-4">
+    <section className="relative  bg-[color:var(--color-bg-main)] py-20 px-4">
       {/* Background Video */}
       <video 
         autoPlay 
