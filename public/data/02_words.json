@@ -28,7 +28,7 @@
             "type": "noun",
             "imagePrompt": "A little boy kneeling ('knee') on a yo-yo, riding it like a skateboard.",
             "clue": "A BOY riding a KNEE-YO (NIÑO) makes it stick! NIÑO = KNEE + YO!",
-            "imagePath": "/images/02/niño.webp"
+            "imagePath": "/images/02/nino.webp"
         },
         {
             "id": "niña",
@@ -36,9 +36,9 @@
             "spanish": "niña",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A girl balancing on a knee while holding a banana like a microphone and singing.",
-            "clue": "A GIRL with a KNEE-NA (NIÑA) makes it memorable! NIÑA = KNEE + NA!",
-            "imagePath": "/images/02/niña.webp"
+            "imagePrompt": "A little girl kneeling while playing with a toy NASA rocket, making playful faces.",
+            "clue": "A GIRL with a KNEE playing with NASA toys (NIÑA) makes it memorable! NIÑA = KNEE + NYA!",
+            "imagePath": "/images/02/nina.webp"
         },
         {
             "id": "amigo",
@@ -86,8 +86,8 @@
             "spanish": "hermana",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A sister wearing a superhero cape that says 'MANNA' while helping others.",
-            "clue": "A SISTER is a HERO with MANNA (like a gift)! HERMANA = HERO + MANNA!",
+            "imagePrompt": "A sister wearing a superhero cape with 'HER' written on it, holding a banana like a phone.",
+            "clue": "A SISTER is HER with a BANANA! HERMANA = HER + MANA(NA)!",
             "imagePath": "/images/02/hermana.webp"
         },
         {
@@ -106,8 +106,8 @@
             "spanish": "trabajo",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A person wearing a tie and holding a giant tray of bagels while working at a bakery.",
-            "clue": "WORKING with a TRAY of BAGELS (TRABAJO) makes it easy to remember! TRABAJO = TRAY + BAGEL!",
+            "imagePrompt": "A person wearing a tie and holding a giant tray of bagels while working at a store that sells garden hoes.",
+            "clue": "WORKING with a TRAY of BA-gels and garden HO-es (TRABAJO) makes it easy to remember! TRABAJO = TRAY + BAGEL!",
             "imagePath": "/images/02/trabajo.webp"
         },
         {
@@ -116,8 +116,8 @@
             "spanish": "ciudad",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'ciudad'-shaped city standing in a field.",
-            "clue": "This city is shaped like 'ciudad', making it easy to remember!",
+            "imagePrompt": "A small child in a bustling city waving goodbye to his dad who's heading to work, with skyscrapers in the background.",
+            "clue": "A kid in the CITY saying SEE-YOU-DAD (CIUDAD) - CIUDAD = SEE + YOU + DAD!",
             "imagePath": "/images/02/ciudad.webp"
         },
         {
@@ -126,9 +126,9 @@
             "spanish": "país",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A country holding a sign with their name.",
-            "clue": "The country is showing their name, just like 'país'.",
-            "imagePath": "/images/02/país.webp"
+            "imagePrompt": "A world map where all the countries are shaped like different pies (apple pie, cherry pie, etc.), with people eating slices.",
+            "clue": "Each COUNTRY is a PIE (PAÍS) - PAÍS sounds just like PIE-EES!",
+            "imagePath": "/images/02/pais.webp"
         },
         {
             "id": "coche",
@@ -136,8 +136,8 @@
             "spanish": "coche",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'coche'-shaped car standing in a field.",
-            "clue": "This car is shaped like 'coche', making it easy to remember!",
+            "imagePrompt": "A car with a giant coach attached to it, with the coach decorated in chocolate.",
+            "clue": "A CAR that's a COACH with CHOCOLATE (COCHE) - COCHE = COACH + CHOCOLATE!",
             "imagePath": "/images/02/coche.webp"
         },
         {
@@ -146,8 +146,8 @@
             "spanish": "agua",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A water holding a sign with their name.",
-            "clue": "The water is showing their name, just like 'agua'.",
+            "imagePrompt": "A glass of water with a surprised face saying 'Ah!' while a goose ('gwa') swims in it.",
+            "clue": "WATER making you say 'AH!' while a GOOSE ('GWA') swims - AGUA = AH + GWA!",
             "imagePath": "/images/02/agua.webp"
         },
         {
@@ -156,8 +156,8 @@
             "spanish": "comida",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'comida'-shaped food standing in a field.",
-            "clue": "This food is shaped like 'comida', making it easy to remember!",
+            "imagePrompt": "A person saying 'Come eat, ah!' while pointing at a giant feast with a meter measuring its size.",
+            "clue": "FOOD making you say 'COME EAT, AH!' (COMIDA) - COMIDA = COME + EAT + AH!",
             "imagePath": "/images/02/comida.webp"
         },
         {
@@ -166,8 +166,8 @@
             "spanish": "dinero",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A teacher explaining 'dinero' while pointing at a money.",
-            "clue": "A teacher teaches about 'dinero', which means money.",
+            "imagePrompt": "A dinosaur wearing a suit and tie, sitting at a desk counting money like a banker.",
+            "clue": "MONEY being counted by a DINO in a suit (DINERO) - DINERO = DINO + ERO!",
             "imagePath": "/images/02/dinero.webp"
         },
         {
@@ -186,8 +186,8 @@
             "spanish": "noche",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'noche'-shaped night standing in a field.",
-            "clue": "This night is shaped like 'noche', making it easy to remember!",
+            "imagePrompt": "A nighttime scene with someone knocking on a door that has cheese hanging from it, with stars twinkling above.",
+            "clue": "At NIGHT, KNOCKING on a door with CHEESE (NOCHE) - NOCHE = NOCK + CHE(ESE)!",
             "imagePath": "/images/02/noche.webp"
         },
         {
@@ -196,9 +196,9 @@
             "spanish": "mañana",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'mañana'-shaped morning standing in a field.",
-            "clue": "This morning is shaped like 'mañana', making it easy to remember!",
-            "imagePath": "/images/02/mañana.webp"
+            "imagePrompt": "A sleepy man eating a banana for breakfast while the morning sun rises.",
+            "clue": "In the MORNING, a MAN with a BANANA (MAÑANA) - MAÑANA = MAN + ÑANA (like NANA/BANANA)!",
+            "imagePath": "/images/02/manana.webp"
         },
         {
             "id": "camino",
@@ -206,8 +206,8 @@
             "spanish": "camino",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'camino'-shaped road standing in a field.",
-            "clue": "This road is shaped like 'camino', making it easy to remember!",
+            "imagePrompt": "A road where a camper van is following a giant domino trail.",
+            "clue": "A ROAD with a CAMPER following DOMINOS (CAMINO) - CAMINO = CAM + INO!",
             "imagePath": "/images/02/camino.webp"
         },
         {
@@ -216,8 +216,8 @@
             "spanish": "cuerpo",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A teacher explaining 'cuerpo' while pointing at a body.",
-            "clue": "A teacher teaches about 'cuerpo', which means body.",
+            "imagePrompt": "A muscular body builder flexing while holding a cue card and wearing a colorful poncho.",
+            "clue": "A BODY with a CUE card and PONCHO (CUERPO) - CUERPO = CUE + RPO!",
             "imagePath": "/images/02/cuerpo.webp"
         },
         {
@@ -226,9 +226,9 @@
             "spanish": "corazón",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'corazón'-shaped heart standing in a field.",
-            "clue": "This heart is shaped like 'corazón', making it easy to remember!",
-            "imagePath": "/images/02/corazón.webp"
+            "imagePrompt": "A beautiful heart-shaped coral formation glowing in a peaceful zen garden at sunset.",
+            "clue": "A HEART made of CORAL in a ZEN garden (CORAZÓN) - CORAZÓN = CORAL + ZON!",
+            "imagePath": "/images/02/corazon.webp"
         },
         {
             "id": "idea",
@@ -236,8 +236,8 @@
             "spanish": "idea",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A idea holding a sign with their name.",
-            "clue": "The idea is showing their name, just like 'idea'.",
+            "imagePrompt": "A bright lightbulb with cartoon eyes looking at a deer that also has a lightbulb appearing above its head.",
+            "clue": "An IDEA comes when EYES see a DEER (IDEA) - IDEA = I + DEA!",
             "imagePath": "/images/02/idea.webp"
         },
         {
@@ -246,8 +246,8 @@
             "spanish": "problema",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A giant 'problema'-shaped problem standing in a field.",
-            "clue": "This problem is shaped like 'problema', making it easy to remember!",
+            "imagePrompt": "A well-dressed lemur in a business suit scratching its head while staring at a complex math equation on a whiteboard.",
+            "clue": "A PROBLEM has a PRO LEMUR confused (PROBLEMA) - PROBLEMA = PRO + LEMA!",
             "imagePath": "/images/02/problema.webp"
         },
         {
@@ -266,8 +266,8 @@
             "spanish": "respuesta",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A restaurant where customers only get food if they correctly answer a quiz.",
-            "clue": "A RESTAURANT giving food for the right ANSWER—RESPUESTA sounds like RESTAURANT!",
+            "imagePrompt": "A person relaxing in a hammock while a puma sits at a desk taking a written test nearby.",
+            "clue": "The ANSWER comes while RESTING as a PUMA TESTS (RESPUESTA) - RESPUESTA = REST + PUES + TA!",
             "imagePath": "/images/02/respuesta.webp"
         },
         {
@@ -276,8 +276,8 @@
             "spanish": "amor",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A heart-shaped box filled with more hearts, radiating warmth and happiness.",
-            "clue": "AMOR is LOVE—think of a HEART filled with more hearts!",
+            "imagePrompt": "Two men at a romantic dinner, one dramatically saying 'AHH... MORE!' while hearts float around them.",
+            "clue": "LOVE makes you say 'AHH... MORE!' (AMOR) - AMOR = AH + MORE!",
             "imagePath": "/images/02/amor.webp"
         },
         {
@@ -286,8 +286,8 @@
             "spanish": "felicidad",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A festival with people dancing, throwing confetti, and laughing with joy.",
-            "clue": "FELICIDAD sounds like FESTIVE—think of a HAPPY celebration!",
+            "imagePrompt": "A happy cat in a city full of other cats throwing confetti and wearing party hats.",
+            "clue": "HAPPINESS is a FELINE in the CITY (FELICIDAD) - FELICIDAD = FELI(NE) + CIDAD!",
             "imagePath": "/images/02/felicidad.webp"
         },
         {
@@ -296,8 +296,8 @@
             "spanish": "escuchar",
             "rank": 2,
             "type": "noun",
-            "imagePrompt": "A pirate saying 'escuchar!' while pointing at a to listen.",
-            "clue": "Pirates love saying 'escuchar!', and it means to listen.",
+            "imagePrompt": "A person with comically large ears sitting on a couch, peacefully listening to music with headphones.",
+            "clue": "To LISTEN with EARS on a COUCH (ESCUCHAR) - ESCUCHAR = ES + CUCHA + R!",
             "imagePath": "/images/02/escuchar.webp"
         }
     ]
