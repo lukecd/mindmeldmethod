@@ -17,30 +17,33 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="p-4 fixed w-full top-0 z-50">
+    <nav className="p-4 fixed w-full top-0 z-50 bg-[color:var(--color-nav-bg)] text-[color:var(--color-text-inverse)]">
       <div className="container mx-auto flex justify-between items-center">
         {/* Hamburger Menu */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-white p-2 hover:opacity-80 rounded-lg transition-colors"
+          className="text-[color:var(--color-text-inverse)] p-2 hover:opacity-80 rounded-lg transition-colors"
         >
           <Menu size={24} />
         </button>
 
         {/* Title */}
-        <Link href="/" className="text-3xl md:text-4xl text-white text-center absolute left-1/2 -translate-x-1/2 hover:opacity-80 transition-opacity font-scifi">
+        <Link 
+          href="/" 
+          className="text-3xl md:text-4xl text-[color:var(--color-text-inverse)] text-center absolute left-1/2 -translate-x-1/2 hover:opacity-80 transition-opacity font-title"
+        >
           Mind Meld Method
         </Link>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="mobile-menu absolute top-full left-0 w-64 border-t border-white/10 shadow-lg bg-[#2D1B36] font-normal">
+          <div className="mobile-menu absolute top-full left-0 w-64 bg-[color:var(--color-nav-bg)] border-t border-[color:var(--color-border-light)] shadow-lg">
             <div className="py-2">
               {menuItems.map((item) => (
-                <Link
+                <Link 
                   key={item.name}
                   href={item.href}
-                  className="block px-4 py-2 text-white hover:opacity-80 transition-colors"
+                  className="block px-4 py-2 text-[color:var(--color-text-inverse)] hover:opacity-80 transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}

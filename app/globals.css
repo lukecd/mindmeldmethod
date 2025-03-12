@@ -4,33 +4,73 @@
 @tailwind utilities;
 
 @theme {
-  /* Mind Meld Method Colors */
-  --color-coral: #F26B3C;
-  --color-yellow: #FFE66D;
-  --color-cyan: #7FDBDA;
-  --color-blue: #4A6DD9;
-  --color-navy: #2A324B;
+  /* Theme Colors */
+  
+  /* Base Colors */
+  --color-bg-main: #E2E0E5;
+  --color-bg-nav: #00CB8B;
+  --color-bg-card: #36008D;
+  --color-bg-highlight: #00CB8B;
+  
+  /* Text Colors */
+  --color-text-primary: #36008D;
+  --color-text-secondary: rgba(54, 0, 141, 0.8);
+  --color-text-muted: rgba(54, 0, 141, 0.6);
+  --color-text-inverse: #2D1B36;
+  --color-text-on-dark: #E2E0E5;
+  
+  /* Border Colors */
+  --color-border-light: rgba(54, 0, 141, 0.1);
+  --color-border-accent: #00CB8B;
+  
+  /* Interactive Colors */
+  --color-button-primary: #FE5E54;
+  --color-button-secondary: #FFB3C1;
+  --color-button-danger: #FE5E54;
+  --color-button-hover: #FCD200;
+  
+  /* Accent Colors */
+  --color-accent-primary: #00CB8B;
+  --color-accent-secondary: #FCD200;
+  --color-accent-tertiary: #FFB3C1;
+  
+  /* Status Colors */
+  --color-success: #00CB8B;
+  --color-warning: #FCD200;
+  --color-error: #FE5E54;
   
   /* Fonts */
-  --font-display: "Orbitron", sans-serif;
+  --font-title: "Spicy Rice", "sans-serif";
+  --font-body: "Inter", "sans-serif";
+}
+
+:root {
+  --foreground-rgb: 54, 0, 141;
+  --background-start-rgb: 226, 224, 229;
+  --background-end-rgb: 226, 224, 229;
 }
 
 /* Base styles */
 body {
-  background-color: var(--color-navy);
-  color: white;
+  color: var(--color-text-primary);
+  background: var(--color-bg-main);
+  font-family: var(--font-body);
 }
 
 nav {
-  background-color: var(--color-coral);
+  background-color: var(--color-bg-nav);
 }
 
 .mobile-menu {
-  background-color: var(--color-coral);
+  background-color: var(--color-bg-nav);
+}
+
+.font-title {
+  font-family: var(--font-title);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-title);
 }
 
 /* Flip card styles */

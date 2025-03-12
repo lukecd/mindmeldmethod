@@ -1,25 +1,33 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import nounsData from '@/public/data/01_nouns.json'
-import verbsData from '@/public/data/01_verbs.json'
-import adjectivesData from '@/public/data/01_adjectives.json'
+import wordsData from '@/public/data/01_words.json'
 import Link from 'next/link'
 
-// Combine all words from the three files
-const flashcards = [
-  ...nounsData.words,
-  ...verbsData.words,
-  ...adjectivesData.words
-]
+// Fisher-Yates shuffle algorithm
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
 
 export default function Unit1Page() {
+  // Initialize flashcards in state
+  const [flashcards, setFlashcards] = useState(wordsData.words)
   const [currentCard, setCurrentCard] = useState(0)
   const [isEnglishFlipped, setIsEnglishFlipped] = useState(false)
   const [isSpanishFlipped, setIsSpanishFlipped] = useState(false)
   const [showClue, setShowClue] = useState(false)
   const [ratings, setRatings] = useState<Record<number, string>>({})
+
+  // Shuffle cards when component mounts
+  useEffect(() => {
+    setFlashcards(shuffleArray(wordsData.words))
+  }, [])
 
   const handleRate = (rating: 'no-idea' | 'got-one' | 'got-both') => {
     // Store the rating for the current card
@@ -41,27 +49,27 @@ export default function Unit1Page() {
   const progress = (currentCard / flashcards.length) * 100
 
   return (
-    <div className="min-h-screen bg-[#2D1B36] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
+    <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
       <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
         {/* Header */}
-        <div className="mb-2 bg-[#E94F37] p-4">
-          <h1 className="text-2xl font-scifi text-[#F6E8EA] mb-2">Unit 1: Essential Basics</h1>
+        <div className="mb-2 bg-[color:var(--color-bg-nav)] p-4">
+          <h1 className="text-2xl font-title text-[color:var(--color-text-inverse)] mb-2">Unit 1: Essential Basics</h1>
           <div className="flex items-center gap-2">
-            <div className="text-[#F6E8EA]/80 text-sm">Progress</div>
-            <div className="flex-1 h-2 bg-[#2D1B36]">
+            <div className="text-[color:var(--color-text-inverse)]/80 text-sm">Progress</div>
+            <div className="flex-1 h-2 bg-[color:var(--color-bg-card)]">
               <div 
-                className="h-full bg-[#F7A072] transition-all duration-300" 
+                className="h-full bg-[color:var(--color-accent-primary)] transition-all duration-300" 
                 style={{ width: `${progress}%` }} 
               />
             </div>
-            <div className="text-[#F6E8EA]/80 text-sm">{currentCard + 1} / {flashcards.length}</div>
+            <div className="text-[color:var(--color-text-inverse)]/80 text-sm">{currentCard + 1} / {flashcards.length}</div>
           </div>
         </div>
 
         {/* Main Bento Box Layout */}
         <div className="grid grid-cols-2 gap-2">
           {/* Left Column - Image */}
-          <div className="aspect-square bg-[#2D1B36] relative">
+          <div className="aspect-square bg-[color:var(--color-bg-card)] relative">
             <Image 
               src={flashcards[currentCard].imagePath} 
               alt={flashcards[currentCard].english}
@@ -75,13 +83,13 @@ export default function Unit1Page() {
             {/* Clue Button */}
             <button 
               onClick={() => setShowClue(!showClue)}
-              className="bg-[#F7A072] p-4 text-center"
+              className="bg-[color:var(--color-accent-secondary)] p-4 text-center hover:bg-[color:var(--color-button-primary)] transition-colors"
             >
-              <div className="text-lg font-bold text-[#2D1B36] mb-2">
+              <div className="text-lg font-bold text-[color:var(--color-text-inverse)] mb-2">
                 {showClue ? 'Hide Clue' : 'Show Clue'}
               </div>
               {showClue && (
-                <div className="text-[#2D1B36] text-sm">{flashcards[currentCard].clue}</div>
+                <div className="text-[color:var(--color-text-inverse)] text-sm">{flashcards[currentCard].clue}</div>
               )}
             </button>
 
@@ -98,14 +106,14 @@ export default function Unit1Page() {
                   }`}
                 >
                   <div 
-                    className="absolute w-full h-full bg-[#F6E8EA] p-2 flex items-center justify-center 
-                             text-base font-bold text-[#2D1B36] backface-hidden"
+                    className="absolute w-full h-full bg-[color:var(--color-bg-nav)] p-2 flex items-center justify-center 
+                             text-base font-bold text-[color:var(--color-text-inverse)] backface-hidden"
                   >
                     English
                   </div>
                   <div 
-                    className="absolute w-full h-full bg-[#F6E8EA] p-2 flex items-center justify-center 
-                             text-base font-bold text-[#2D1B36] backface-hidden [transform:rotateY(180deg)]"
+                    className="absolute w-full h-full bg-[color:var(--color-bg-nav)] p-2 flex items-center justify-center 
+                             text-base font-bold text-[color:var(--color-text-inverse)] backface-hidden [transform:rotateY(180deg)]"
                   >
                     {flashcards[currentCard].english}
                   </div>
@@ -123,14 +131,14 @@ export default function Unit1Page() {
                   }`}
                 >
                   <div 
-                    className="absolute w-full h-full bg-[#F6E8EA] p-2 flex items-center justify-center 
-                             text-base font-bold text-[#2D1B36] backface-hidden"
+                    className="absolute w-full h-full bg-[color:var(--color-bg-nav)] p-2 flex items-center justify-center 
+                             text-base font-bold text-[color:var(--color-text-inverse)] backface-hidden"
                   >
                     Español
                   </div>
                   <div 
-                    className="absolute w-full h-full bg-[#F6E8EA] p-2 flex items-center justify-center 
-                             text-base font-bold text-[#2D1B36] backface-hidden [transform:rotateY(180deg)]"
+                    className="absolute w-full h-full bg-[color:var(--color-bg-nav)] p-2 flex items-center justify-center 
+                             text-base font-bold text-[color:var(--color-text-inverse)] backface-hidden [transform:rotateY(180deg)]"
                   >
                     {flashcards[currentCard].spanish}
                   </div>
@@ -142,19 +150,19 @@ export default function Unit1Page() {
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => handleRate('no-idea')}
-                className="bg-[#E94F37] text-[#F6E8EA] text-sm p-2"
+                className="bg-[color:var(--color-button-secondary)] text-[color:var(--color-text-inverse)] font-bold p-2"
               >
                 No Idea
               </button>
               <button
                 onClick={() => handleRate('got-one')}
-                className="bg-[#3D5A80] text-[#F6E8EA] text-sm p-2"
+                className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] font-bold p-2"
               >
                 Got One
               </button>
               <button
                 onClick={() => handleRate('got-both')}
-                className="bg-[#F26B3C] text-[#F6E8EA] text-sm p-2"
+                className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] font-bold p-2"
               >
                 Got Both
               </button>
@@ -164,14 +172,14 @@ export default function Unit1Page() {
 
         {/* Visual Cues Section */}
         <div className="mb-4">
-          <div className="bg-[#E94F37] p-8 text-center mb-2 mt-3">
-            <h2 className="text-xl font-scifi text-[#F6E8EA]">
+          <div className="bg-[color:var(--color-bg-nav)] p-8 text-center mb-2 mt-3">
+            <h2 className="text-xl font-title text-[color:var(--color-text-inverse)]">
               Our flashcards use visual cues to help trick your brain into memorizing faster.
             </h2>
           </div>
-          <div className="text-[#F6E8EA]/60 text-xs text-center">
+          <div className="text-[color:var(--color-text-inverse)]/60 text-xs text-center">
             Learn more about our method in the{' '}
-            <Link href="/about" className="text-[#F6E8EA]/80 hover:underline">
+            <Link href="/about" className="text-[color:var(--color-text-inverse)]/80 hover:underline">
               About page
             </Link>
           </div>
@@ -179,7 +187,7 @@ export default function Unit1Page() {
 
         {/* Show completion message when all cards are done */}
         {currentCard === flashcards.length - 1 && Object.keys(ratings).length === flashcards.length && (
-          <div className="mt-4 p-4 bg-[#F7A072] text-[#2D1B36] text-center">
+          <div className="mt-4 p-4 bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-inverse)] text-center">
             <h2 className="text-xl font-bold mb-2">Unit Complete!</h2>
             <p>You&apos;ve reviewed all {flashcards.length} words.</p>
           </div>

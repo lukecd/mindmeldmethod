@@ -6,7 +6,7 @@ export default function StatsSection() {
         <div className="text-white/80 text-xl mt-2">Flashcards are boring.</div>
       </div>
       <div className="rounded-3xl border border-white/10 bg-mindmeld-navy p-12 flex flex-col items-center justify-center">
-        <div className="text-6xl font-scifi text-white mb-2">2.5x</div>
+        <div className="text-6xl font-title text-white mb-2">2.5x</div>
         <div className="text-white/50">Faster Learning</div>
       </div>
     </div>

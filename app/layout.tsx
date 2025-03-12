@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { scifiFont, defaultFont } from './fonts'
-import Navbar from "./components/Navbar";
+import { titleFont, bodyFont } from './fonts'
+import Navbar from './components/Navbar'
 
 export const metadata: Metadata = {
   title: "Mind Meld Method",
@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={`${scifiFont.variable} ${defaultFont.variable}`}>
-      <body className={defaultFont.className}>
+    <html lang="en" className={`${titleFont.variable}`}>
+      <body className={bodyFont.className}>
         <Navbar />
         {children}
       </body>

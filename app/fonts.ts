@@ -1,13 +1,14 @@
-import { Orbitron, Inter } from 'next/font/google'
+import { Inter, Spicy_Rice } from 'next/font/google'
 
-export const scifiFont = Orbitron({
+export const bodyFont = Inter({
   subsets: ['latin'],
-  variable: '--font-scifi',
+  variable: '--font-body',
   display: 'swap',
 })
 
-export const defaultFont = Inter({
+export const titleFont = Spicy_Rice({
+  weight: '400',
   subsets: ['latin'],
-  variable: '--font-default',
+  variable: '--font-title',
   display: 'swap',
 }) 

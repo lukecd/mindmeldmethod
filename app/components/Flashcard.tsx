@@ -29,13 +29,13 @@ export default function Flashcard({ imageUrl, english, spanish, onRate }: Flashc
               <div className="absolute bottom-4 left-4 right-4 flex gap-4">
                 <button
                   onClick={() => setFlipped('english')}
-                  className="flex-1 bg-mindmeld-coral text-white py-3 rounded-xl font-scifi hover:bg-mindmeld-coral/80 transition-colors"
+                  className="flex-1 bg-mindmeld-coral text-white py-3 rounded-xl font-title hover:bg-mindmeld-coral/80 transition-colors"
                 >
                   English
                 </button>
                 <button
                   onClick={() => setFlipped('spanish')}
-                  className="flex-1 bg-mindmeld-yellow text-mindmeld-navy py-3 rounded-xl font-scifi hover:bg-mindmeld-yellow/80 transition-colors"
+                  className="flex-1 bg-mindmeld-yellow text-mindmeld-navy py-3 rounded-xl font-title hover:bg-mindmeld-yellow/80 transition-colors"
                 >
                   Español
                 </button>
@@ -44,7 +44,7 @@ export default function Flashcard({ imageUrl, english, spanish, onRate }: Flashc
           ) : (
             <div className="h-full flex items-center justify-center">
               <div className="text-center">
-                <div className="text-4xl font-scifi mb-4 text-white">
+                <div className="text-4xl font-title mb-4 text-white">
                   {flipped === 'english' ? english : spanish}
                 </div>
                 <button

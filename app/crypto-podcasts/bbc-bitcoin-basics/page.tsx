@@ -364,8 +364,8 @@ declare global {
 export default function BBCBitcoinBasicsPage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [playbackSpeed, setPlaybackSpeed] = useState(1)
-  const [showEnglish, setShowEnglish] = useState(false)
-  const [showSpanish, setShowSpanish] = useState(false)
+  const [showEnglish, setShowEnglish] = useState(true)
+  const [showSpanish, setShowSpanish] = useState(true)
   const [currentTime, setCurrentTime] = useState(0)
   
   const playerRef = useRef<YouTubePlayer | null>(null)
@@ -449,24 +449,21 @@ export default function BBCBitcoinBasicsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#2D1B36]">
+    <div className="min-h-screen bg-[color:var(--color-bg-main)]">
       <Script src="https://www.youtube.com/iframe_api" />
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-     
-
         {/* Player Section */}
-        <div className="bg-[#2D1B36] px-10 py-10 mt-10">
+        <div className="bg-[color:var(--color-bg-card)] px-10 py-10 mt-10">
           {/* YouTube Player */}
           <div className="aspect-video w-full">
             <div ref={playerContainerRef} className="w-full h-full" />
           </div>
 
           {/* Controls Bar */}
-          <div className="border-t border-[#F6E8EA]/10 py-2 px-4">
+          <div className="border-t border-[color:var(--color-text-on-dark)]/10 py-2 px-4">
             <div className="flex items-center justify-center gap-4">
-              <button 
-                className="bg-[#F7A072] p-2 text-[#2D1B36] font-scifi"
+              <button
+                className="bg-[color:var(--color-accent-secondary)] p-2 text-[color:var(--color-text-inverse)] font-title"
                 onClick={togglePlayPause}
               >
                 {isPlaying ? '⏸️' : '▶️'}
@@ -476,7 +473,7 @@ export default function BBCBitcoinBasicsPage() {
               <select 
                 value={playbackSpeed}
                 onChange={(e) => handleSpeedChange(Number(e.target.value))}
-                className="bg-[#2D1B36] border border-[#F6E8EA]/10 px-2 py-1 text-[#F6E8EA]"
+                className="bg-[color:var(--color-bg-card)] border border-[color:var(--color-text-on-dark)]/10 px-2 py-1 text-[color:var(--color-text-on-dark)]"
               >
                 <option value={0.5}>0.5x</option>
                 <option value={0.75}>0.75x</option>
@@ -486,21 +483,21 @@ export default function BBCBitcoinBasicsPage() {
 
               {/* Language Controls */}
               <div className="flex gap-2">
-                <button 
+                <button
                   className={`px-3 py-1 border transition-colors ${
                     showSpanish 
-                      ? 'bg-[#F7A072] text-[#2D1B36] border-[#F7A072]' 
-                      : 'bg-transparent border-[#F7A072] text-[#F7A072]'
+                      ? 'bg-[color:var(--color-accent-secondary)] text-[color:var(--color-text-inverse)] border-[color:var(--color-accent-secondary)]' 
+                      : 'bg-transparent border-[color:var(--color-accent-secondary)] text-[color:var(--color-accent-secondary)]'
                   }`}
                   onClick={() => setShowSpanish(!showSpanish)}
                 >
                   {showSpanish ? 'Hide Spanish' : 'Show Spanish'}
                 </button>
-                <button 
+                <button
                   className={`px-3 py-1 border transition-colors ${
                     showEnglish 
-                      ? 'bg-[#F7A072] text-[#2D1B36] border-[#F7A072]' 
-                      : 'bg-transparent border-[#F7A072] text-[#F7A072]'
+                      ? 'bg-[color:var(--color-accent-secondary)] text-[color:var(--color-text-inverse)] border-[color:var(--color-accent-secondary)]' 
+                      : 'bg-transparent border-[color:var(--color-accent-secondary)] text-[color:var(--color-accent-secondary)]'
                   }`}
                   onClick={() => setShowEnglish(!showEnglish)}
                 >
@@ -510,9 +507,9 @@ export default function BBCBitcoinBasicsPage() {
             </div>
 
             {/* Progress Bar */}
-            <div className="h-1 bg-[#2D1B36] border border-[#F6E8EA]/10 mt-2">
+            <div className="h-1 bg-[color:var(--color-bg-card)] border border-[color:var(--color-text-on-dark)]/10 mt-2">
               <div 
-                className="h-full bg-[#F7A072]" 
+                className="h-full bg-[color:var(--color-accent-secondary)]" 
                 style={{ 
                   width: `${(currentTime / (playerRef.current?.getDuration() || 1)) * 100}%` 
                 }}
@@ -525,24 +522,24 @@ export default function BBCBitcoinBasicsPage() {
             {sampleTranscript.map((segment, index) => (
               <div 
                 key={index}
-                className={`p-2 border-b border-[#F6E8EA]/10 ${
+                className={`p-2 border-b border-[color:var(--color-text-on-dark)]/10 ${
                   currentTime >= segment.startTime && currentTime <= segment.endTime
-                    ? 'bg-[#F7A072]/10'
+                    ? 'bg-[color:var(--color-accent-secondary)]/10'
                     : ''
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <button
                     onClick={() => playSegment(segment.startTime, segment.endTime)}
-                    className="bg-[#F7A072] px-2 py-1 text-[#2D1B36] shrink-0 text-sm"
+                    className="bg-[color:var(--color-accent-secondary)] px-2 py-1 text-[color:var(--color-text-inverse)] shrink-0 text-sm"
                   >
                     {isPlaying && currentTime >= segment.startTime && currentTime <= segment.endTime ? '⏸️' : '▶️'} {formatTime(segment.startTime)}
                   </button>
                   <div className="flex-1">
-                    <p className={`text-[#F6E8EA] text-lg transition-all ${showSpanish ? 'opacity-100 blur-none' : 'opacity-50 blur-sm'}`}>
+                    <p className={`text-[color:var(--color-text-on-dark)] text-lg transition-all ${showSpanish ? 'opacity-100 blur-none' : 'opacity-50 blur-sm'}`}>
                       {segment.spanish}
                     </p>
-                    <p className={`text-[#F6E8EA]/60 transition-all ${showEnglish ? 'opacity-100 blur-none' : 'opacity-50 blur-sm'}`}>
+                    <p className={`text-[color:var(--color-text-on-dark)]/80 transition-all ${showEnglish ? 'opacity-100 blur-none' : 'opacity-50 blur-sm'}`}>
                       {segment.english}
                     </p>
                   </div>
@@ -554,4 +551,4 @@ export default function BBCBitcoinBasicsPage() {
       </div>
     </div>
   )
-} 
+}
