@@ -8,7 +8,7 @@
       "type": "noun",
       "imagePrompt": "A team of players racing against a giant clock",
       "clue": "A TEAM (sounds like 'ti') racing against time, saying 'PO!' as they run. TIEMPO = TEAM + PO",
-      "imagePath": "/images/nouns/tiempo.webp"
+      "imagePath": "/images/01/tiempo.webp"
     },
     {
       "id": "ser",
@@ -18,7 +18,7 @@
       "type": "verb",
       "imagePrompt": "A sir (knight) looking in a mirror saying 'This is who I BE'",
       "clue": "A SIR (sounds like 'SER') looking in the mirror to BE himself. SER sounds just like SIR",
-      "imagePath": "/images/verbs/ser.webp"
+      "imagePath": "/images/01/ser.webp"
     },
     {
       "id": "grande",
@@ -28,7 +28,7 @@
       "type": "adjective",
       "imagePrompt": "A grand piano eating smaller instruments",
       "clue": "A GRAND (GRANDE) piano is so BIG it's eating other instruments. GRANDE = GRAND + E",
-      "imagePath": "/images/adjectives/grande.webp"
+      "imagePath": "/images/01/grande.webp"
     },
     {
       "id": "persona",
@@ -38,7 +38,7 @@
       "type": "noun",
       "imagePrompt": "A purse owner showing ID to enter a club",
       "clue": "A PURSE OWNER (sounds like 'persona') showing ID to prove they're a PERSON. PERSONA = PURSE + OWNER",
-      "imagePath": "/images/nouns/persona.webp"
+      "imagePath": "/images/01/persona.webp"
     },
     {
       "id": "estar",
@@ -48,7 +48,7 @@
       "type": "verb",
       "imagePrompt": "A yellow star with arms and legs trying on different costumes",
       "clue": "This STAR (sounds like 'STAR') keeps changing what it wants to BE. ESTAR = E + STAR",
-      "imagePath": "/images/verbs/estar.webp"
+      "imagePath": "/images/01/estar.webp"
     },
     {
       "id": "nuevo",
@@ -58,7 +58,7 @@
       "type": "adjective",
       "imagePrompt": "A newborn baby wearing boxing gloves, stepping into a boxing ring for the first time",
       "clue": "A NEWBORN (NUE-vo) baby is NEW to boxing. NUEVO = NEWBORN + VO",
-      "imagePath": "/images/adjectives/nuevo.webp"
+      "imagePath": "/images/01/nuevo.webp"
     },
     {
       "id": "año",
@@ -68,7 +68,7 @@
       "type": "noun",
       "imagePrompt": "A crying child saying 'I know, I know' while looking at a calendar",
       "clue": "The kid cries 'AÑO!' (sounds like 'I know!') while looking at how many YEARS have passed. AÑO sounds just like I KNOW",
-      "imagePath": "/images/nouns/ano.webp"
+      "imagePath": "/images/01/ano.webp"
     },
     {
       "id": "tener",
@@ -78,7 +78,7 @@
       "type": "verb",
       "imagePrompt": "A teenager nervously holding too many phones and gadgets",
       "clue": "This TEEN (TEN-er) HAS way too many things. TENER = TEEN + ER",
-      "imagePath": "/images/verbs/tener.webp"
+      "imagePath": "/images/01/tener.webp"
     },
     {
       "id": "bueno",
@@ -88,7 +88,7 @@
       "type": "adjective",
       "imagePrompt": "A buoy in the ocean rescuing swimmers",
       "clue": "A BUOY (BUE-no) saving people is doing something GOOD. BUENO = BUOY + NO",
-      "imagePath": "/images/adjectives/bueno.webp"
+      "imagePath": "/images/01/bueno.webp"
     },
     {
       "id": "día",
@@ -98,7 +98,7 @@
       "type": "noun",
       "imagePrompt": "A deer jumping over a rising sun",
       "clue": "A DEER ('día' sounds like 'deer') jumps over the rising sun to start a new DAY. DÍA sounds just like DEER",
-      "imagePath": "/images/nouns/dia.webp"
+      "imagePath": "/images/01/dia.webp"
     },
     {
       "id": "hacer",
@@ -108,7 +108,7 @@
       "type": "verb",
       "imagePrompt": "A hatchet chopping ice into a sculpture",
       "clue": "A HATCHET (HA-cer) MAKES things by chopping ice. HACER = HATCHET without the 't'",
-      "imagePath": "/images/verbs/hacer.webp"
+      "imagePath": "/images/01/hacer.webp"
     },
     {
       "id": "alto",
@@ -118,7 +118,7 @@
       "type": "adjective",
       "imagePrompt": "An alto saxophone growing up through the clouds",
       "clue": "An ALTO saxophone grows so TALL it reaches the clouds. It's exactly like the musical term!",
-      "imagePath": "/images/adjectives/alto.webp"
+      "imagePath": "/images/01/alto.webp"
     },
     {
       "id": "cosa",
@@ -128,7 +128,7 @@
       "type": "noun",
       "imagePrompt": "A confused person opening a box saying 'What's so special?'",
       "clue": "Looking at this THING in the box saying 'What's SO special?' COSA = CO + SA (sounds like 'so')",
-      "imagePath": "/images/nouns/cosa.webp"
+      "imagePath": "/images/01/cosa.webp"
     },
     {
       "id": "poder",
@@ -138,7 +138,7 @@
       "type": "verb",
       "imagePrompt": "A powder puff turning into a superhero cape",
       "clue": "With POWDER (PODER) turning into a cape, they CAN do anything. PODER = POWDER without the 'w'",
-      "imagePath": "/images/verbs/poder.webp"
+      "imagePath": "/images/01/poder.webp"
     },
     {
       "id": "pequeño",
@@ -148,7 +148,7 @@
       "type": "adjective",
       "imagePrompt": "A peek-a-boo ninja hiding in a tiny box",
       "clue": "A PEEK-A-BOO (PE-que-ÑO) ninja is so SMALL they can hide anywhere. PEQUEÑO sounds like PEEK + ÑO",
-      "imagePath": "/images/adjectives/pequeno.webp"
+      "imagePath": "/images/01/pequeno.webp"
     },
     {
       "id": "vida",
@@ -158,7 +158,7 @@
       "type": "noun",
       "imagePrompt": "A video game character with multiple hearts collecting extra lives",
       "clue": "A VIDEO game (VI-da) character collecting extra LIVES. VIDA = VIDEO + DA",
-      "imagePath": "/images/nouns/vida.webp"
+      "imagePath": "/images/01/vida.webp"
     },
     {
       "id": "decir",
@@ -168,7 +168,7 @@
       "type": "verb",
       "imagePrompt": "A dice with a speech bubble SAYING the number rolled",
       "clue": "The DICE (DE-cir) SAYS what number it rolled. DECIR = DICE + IR",
-      "imagePath": "/images/verbs/decir.webp"
+      "imagePath": "/images/01/decir.webp"
     },
     {
       "id": "viejo",
@@ -178,7 +178,7 @@
       "type": "adjective",
       "imagePrompt": "A viagra pill with a senior citizen card",
       "clue": "The VI (from viagra) makes this OLD guy say 'EH-HO!' VIEJO = VI + EH + JO",
-      "imagePath": "/images/adjectives/viejo.webp"
+      "imagePath": "/images/01/viejo.webp"
     },
     {
       "id": "mundo",
@@ -188,7 +188,7 @@
       "type": "noun",
       "imagePrompt": "Monday written on a globe-shaped calendar",
       "clue": "It's MON-day (MUN sounds like 'Mon') in the whole WORLD. MUNDO = MONDAY without the 'ay'",
-      "imagePath": "/images/nouns/mundo.webp"
+      "imagePath": "/images/01/mundo.webp"
     },
     {
       "id": "ir",
@@ -198,7 +198,7 @@
       "type": "verb",
       "imagePrompt": "An ear with legs running in a race",
       "clue": "An EAR (sounds like 'IR') with legs GOES running. IR is like 'ear' without the 'e'",
-      "imagePath": "/images/verbs/ir.webp"
+      "imagePath": "/images/01/ir.webp"
     },
     {
       "id": "feliz",
@@ -208,7 +208,7 @@
       "type": "adjective",
       "imagePrompt": "A female lizard wearing a party hat and grinning",
       "clue": "This FEMALE LIZARD (FE-LIZ) is super HAPPY. FELIZ = FEMALE + LIZ(ard)",
-      "imagePath": "/images/adjectives/feliz.webp"
+      "imagePath": "/images/01/feliz.webp"
     },
     {
       "id": "forma",
@@ -218,7 +218,7 @@
       "type": "noun",
       "imagePrompt": "A farmer shaping crops into geometric patterns",
       "clue": "A FARMER (FOR-ma) giving FORM to the crops. FORMA = FARMER without the 'er'",
-      "imagePath": "/images/nouns/forma.webp"
+      "imagePath": "/images/01/forma.webp"
     },
     {
       "id": "ver",
@@ -228,7 +228,7 @@
       "type": "verb",
       "imagePrompt": "A bear wearing glasses to SEE better",
       "clue": "A BEAR (sounds like 'VER') needs glasses to SEE. VER sounds like BEAR without the 'b'",
-      "imagePath": "/images/verbs/ver.webp"
+      "imagePath": "/images/01/ver.webp"
     },
     {
       "id": "rojo",
@@ -238,7 +238,7 @@
       "type": "adjective",
       "imagePrompt": "A row of judges wearing embarrassed, blushing faces",
       "clue": "A ROW (RO-jo) of judges blush RED with embarrassment. ROJO = ROW + JO",
-      "imagePath": "/images/adjectives/rojo.webp"
+      "imagePath": "/images/01/rojo.webp"
     },
     {
       "id": "casa",
@@ -248,7 +248,7 @@
       "type": "noun",
       "imagePrompt": "A castle made of playing cards",
       "clue": "A CASTLE (CA-sa) made of cards is still a HOUSE. CASA = CASTLE without 'tle'",
-      "imagePath": "/images/nouns/casa.webp"
+      "imagePath": "/images/01/casa.webp"
     },
     {
       "id": "dar",
@@ -258,7 +258,7 @@
       "type": "verb",
       "imagePrompt": "A dark cloud raining presents",
       "clue": "A DARK (DAR) cloud GIVES presents as rain. DAR = DARK without the 'k'",
-      "imagePath": "/images/verbs/dar.webp"
+      "imagePath": "/images/01/dar.webp"
     },
     {
       "id": "largo",
@@ -268,7 +268,7 @@
       "type": "adjective",
       "imagePrompt": "A large go-kart stretching like rubber",
       "clue": "A LARGE (LAR-go) go-kart stretches until it's super LONG. LARGO = LARGE without the 'e'",
-      "imagePath": "/images/adjectives/largo.webp"
+      "imagePath": "/images/01/largo.webp"
     },
     {
       "id": "parte",
@@ -278,7 +278,7 @@
       "type": "noun",
       "imagePrompt": "A party where everyone has one piece of a puzzle",
       "clue": "At this PARTY (PARTE), everyone has their PART of the puzzle. PARTE = PARTY without the 'y'",
-      "imagePath": "/images/nouns/parte.webp"
+      "imagePath": "/images/01/parte.webp"
     },
     {
       "id": "saber",
@@ -288,7 +288,7 @@
       "type": "verb",
       "imagePrompt": "A saber-toothed tiger reading a library of books",
       "clue": "A SABER-toothed tiger KNOWS everything from reading. SABER is exactly like the sword!",
-      "imagePath": "/images/verbs/saber.webp"
+      "imagePath": "/images/01/saber.webp"
     },
     {
       "id": "fácil",
@@ -298,7 +298,7 @@
       "type": "adjective",
       "imagePrompt": "A face getting slapped with a fish, looking surprisingly calm",
       "clue": "Getting slapped with a FISH is EASY for this FACE (FÁ-cil). FÁCIL = FACE getting hit by fish",
-      "imagePath": "/images/adjectives/facil.webp"
+      "imagePath": "/images/01/facil.webp"
     }
   ]
 } 

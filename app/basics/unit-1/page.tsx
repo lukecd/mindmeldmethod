@@ -46,7 +46,7 @@ export default function Unit1Page() {
   }
 
   // Calculate progress percentage
-  const progress = (currentCard / flashcards.length) * 100
+  const progress = ((currentCard + 1) / flashcards.length * 100)
 
   return (
     <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
@@ -58,8 +58,8 @@ export default function Unit1Page() {
             <div className="text-[color:var(--color-text-inverse)]/80 text-sm">Progress</div>
             <div className="flex-1 h-2 bg-[color:var(--color-bg-card)]">
               <div 
-                className="h-full bg-[color:var(--color-accent-primary)] transition-all duration-300" 
-                style={{ width: `${progress}%` }} 
+                className="h-full bg-[color:var(--color-accent-secondary)] transition-all duration-300" 
+                style={{ width: `${progress}%`, marginLeft: '0' }} 
               />
             </div>
             <div className="text-[color:var(--color-text-inverse)]/80 text-sm">{currentCard + 1} / {flashcards.length}</div>
