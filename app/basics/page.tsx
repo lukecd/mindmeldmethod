@@ -1,30 +1,59 @@
-import Link from 'next/link'
+'use client'
 
-const units = [
-  {
-    id: 1,
-    title: "Unit 1",
-    subtitle: "Essential Basics",
-    isActive: true,
-    progress: 0
-  },
-  {
-    id: 2,
-    title: "Unit 2",
-    subtitle: "Building Vocabulary",
-    isActive: true,
-    progress: 0
-  },
-  ...Array(8).fill(null).map((_, i) => ({
-    id: i + 3,
-    title: `Unit ${i + 3}`,
-    subtitle: "Locked",
-    isActive: false,
-    progress: 0
-  }))
-]
+import Link from 'next/link'
+import { useSpacedRepetition } from '../hooks/useSpacedRepetition'
+import { useEffect, useState, useMemo } from 'react'
+import { useAddress } from '@chopinframework/react'
+
+interface Unit {
+  id: number
+  title: string
+  subtitle: string
+  isActive: boolean
+  progress: number
+}
+
+const UNIT_SUBTITLES = {
+  1: "Essential Basics",
+  2: "Building Vocabulary",
+  3: "Common Phrases",
+  4: "Daily Conversations",
+  5: "Travel & Directions",
+  6: "Food & Dining",
+  7: "Work & Business",
+  8: "Social Situations",
+  9: "Culture & Entertainment",
+  10: "Advanced Topics"
+}
 
 export default function BasicsPage() {
+  const { address } = useAddress()
+  const { getHighestCompletedUnit } = useSpacedRepetition(address)
+  const [units, setUnits] = useState<Unit[]>([])
+
+  // Get the highest completed unit
+  const highestCompleted = useMemo(() => {
+    return getHighestCompletedUnit()
+  }, [getHighestCompletedUnit])
+
+  // Create units array
+  useEffect(() => {
+    console.log('🔓 Setting up units based on completion:', { highestCompleted })
+
+    const newUnits: Unit[] = Array(10).fill(null).map((_, i) => {
+      const id = i + 1
+      return {
+        id,
+        title: `Unit ${id}`,
+        subtitle: UNIT_SUBTITLES[id as keyof typeof UNIT_SUBTITLES],
+        isActive: id === 1 || id <= highestCompleted + 1,
+        progress: 0 // TODO: Calculate actual progress
+      }
+    })
+
+    setUnits(newUnits)
+  }, [highestCompleted]) // Only depend on highestCompleted, not the function
+
   return (
     <div className="min-h-screen bg-[color:var(--color-bg-main)] py-12 px-4">
       <div className="max-w-7xl mx-auto">

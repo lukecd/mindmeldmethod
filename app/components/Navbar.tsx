@@ -1,11 +1,37 @@
 'use client'
 
-import { Menu } from 'lucide-react'
+import { Menu, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import AuthButton from './AuthButton'
+import { useAddress } from '@chopinframework/react'
+import { useSpacedRepetition } from '../hooks/useSpacedRepetition'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { address } = useAddress()
+  const { deck, forceUpdate } = useSpacedRepetition(address)
+  const [xp, setXp] = useState<number | undefined>(undefined)
+
+  // Update XP state when deck changes or forceUpdate changes
+  useEffect(() => {
+    if (deck?.xp !== undefined) {
+      console.log('🔄 Navbar updating XP from deck:', deck.xp)
+      setXp(deck.xp)
+    }
+  }, [deck?.xp, forceUpdate])
+
+  // Listen for custom xp-updated event
+  useEffect(() => {
+    const handleXpUpdated = (event: Event) => {
+      const customEvent = event as CustomEvent<{ xp: number }>;
+      console.log('🔄 Navbar received xp-updated event:', customEvent.detail.xp);
+      setXp(customEvent.detail.xp);
+    };
+
+    window.addEventListener('xp-updated', handleXpUpdated);
+    return () => window.removeEventListener('xp-updated', handleXpUpdated);
+  }, []);
 
   const menuItems = [
     { name: 'Home', href: '/' },
@@ -16,16 +42,35 @@ export default function Navbar() {
     { name: 'About', href: '/about' },
   ]
 
+  const handleReset = () => {
+    // Clear all localStorage items that start with 'deck-'
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('deck-')) {
+        localStorage.removeItem(key)
+      }
+    })
+    console.log('🗑️ Cleared all deck data from localStorage')
+    // Reload the page to reset all state
+    window.location.reload()
+  }
+
   return (
     <nav className="p-4 fixed w-full top-0 z-50 bg-[color:var(--color-bg-nav)] text-[color:var(--color-text-inverse)]">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Hamburger Menu */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-[color:var(--color-text-inverse)] p-2 hover:opacity-80 rounded-lg transition-colors"
-        >
-          <Menu size={24} />
-        </button>
+        {/* Left side: Hamburger Menu and XP */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-[color:var(--color-text-inverse)] p-2 hover:opacity-80 rounded-lg transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+          {address && xp !== undefined && (
+            <div className="text-2xl text-[color:var(--color-text-inverse)] font-title">
+              XP: {xp}
+            </div>
+          )}
+        </div>
 
         {/* Title */}
         <Link 
@@ -34,6 +79,11 @@ export default function Navbar() {
         >
           Mind Meld Method
         </Link>
+
+        {/* Auth Button */}
+        <div className="hidden md:block">
+          <AuthButton />
+        </div>
 
         {/* Mobile Menu */}
         {isOpen && (
@@ -49,6 +99,18 @@ export default function Navbar() {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Dev Reset Option */}
+              <button
+                onClick={() => {
+                  if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                    handleReset()
+                  }
+                }}
+                className="block w-full text-left px-4 py-2 text-red-500 hover:opacity-80 transition-colors border-t border-[color:var(--color-border-light)]"
+              >
+                🗑️ Reset Progress (Dev)
+              </button>
             </div>
           </div>
         )}

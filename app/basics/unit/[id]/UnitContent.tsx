@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import LoadingSpinner from '../../../components/LoadingSpinner'
+import { useAddress } from '@chopinframework/react'
+import { useSpacedRepetition } from '../../../hooks/useSpacedRepetition'
 
 // Fisher-Yates shuffle algorithm
 function shuffleArray<T>(array: T[]): T[] {
@@ -16,6 +18,7 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 interface Flashcard {
+  id: string
   english: string
   spanish: string
   imagePath: string
@@ -32,6 +35,9 @@ interface UnitContentProps {
 }
 
 export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
+  const { address } = useAddress()
+  const { startUnit, recordAnswer, deck } = useSpacedRepetition(address)
+
   // Load word data
   const [wordsData, setWordsData] = useState<WordsData | null>(null)
   useEffect(() => {
@@ -50,6 +56,13 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
   const [ratings, setRatings] = useState<Record<number, string>>({})
   const [isImageLoading, setIsImageLoading] = useState(true)
 
+  // Start unit when address is available
+  useEffect(() => {
+    if (address && startUnit) {
+      startUnit(parseInt(unitId))
+    }
+  }, [address, unitId, startUnit])
+
   // Shuffle cards when data is loaded
   useEffect(() => {
     if (wordsData?.words?.length) {
@@ -62,22 +75,74 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
   }
 
   const handleRate = (rating: 'no-idea' | 'got-one' | 'got-both') => {
-    // Only allow rating if image is loaded
-    if (isImageLoading) return
+    if (!wordsData || !flashcards[currentCard]) return
 
-    // Store the rating for the current card
+    // Map rating to SM2 quality score (0-5) and XP
+    const ratingMap = {
+      'no-idea': { quality: 1, xp: 3 },
+      'got-one': { quality: 3, xp: 5 },
+      'got-both': { quality: 5, xp: 9 }
+    }
+
+    console.log('🎮 UnitContent.handleRate - Before recordAnswer:', {
+      wordId: flashcards[currentCard].id,
+      quality: ratingMap[rating].quality,
+      xpAward: ratingMap[rating].xp,
+      currentDeckXP: deck?.xp
+    })
+
+    // Record the answer in spaced repetition system
+    if (recordAnswer) {
+      recordAnswer(flashcards[currentCard].id, ratingMap[rating].quality, ratingMap[rating].xp)
+        .then((updatedDeck) => {
+          console.log('🎮 UnitContent.handleRate - After recordAnswer:', {
+            wordId: flashcards[currentCard].id,
+            rating,
+            newDeckXP: updatedDeck?.xp || deck?.xp
+          });
+        })
+        .catch((error: Error) => {
+          console.error('Error recording answer:', error);
+        });
+    }
+
+    // Store rating in local state
     setRatings(prev => ({
       ...prev,
       [currentCard]: rating
-    }))
+    }));
 
-    // Move to next card if not at the end
+    // Reset card state
+    setIsEnglishFlipped(false);
+    setIsSpanishFlipped(false);
+    setShowClue(false);
+    setIsImageLoading(true);
+
+    // Move to next card
     if (currentCard < flashcards.length - 1) {
-      setCurrentCard(currentCard + 1)
-      setIsEnglishFlipped(false)
-      setIsSpanishFlipped(false)
-      setShowClue(false)
-      setIsImageLoading(true)
+      setCurrentCard(prev => prev + 1);
+    } else {
+      // Unit completed! Award bonus XP
+      if (recordAnswer) {
+        console.log('🎮 UnitContent.handleRate - Before bonus XP:', {
+          wordId: flashcards[currentCard].id,
+          quality: ratingMap[rating].quality,
+          bonusXP: ratingMap[rating].xp + 42,
+          currentDeckXP: deck?.xp
+        });
+
+        recordAnswer(flashcards[currentCard].id, ratingMap[rating].quality, ratingMap[rating].xp + 42)
+          .then((updatedDeck) => {
+            console.log('🎮 UnitContent.handleRate - After bonus XP:', {
+              wordId: flashcards[currentCard].id,
+              rating,
+              newDeckXP: updatedDeck?.xp || deck?.xp
+            });
+          })
+          .catch((error: Error) => {
+            console.error('Error recording bonus XP:', error);
+          });
+      }
     }
   }
 
@@ -106,7 +171,9 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
       <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-2 bg-[color:var(--color-bg-nav)] p-4">
-          <h1 className="text-2xl font-title text-[color:var(--color-text-inverse)] mb-2">Unit {unitId}: {unitTitle}</h1>
+          <div className="flex justify-between items-center mb-2">
+            <h1 className="text-2xl font-title text-[color:var(--color-text-inverse)]">Unit {unitId}: {unitTitle}</h1>
+          </div>
           <div className="flex items-center gap-2">
             <div className="text-[color:var(--color-text-inverse)]/80 text-sm">Progress</div>
             <div className="flex-1 h-2 bg-[color:var(--color-bg-card)]">
@@ -128,6 +195,7 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
               src={currentFlashcard.imagePath} 
               alt={currentFlashcard.english}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className={`object-cover transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
               onLoadingComplete={handleImageLoad}
               priority
