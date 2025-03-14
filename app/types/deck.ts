@@ -15,6 +15,7 @@ export interface UserCard {
   repetitions: number
   nextReview: number
   lastReview: number
+  actualNextReview?: number // Optional property to store the actual next review time during a session
 }
 
 export interface DeckStats {

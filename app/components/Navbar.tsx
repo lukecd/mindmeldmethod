@@ -43,13 +43,27 @@ export default function Navbar() {
   ]
 
   const handleReset = () => {
-    // Clear all localStorage items that start with 'deck-'
-    Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('deck-')) {
-        localStorage.removeItem(key)
-      }
-    })
-    console.log('🗑️ Cleared all deck data from localStorage')
+    // Clear all localStorage items
+    console.log('🗑️ Clearing all application data from localStorage')
+    
+    // First, log what we're about to clear
+    const itemsToClear = Object.keys(localStorage)
+    console.log(`Found ${itemsToClear.length} items in localStorage:`, itemsToClear)
+    
+    // Clear all localStorage items
+    localStorage.clear()
+    
+    // Clear any session storage as well
+    sessionStorage.clear()
+    
+    // Clear any cookies (optional, may affect auth)
+    // document.cookie.split(";").forEach(cookie => {
+    //   const [name] = cookie.trim().split("=")
+    //   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+    // })
+    
+    console.log('🗑️ All application data cleared from browser storage')
+    
     // Reload the page to reset all state
     window.location.reload()
   }
@@ -103,13 +117,13 @@ export default function Navbar() {
               {/* Dev Reset Option */}
               <button
                 onClick={() => {
-                  if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                  if (confirm('⚠️ DEVELOPER RESET: This will clear ALL application data and reset your progress. This cannot be undone. Continue?')) {
                     handleReset()
                   }
                 }}
                 className="block w-full text-left px-4 py-2 text-red-500 hover:opacity-80 transition-colors border-t border-[color:var(--color-border-light)]"
               >
-                🗑️ Reset Progress (Dev)
+                🧪 Developer Reset
               </button>
             </div>
           </div>
