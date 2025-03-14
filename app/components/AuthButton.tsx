@@ -2,7 +2,7 @@
 
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { useAddress } from "@chopinframework/react"
-import Spinner from './Spinner'
+import LoadingSpinner from './LoadingSpinner'
 import { useState } from 'react'
 
 export default function AuthButton() {
@@ -42,7 +42,9 @@ export default function AuthButton() {
   if (hookLoading || isLoading) {
     return (
       <div className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] px-4 py-2 flex items-center gap-2">
-        <Spinner />
+        <div className="w-5 h-5">
+          <LoadingSpinner />
+        </div>
         <span>Loading</span>
       </div>
     )

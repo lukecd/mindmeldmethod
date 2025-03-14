@@ -6,7 +6,6 @@ import Link from 'next/link'
 import LoadingSpinner from '../../../components/LoadingSpinner'
 import { useAddress } from '@chopinframework/react'
 import { useSpacedRepetition } from '../../../hooks/useSpacedRepetition'
-import Spinner from '../../../components/Spinner'
 import Flashcard from '../../../components/Flashcard'
 // Fisher-Yates shuffle algorithm
 function shuffleArray<T>(array: T[]): T[] {
@@ -378,7 +377,7 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
 
   // Render the component
   return (
-    <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4">
+    <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
       {/* Debug info */}
       <div className="fixed top-0 left-0 bg-black bg-opacity-80 text-white p-2 text-xs z-50">
         Cards: {flashcards.length} | Current: {currentCard} | Loading: {isLoading ? 'Yes' : 'No'}
@@ -386,29 +385,28 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
       
       {isLoading ? (
         <div className="flex justify-center items-center">
-          <Spinner className="w-8 h-8" />
+          <LoadingSpinner />
         </div>
       ) : (
-        <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4">
-          {/* Rest of the component content */}
+        <div className="max-w-3xl mx-auto">
           {/* Card display section */}
           {flashcards.length > 0 && currentCard < flashcards.length && (
-            <div className="max-w-4xl mx-auto">
-              {/* Unit title and progress bar */}
-              <div className="bg-mindmeld-green rounded-3xl p-6 mb-4">
-                <h1 className="text-3xl font-title mb-2">{unitTitle}</h1>
-                <div className="flex items-center">
-                  <span className="mr-2">Progress</span>
-                  <div className="flex-1 bg-white/20 h-4 rounded-full overflow-hidden">
+            <>
+              {/* Header */}
+              <div className="mb-2 bg-[color:var(--color-bg-nav)] rounded-lg p-4">
+                <h1 className="text-2xl font-title mb-1 text-[color:var(--color-text-primary)]">Unit {unitId}: Essential Basics</h1>
+                <div className="flex items-center gap-2">
+                  <div className="text-sm font-body text-[color:var(--color-text-primary)]">Progress</div>
+                  <div className="flex-1 h-3 bg-[color:var(--color-accent-secondary)] rounded-full overflow-hidden">
                     <div 
-                      className="bg-mindmeld-navy h-full rounded-full" 
-                      style={{ width: `${progress}%` }}
-                    ></div>
+                      className="h-full bg-[color:var(--color-bg-card)] rounded-full transition-all duration-300" 
+                      style={{ width: `${progress}%` }} 
+                    />
                   </div>
-                  <span className="ml-2">{currentCard + 1} / {flashcards.length}</span>
+                  <div className="text-sm font-body text-[color:var(--color-text-primary)]">{currentCard + 1} / {flashcards.length}</div>
                 </div>
               </div>
-              
+
               {/* Flashcard component */}
               <Flashcard
                 imageUrl={flashcards[currentCard].imagePath}
@@ -417,17 +415,17 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
                 clue={flashcards[currentCard].clue}
                 onRate={handleRate}
               />
-            </div>
+            </>
           )}
 
           {/* Show completion message when all cards are done */}
           {(flashcards.length === 0 || currentCard >= flashcards.length) && !isLoading && (
             <div className="text-center py-8">
-              <h2 className="text-2xl font-bold mb-4">Great job!</h2>
-              <p className="mb-4">You've completed all the due cards for this unit.</p>
+              <h2 className="text-2xl font-title mb-4 text-[color:var(--color-text-primary)]">Great job!</h2>
+              <p className="mb-4 font-body text-[color:var(--color-text-primary)]">You've completed all the due cards for this unit.</p>
               <Link
                 href="/basics"
-                className="px-6 py-3 bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-inverse)] rounded-lg hover:opacity-90 transition-opacity"
+                className="px-6 py-3 bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-title rounded-lg hover:opacity-90 transition-opacity"
               >
                 Back to Units
               </Link>

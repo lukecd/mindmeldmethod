@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import UnitContent from './UnitContent'
 import { useSpacedRepetition } from '../../../hooks/useSpacedRepetition'
 import { useEffect, useState, use } from 'react'
+import Link from 'next/link'
+import LoadingSpinner from '../../../components/LoadingSpinner'
 
 const UNIT_TITLES = {
   '1': 'Essential Basics',
@@ -33,6 +35,7 @@ export default function UnitPage({ params }: PageProps) {
     completedWords: number
     totalWords: number
     canAccess: boolean
+    previousUnitCompletion: number
   } | null>(null)
 
   const unitTitle = UNIT_TITLES[unitId as keyof typeof UNIT_TITLES]
@@ -64,10 +67,12 @@ export default function UnitPage({ params }: PageProps) {
         setUnitAccess(data)
         setIsLoading(false)
 
-        // Redirect if no access
+        // Redirect if no access - after a short delay to show the message
         if (!data.canAccess) {
           console.log('🚫 Access denied, redirecting to basics page')
-          router.push('/basics')
+          setTimeout(() => {
+            router.push('/basics')
+          }, 3000) // Redirect after 3 seconds
         }
       } catch (error) {
         if (!isMounted) return
@@ -88,7 +93,10 @@ export default function UnitPage({ params }: PageProps) {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 flex items-center justify-center">
-        <div className="text-[color:var(--color-text-inverse)]">Loading...</div>
+        <div className="text-center">
+          <LoadingSpinner />
+          <p className="mt-4 text-[color:var(--color-text-inverse)]">Loading unit {unitId}...</p>
+        </div>
       </div>
     )
   }
@@ -102,14 +110,44 @@ export default function UnitPage({ params }: PageProps) {
     )
   }
 
-  // Show error state if no access
-  if (!unitAccess) {
-    return null // Will redirect
-  }
-
-  // Show error state if no access
-  if (!unitAccess.canAccess) {
-    return null // Will redirect
+  // Show access denied state
+  if (!unitAccess || !unitAccess.canAccess) {
+    const prevUnitId = Number(unitId) - 1;
+    return (
+      <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 flex items-center justify-center">
+        <div className="max-w-md text-center">
+          <h1 className="text-3xl font-title text-[color:var(--color-text-inverse)] mb-4">Access Denied</h1>
+          <p className="text-[color:var(--color-text-inverse)] mb-6">
+            {Number(unitId) > 1 
+              ? `You need to complete Unit ${prevUnitId} before accessing Unit ${unitId}.`
+              : 'You cannot access this unit yet.'}
+          </p>
+          {unitAccess && Number(unitId) > 1 && (
+            <div className="mb-6">
+              <p className="text-[color:var(--color-text-inverse)] mb-2">Current progress:</p>
+              <div className="w-full h-4 bg-[color:var(--color-text-inverse)]/20 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-[color:var(--color-accent-primary)]" 
+                  style={{ width: `${unitAccess.previousUnitCompletion * 100}%` }}
+                ></div>
+              </div>
+              <p className="text-[color:var(--color-text-inverse)] mt-2">
+                {Math.round(unitAccess.previousUnitCompletion * 100)}% complete
+              </p>
+            </div>
+          )}
+          <p className="text-[color:var(--color-text-inverse)] mb-4">
+            Redirecting to the units page...
+          </p>
+          <Link 
+            href="/basics" 
+            className="inline-block bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] px-6 py-2"
+          >
+            Return to Units
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return <UnitContent unitId={unitId} unitTitle={unitTitle} />
