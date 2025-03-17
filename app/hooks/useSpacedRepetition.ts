@@ -9,6 +9,8 @@ interface WordItem {
   imagePath: string
   unit: number
   clue: string
+  nextReview?: number
+  isDue?: boolean
 }
 
 interface UserProgress {
@@ -186,16 +188,8 @@ export function useSpacedRepetition(userId: string | null) {
   }, [userId, hasStartedUnit, addUnit, deck, getDueCards]);
 
   const getDueWords = useCallback(async (unit: number) => {
-    console.log(`getDueWords: FUNCTION CALLED with unit ${unit} and userId ${userId}`);
-    
-    if (!userId) {
-      console.log('getDueWords: No userId provided');
-      return [];
-    }
-    
-    // Add a unique request ID for debugging
-    const requestId = Math.random().toString(36).substring(2, 8);
-    console.log(`getDueWords[${requestId}]: Starting for unit ${unit} with userId ${userId}`);
+    const requestId = Math.random().toString(36).substring(7);
+    console.log(`getDueWords[${requestId}]: Getting due words for unit ${unit}`);
     
     // Log the current time for comparison with nextReview times
     const now = Date.now();
@@ -267,49 +261,10 @@ export function useSpacedRepetition(userId: string | null) {
       if (!dueCards || dueCards.length === 0) {
         console.log(`getDueWords[${requestId}]: No due cards found for unit ${unit}`);
         
-        // Even if there are no due cards, try to get all cards for this unit
-        // This ensures users can always study, even if cards aren't technically due
-        if (deck) {
-          const unitCards = deck.cards.filter(card => card.unit === unit);
-          if (unitCards.length > 0) {
-            console.log(`getDueWords[${requestId}]: No due cards, but found ${unitCards.length} total cards for unit ${unit}. Using these instead.`);
-            
-            // Fetch the word data for these cards
-            try {
-              const words = await fetchWordsFromJson();
-              console.log(`getDueWords[${requestId}]: Loaded ${words.length} words from JSON`);
-              
-              // Map all unit cards to their corresponding words
-              const allUnitWords = unitCards.map(card => {
-                const word = words.find(w => w.id === card.wordId);
-                if (!word) {
-                  console.warn(`getDueWords[${requestId}]: Word not found for card ${card.wordId}`);
-                  return null;
-                }
-                return word;
-              }).filter((word): word is WordItem => word !== null);
-              
-              console.log(`getDueWords[${requestId}]: Mapped ${allUnitWords.length} words for unit ${unit}`);
-              
-              if (allUnitWords.length > 0) {
-                return allUnitWords;
-              }
-            } catch (error) {
-              console.error(`getDueWords[${requestId}]: Error fetching words for all unit cards:`, error);
-            }
-          }
-        }
-        
-        // If we still don't have words, fetch them directly from the JSON file
-        try {
-          console.log(`getDueWords[${requestId}]: Falling back to fetching all words directly for unit ${unit}`);
-          const words = await fetchWordsFromJson();
-          console.log(`getDueWords[${requestId}]: Loaded ${words.length} words directly from JSON as fallback`);
-          return words;
-        } catch (fallbackError) {
-          console.error(`getDueWords[${requestId}]: Error in fallback word fetching:`, fallbackError);
-          return [];
-        }
+        // Remove the fallback that returns all cards for a unit
+        // Instead, just return an empty array when no cards are due
+        console.log(`getDueWords[${requestId}]: Returning empty array since no cards are due`);
+        return [];
       }
       
       console.log(`getDueWords[${requestId}]: Found ${dueCards.length} due cards for unit ${unit}`);

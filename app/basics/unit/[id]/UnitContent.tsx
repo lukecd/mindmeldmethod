@@ -7,6 +7,8 @@ import LoadingSpinner from '../../../components/LoadingSpinner'
 import { useAddress } from '@chopinframework/react'
 import { useSpacedRepetition } from '../../../hooks/useSpacedRepetition'
 import Flashcard from '../../../components/Flashcard'
+import Confetti from 'react-confetti'
+
 // Fisher-Yates shuffle algorithm
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array]
@@ -23,6 +25,9 @@ interface Flashcard {
   spanish: string
   imagePath: string
   clue: string
+  unit?: number
+  nextReview?: number
+  actualNextReview?: number
 }
 
 interface WordsData {
@@ -48,6 +53,13 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
   const [isImageLoading, setIsImageLoading] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const [ratings, setRatings] = useState<Record<number, string>>({})
+
+  // Add state to track the next review time
+  const [nextReviewTime, setNextReviewTime] = useState<string | null>(null);
+
+  // Add state for confetti
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   // Start unit when address is available and load cards
   useEffect(() => {
@@ -210,6 +222,67 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
     };
   }, [address, unitId, finalizeSession]);
 
+  // Add effect to update window size for confetti
+  useEffect(() => {
+    // Only run on client side
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      };
+      
+      // Set initial size
+      handleResize();
+      
+      // Add event listener
+      window.addEventListener('resize', handleResize);
+      
+      // Clean up
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
+  // Add an effect to show confetti when there are no flashcards left
+  useEffect(() => {
+    // Check if we've just completed all cards
+    if (flashcards.length === 0 && !isLoading && deck) {
+      console.log('🎉 No flashcards left and not loading - session complete!');
+      
+      // Find cards for this unit
+      const unitCards = deck.cards.filter(card => card.unit === parseInt(unitId));
+      
+      if (unitCards.length > 0) {
+        // Find the card with the earliest next review time
+        const nextReviewCard = unitCards.reduce((earliest, card) => {
+          // Use actualNextReview if available, otherwise use nextReview
+          const cardNextReview = card.actualNextReview || card.nextReview;
+          const earliestNextReview = earliest.actualNextReview || earliest.nextReview;
+          
+          return cardNextReview < earliestNextReview ? card : earliest;
+        });
+        
+        // Format the next review time
+        const nextReviewTimestamp = nextReviewCard.actualNextReview || nextReviewCard.nextReview;
+        const formattedTime = formatNextReviewTime(nextReviewTimestamp);
+        
+        console.log(`🔄 Next review available ${formattedTime} (${new Date(nextReviewTimestamp).toLocaleString()})`);
+        
+        // Set the next review time
+        setNextReviewTime(formattedTime);
+        
+        // Show confetti
+        setShowConfetti(true);
+        
+        // Hide confetti after 5 seconds
+        setTimeout(() => {
+          setShowConfetti(false);
+        }, 5000);
+      }
+    }
+  }, [flashcards.length, isLoading, deck, unitId]);
+
   const handleImageLoad = () => {
     setIsImageLoading(false)
   }
@@ -242,21 +315,99 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
             newDeckXP: updatedDeck?.xp || deck?.xp
           });
           
-          // After recording an answer, check if there are more cards
-          if (currentCard < flashcards.length - 1) {
-            // Move to next card
-            setCurrentCard(prev => prev + 1);
+          if (rating === 'no-clue') {
+            // For "No Idea" ratings, move the current card to a later position in the deck
+            // so the user will see it again later in the session
+            console.log('🔄 Moving card to a later position for review:', flashcards[currentCard].id);
+            
+            // Get the current card
+            const currentCardObj = flashcards[currentCard];
+            
+            // Create a new array without the current card
+            const newFlashcards = [...flashcards];
+            newFlashcards.splice(currentCard, 1);
+            
+            // Calculate a position to reinsert the card (2-4 cards later)
+            // This ensures the user doesn't see the same card right away
+            const minPosition = Math.min(currentCard + 2, newFlashcards.length);
+            const maxPosition = Math.min(currentCard + 4, newFlashcards.length);
+            const insertPosition = Math.floor(Math.random() * (maxPosition - minPosition + 1)) + minPosition;
+            
+            // Insert the card at the new position
+            newFlashcards.splice(insertPosition, 0, currentCardObj);
+            
+            console.log(`🔄 Moved card from position ${currentCard} to position ${insertPosition}`);
+            
+            // Update the flashcards array
+            setFlashcards(newFlashcards);
+            
+            // Move to the next card (which is now at the current position since we removed the current card)
+            // No need to increment currentCard since the next card has shifted into the current position
+            
+            // Reset card state
+            setIsImageLoading(true);
           } else {
-            // No more cards in this session, reload due cards
-            getDueWords(parseInt(unitId)).then(dueWords => {
-              if (dueWords.length > 0) {
-                setFlashcards(shuffleArray(dueWords));
-                setCurrentCard(0);
-              } else {
-                // No more due cards
-                setFlashcards([]);
-              }
-            });
+            // For "Got One" or "Got Both" ratings, proceed as normal
+            // After recording an answer, check if there are more cards
+            if (currentCard < flashcards.length - 1) {
+              // Move to next card
+              setCurrentCard(prev => prev + 1);
+              // Reset card state
+              setIsImageLoading(true);
+            } else {
+              // No more cards in this session, reload due cards
+              console.log('🔄 Reached end of current flashcards, checking for more due cards');
+              getDueWords(parseInt(unitId)).then(dueWords => {
+                console.log('🔍 DEBUG - getDueWords returned:', dueWords.length, 'cards');
+                
+                // Since getDueWords now only returns truly due cards, we don't need to filter
+                console.log(`🔄 Found ${dueWords.length} due cards`);
+                
+                if (dueWords.length > 0) {
+                  setFlashcards(shuffleArray(dueWords));
+                  setCurrentCard(0);
+                  setIsImageLoading(true);
+                } else {
+                  console.log('🎉 No more due cards - session complete!');
+                  // No more due cards - calculate the next review time
+                  if (updatedDeck && updatedDeck.cards.length > 0) {
+                    // Find cards for this unit
+                    const unitCards = updatedDeck.cards.filter(card => card.unit === parseInt(unitId));
+                    
+                    if (unitCards.length > 0) {
+                      // Find the card with the earliest next review time
+                      const nextReviewCard = unitCards.reduce((earliest, card) => {
+                        // Use actualNextReview if available, otherwise use nextReview
+                        const cardNextReview = card.actualNextReview || card.nextReview;
+                        const earliestNextReview = earliest.actualNextReview || earliest.nextReview;
+                        
+                        return cardNextReview < earliestNextReview ? card : earliest;
+                      });
+                      
+                      // Format the next review time
+                      const nextReviewTimestamp = nextReviewCard.actualNextReview || nextReviewCard.nextReview;
+                      const formattedTime = formatNextReviewTime(nextReviewTimestamp);
+                      
+                      console.log(`🔄 Next review available ${formattedTime} (${new Date(nextReviewTimestamp).toLocaleString()})`);
+                      
+                      // Set the next review time
+                      setNextReviewTime(formattedTime);
+                      
+                      // Show confetti
+                      setShowConfetti(true);
+                      
+                      // Hide confetti after 5 seconds
+                      setTimeout(() => {
+                        setShowConfetti(false);
+                      }, 5000);
+                    }
+                  }
+                  
+                  // Set empty flashcards to show completion message
+                  setFlashcards([]);
+                }
+              });
+            }
           }
         })
         .catch((error: Error) => {
@@ -269,13 +420,12 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
       ...prev,
       [currentCard]: rating
     }));
-
-    // Reset card state
-    setIsImageLoading(true);
   }
 
-  // Calculate progress percentage
-  const progress = flashcards.length ? ((currentCard + 1) / flashcards.length * 100) : 0
+  // Calculate progress percentage based on successfully learned cards in this session
+  const successfullyLearnedCards = Object.values(ratings).filter(rating => rating === 'got-one' || rating === 'got-both').length;
+  const totalUniqueCards = new Set(Object.keys(ratings).map(Number)).size;
+  const progress = totalUniqueCards > 0 ? (successfullyLearnedCards / flashcards.length * 100) : 0;
 
   // Add a function to end the current session
   const handleEndSession = async () => {
@@ -315,7 +465,8 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
       const dueWords = await getDueWords(parseInt(unitId));
       console.log('🔄 Due words result:', dueWords ? `Found ${dueWords.length} due words` : 'No due words found');
       
-      if (dueWords && dueWords.length > 0) {
+      // Since getDueWords now only returns truly due cards, we don't need to filter
+      if (dueWords.length > 0) {
         const shuffled = shuffleArray(dueWords);
         console.log(`Set ${shuffled.length} flashcards for review`);
         setFlashcards(shuffled);
@@ -354,8 +505,10 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
           
           // Try getDueWords again after forcing cards to be due
           const forcedDueWords = await getDueWords(parseInt(unitId));
+          console.log(`🔄 Found ${forcedDueWords.length} due cards after forcing`);
           
-          if (forcedDueWords && forcedDueWords.length > 0) {
+          // Since getDueWords now only returns truly due cards, we don't need to filter
+          if (forcedDueWords.length > 0) {
             console.log(`Successfully loaded ${forcedDueWords.length} due cards after forcing`);
             const shuffled = shuffleArray(forcedDueWords);
             setFlashcards(shuffled);
@@ -375,9 +528,44 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
     }
   };
 
+  // Add a function to format the next review time
+  const formatNextReviewTime = (timestamp: number): string => {
+    const now = Date.now();
+    const diff = timestamp - now;
+    
+    // If the next review is in the past or less than 1 minute away, return "now"
+    if (diff <= 60 * 1000) {
+      return "Available now";
+    }
+    
+    const minutes = Math.floor(diff / (60 * 1000));
+    const hours = Math.floor(diff / (60 * 60 * 1000));
+    const days = Math.floor(diff / (24 * 60 * 60 * 1000));
+    
+    if (days > 0) {
+      return `Available in ${days} ${days === 1 ? 'day' : 'days'}`;
+    } else if (hours > 0) {
+      return `Available in ${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+    } else {
+      return `Available in ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+    }
+  };
+
   // Render the component
   return (
     <div className="min-h-screen bg-[color:var(--color-bg-main)] pt-20 px-4 sm:px-6 md:px-8 lg:px-0">
+      {/* Confetti animation */}
+      {showConfetti && (
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={200}
+          gravity={0.2}
+          colors={['#36008D', '#00CB8B', '#FCD200', '#FFB3C1', '#FE5E54']}
+        />
+      )}
+      
       {/* Debug info */}
       <div className="fixed top-0 left-0 bg-black bg-opacity-80 text-white p-2 text-xs z-50">
         Cards: {flashcards.length} | Current: {currentCard} | Loading: {isLoading ? 'Yes' : 'No'}
@@ -396,14 +584,16 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
               <div className="mb-2 bg-[color:var(--color-bg-nav)] rounded-lg p-4">
                 <h1 className="text-2xl font-title mb-1 text-[color:var(--color-text-primary)]">Unit {unitId}: Essential Basics</h1>
                 <div className="flex items-center gap-2">
-                  <div className="text-sm font-body text-[color:var(--color-text-primary)]">Progress</div>
+                  <div className="text-sm font-body text-[color:var(--color-text-primary)]">Learning Progress</div>
                   <div className="flex-1 h-3 bg-[color:var(--color-accent-secondary)] rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-[color:var(--color-bg-card)] rounded-full transition-all duration-300" 
                       style={{ width: `${progress}%` }} 
                     />
                   </div>
-                  <div className="text-sm font-body text-[color:var(--color-text-primary)]">{currentCard + 1} / {flashcards.length}</div>
+                  <div className="text-sm font-body text-[color:var(--color-text-primary)]">
+                    {successfullyLearnedCards} / {flashcards.length} learned
+                  </div>
                 </div>
               </div>
 
@@ -420,15 +610,74 @@ export default function UnitContent({ unitId, unitTitle }: UnitContentProps) {
 
           {/* Show completion message when all cards are done */}
           {(flashcards.length === 0 || currentCard >= flashcards.length) && !isLoading && (
-            <div className="text-center py-8">
-              <h2 className="text-2xl font-title mb-4 text-[color:var(--color-text-primary)]">Great job!</h2>
-              <p className="mb-4 font-body text-[color:var(--color-text-primary)]">You've completed all the due cards for this unit.</p>
-              <Link
-                href="/basics"
-                className="px-6 py-3 bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-title rounded-lg hover:opacity-90 transition-opacity"
-              >
-                Back to Units
-              </Link>
+            <div className="text-center py-8 bg-[color:var(--color-bg-nav)] rounded-lg p-6 shadow-lg">
+              <div className="text-5xl font-title mb-4 text-[color:var(--color-text-primary)]">¡Felicidades!</div>
+              <p className="mb-6 font-body text-[color:var(--color-text-primary)]">
+                You've completed all the due cards for this unit.
+              </p>
+              
+              {nextReviewTime && (
+                <div className="mb-6 p-4 bg-[color:var(--color-bg-card)] rounded-lg">
+                  <p className="font-body text-[color:var(--color-text-on-dark)] mb-2">
+                    <span className="font-semibold">Your next review session will be available:</span>
+                  </p>
+                  <p className="text-2xl font-title text-[color:var(--color-accent-secondary)]">
+                    {nextReviewTime}
+                  </p>
+                  <p className="text-sm mt-2 font-body text-[color:var(--color-text-on-dark)]">
+                    Regular review is key to mastering a language. ¡Hasta pronto!
+                  </p>
+                </div>
+              )}
+              
+              <div className="flex justify-center gap-4">
+                <Link
+                  href="/basics"
+                  className="px-6 py-3 bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-title rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Back to Units
+                </Link>
+                
+                {/* Add a button to check unit completion status */}
+                <button
+                  onClick={() => {
+                    if (!deck) return;
+                    
+                    // Check if Unit 1 is in completedUnits
+                    const isUnit1Completed = deck.completedUnits.includes(1);
+                    
+                    // Count cards in Unit 1
+                    const unit1Cards = deck.cards.filter(c => c.unit === 1);
+                    const unit1CardsWithReps = unit1Cards.filter(c => c.repetitions > 0);
+                    
+                    // Log detailed information
+                    console.log('🔍 UNIT 1 COMPLETION CHECK:', {
+                      isUnit1Completed,
+                      totalUnit1Cards: unit1Cards.length,
+                      unit1CardsWithReps: unit1CardsWithReps.length,
+                      allUnit1CardsHaveReps: unit1Cards.length > 0 && unit1Cards.every(c => c.repetitions > 0),
+                      completedUnits: deck.completedUnits,
+                      unit1CardDetails: unit1Cards.map(c => ({
+                        wordId: c.wordId,
+                        repetitions: c.repetitions,
+                        hasReps: c.repetitions > 0
+                      }))
+                    });
+                    
+                    // Show an alert with the results
+                    alert(`Unit 1 completion status:
+                      - Is marked as completed: ${isUnit1Completed ? 'Yes' : 'No'}
+                      - Total cards: ${unit1Cards.length}
+                      - Cards with repetitions: ${unit1CardsWithReps.length}
+                      - All cards have repetitions: ${unit1Cards.length > 0 && unit1Cards.every(c => c.repetitions > 0) ? 'Yes' : 'No'}
+                      
+                      Check the console for more details.`);
+                  }}
+                  className="px-6 py-3 bg-[color:var(--color-bg-card)] text-[color:var(--color-text-on-dark)] font-title rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Check Unit 1 Status
+                </button>
+              </div>
             </div>
           )}
         </div>

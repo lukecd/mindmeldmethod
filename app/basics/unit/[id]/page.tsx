@@ -7,6 +7,7 @@ import { useSpacedRepetition } from '../../../hooks/useSpacedRepetition'
 import { useEffect, useState, use } from 'react'
 import Link from 'next/link'
 import LoadingSpinner from '../../../components/LoadingSpinner'
+import { useAddress } from '@chopinframework/react'
 
 const UNIT_TITLES = {
   '1': 'Essential Basics',
@@ -28,6 +29,8 @@ interface PageProps {
 export default function UnitPage({ params }: PageProps) {
   const { id: unitId } = use(params)
   const router = useRouter()
+  const { address } = useAddress()
+  const { deck } = useSpacedRepetition(address)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [unitAccess, setUnitAccess] = useState<{
@@ -46,29 +49,115 @@ export default function UnitPage({ params }: PageProps) {
     notFound()
   }
 
-  // Fetch unit access data
+  // Check unit access directly from the deck
   useEffect(() => {
     let isMounted = true
 
-    async function checkUnitAccess() {
+    function checkUnitAccess() {
       try {
         setIsLoading(true)
         setError(null)
         
-        const response = await fetch(`/api/units/${unitId}/progress`)
-        if (!response.ok) {
-          throw new Error('Failed to fetch unit access')
+        // Try to get the deck directly from localStorage if it's not available from the hook
+        let localDeck = deck;
+        
+        if (!localDeck && address && typeof window !== 'undefined') {
+          try {
+            const key = `deck-${address}`;
+            const saved = localStorage.getItem(key);
+            if (saved) {
+              localDeck = JSON.parse(saved);
+              console.log('🔍 DEBUG - Found deck in localStorage:', { 
+                userId: localDeck?.userId, 
+                totalCards: localDeck?.cards?.length || 0,
+                completedUnits: localDeck?.completedUnits || [] 
+              });
+            }
+          } catch (error) {
+            console.error('Error reading localStorage:', error);
+          }
         }
         
-        const data = await response.json()
+        // Add more detailed debugging
+        console.log('🔍 DETAILED DEBUG - Unit access check:', {
+          unitId,
+          address,
+          deckLoaded: Boolean(localDeck),
+          deckUserId: localDeck?.userId,
+          totalCards: localDeck?.cards?.length || 0,
+          completedUnits: localDeck?.completedUnits || [],
+          unit1Cards: localDeck?.cards ? localDeck.cards.filter(c => c.unit === 1).length : 0,
+          unit1CompletedCards: localDeck?.cards ? localDeck.cards.filter(c => c.unit === 1 && c.repetitions > 0).length : 0,
+          unit1AllCompleted: localDeck?.cards && localDeck.cards.filter(c => c.unit === 1).length > 0 ? 
+            localDeck.cards.filter(c => c.unit === 1).every(c => c.repetitions > 0) : false,
+          unit1InCompletedUnits: localDeck?.completedUnits?.includes(1)
+        });
+        
+        // Default values
+        let isStarted = false;
+        let completedWords = 0;
+        let totalWords = 0;
+        let canAccess = Number(unitId) === 1; // Unit 1 is always accessible
+        let previousUnitCompletion = 0;
+        
+        if (localDeck) {
+          // Get cards for this unit
+          const unitCards = localDeck.cards.filter(card => card.unit === Number(unitId));
+          isStarted = unitCards.length > 0;
+          totalWords = unitCards.length;
+          completedWords = unitCards.filter(card => card.repetitions > 0).length;
+          
+          if (Number(unitId) > 1) {
+            const previousUnitId = Number(unitId) - 1;
+            
+            // Check if previous unit is in completedUnits array
+            if (localDeck.completedUnits && localDeck.completedUnits.includes(previousUnitId)) {
+              canAccess = true;
+              previousUnitCompletion = 1.0;
+            } else {
+              // Check if all cards in previous unit have repetitions > 0
+              const previousUnitCards = localDeck.cards.filter(card => card.unit === previousUnitId);
+              
+              if (previousUnitCards.length > 0) {
+                const completedCardsInPreviousUnit = previousUnitCards.filter(card => card.repetitions > 0).length;
+                previousUnitCompletion = completedCardsInPreviousUnit / previousUnitCards.length;
+                
+                // If all cards in previous unit are completed, allow access
+                if (previousUnitCards.every(card => card.repetitions > 0)) {
+                  canAccess = true;
+                }
+              }
+            }
+            
+            // Only allow access to the next unit after the highest started unit
+            const highestStartedUnit = Math.max(1, ...localDeck.cards.map(card => card.unit));
+            if (Number(unitId) > highestStartedUnit + 1) {
+              canAccess = false;
+            }
+          }
+        }
+        
+        const accessData = {
+          isStarted,
+          completedWords,
+          totalWords,
+          canAccess,
+          previousUnitCompletion
+        };
+        
+        console.log('🔍 DEBUG - Unit access result:', {
+          unitId,
+          ...accessData,
+          reason: canAccess ? 'Access granted' : 'Access denied'
+        });
         
         if (!isMounted) return
         
-        setUnitAccess(data)
+        setUnitAccess(accessData)
         setIsLoading(false)
 
         // Redirect if no access - after a short delay to show the message
-        if (!data.canAccess) {
+        if (!canAccess) {
           console.log('🚫 Access denied, redirecting to basics page')
           setTimeout(() => {
             router.push('/basics')
@@ -87,7 +176,7 @@ export default function UnitPage({ params }: PageProps) {
     return () => {
       isMounted = false
     }
-  }, [unitId, router])
+  }, [unitId, router, deck, address])
 
   // Show loading state
   if (isLoading) {

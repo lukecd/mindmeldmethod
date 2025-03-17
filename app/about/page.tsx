@@ -30,44 +30,77 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Core Features */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-[color:var(--color-bg-card)] p-6 border border-[color:var(--color-text-on-dark)]/10">
-              <div className="text-3xl mb-4">🧠</div>
-              <h3 className="text-xl font-title text-[color:var(--color-accent-primary)] mb-2">Visual Flashcards</h3>
-              <p className="text-[color:var(--color-text-on-dark)]/80">
-                Using the science-backed techniques from Fluent Forever, our flashcards help you 
-                memorize the top 500 Spanish words through visual associations. It&apos;s like 
-                creating pointer references in your brain.
+          {/* Learning Technique Section */}
+          <div className="bg-[color:var(--color-bg-card)] p-6 border border-[color:var(--color-text-on-dark)]/10">
+            <h2 className="text-2xl font-title text-[color:var(--color-accent-primary)] mb-4">Our Learning Architecture</h2>
+            
+            {/* Visual Flashcards */}
+            <div className="mb-6">
+              <h3 className="text-xl font-title text-[color:var(--color-accent-secondary)] mb-2">Visual Flashcards</h3>
+              <p className="mb-3">
+                Our system implements the visual memory techniques from Gabriel Wyner's <i>Fluent Forever</i>. 
+                Rather than relying on direct translations (which create a dependency on your native language), 
+                we use images to create direct neural pathways between concepts and Spanish words.
+              </p>
+              <p>
+                This approach bypasses the translation layer, similar to how compiled languages skip the interpreter. 
+                The result is faster recall and more native-like processing of the language. Each flashcard contains 
+                visual cues that help form these direct neural connections, optimizing for both memory efficiency and retrieval speed.
               </p>
             </div>
-
-            <div className="bg-[color:var(--color-bg-card)] p-6 border border-[color:var(--color-text-on-dark)]/10">
-              <div className="text-3xl mb-4">🎥</div>
-              <h3 className="text-xl font-title text-[color:var(--color-accent-primary)] mb-2">Crypto Content</h3>
-              <p className="text-[color:var(--color-text-on-dark)]/80">
-                Learn Spanish through annotated crypto videos and podcasts. No more 
-                &quot;El bolígrafo está sobre la mesa&quot; - we&apos;re talking DeFi, NFTs, and blockchain 
-                fundamentals.
+            
+            {/* Spaced Repetition */}
+            <div className="mb-6">
+              <h3 className="text-xl font-title text-[color:var(--color-accent-secondary)] mb-2">Spaced Repetition System (SRS)</h3>
+              <p className="mb-3">
+                Our implementation uses a modified version of the SM-2 algorithm, originally developed for SuperMemo and later 
+                forked by Anki. The algorithm calculates optimal review intervals based on your performance:
+              </p>
+              <div className="bg-[color:var(--color-bg-main)] p-4 rounded font-mono text-sm mb-3 overflow-x-auto">
+                <pre>{`// Simplified SM-2 algorithm implementation
+function calculateNextInterval(card, quality) {
+  if (quality < 3) {
+    // Failed recall - reset repetitions
+    card.repetitions = 0;
+    return 1; // Review again in 1 day
+  } else {
+    // Successful recall
+    if (card.repetitions === 0) {
+      return 1; // First success: review in 1 day
+    } else if (card.repetitions === 1) {
+      return 6; // Second success: review in 6 days
+    } else {
+      // Calculate new interval based on previous interval and ease factor
+      return Math.round(card.interval * card.easeFactor);
+    }
+  }
+}`}</pre>
+              </div>
+              <p>
+                Each card maintains state variables including <code>interval</code> (days until next review), 
+                <code>easeFactor</code> (multiplier for interval growth), and <code>repetitions</code> (successful recall count). 
+                These variables are updated after each review based on your performance, creating a personalized review schedule 
+                that optimizes for long-term retention with minimal time investment.
               </p>
             </div>
-
-            <div className="bg-[color:var(--color-bg-card)] p-6 border border-[color:var(--color-text-on-dark)]/10">
-              <div className="text-3xl mb-4">⛓️</div>
-              <h3 className="text-xl font-title text-[color:var(--color-accent-primary)] mb-2">Onchain Challenges</h3>
-              <p className="text-[color:var(--color-text-on-dark)]/80">
-                <span className="text-[color:var(--color-accent-primary)]">Coming soon™</span> - Practice your Spanish by 
-                completing onchain challenges. Because why shouldn&apos;t language learning be 
-                trustless and verifiable?
+            
+            {/* The Forgetting Curve */}
+            <div>
+              <h3 className="text-xl font-title text-[color:var(--color-accent-secondary)] mb-2">Exploiting the Forgetting Curve</h3>
+              <p className="mb-3">
+                Our system leverages Ebbinghaus's Forgetting Curve and the concept of the "retrieval practice effect" 
+                (sometimes called "desirable difficulty" or "the spacing effect"). The key insight is that memory 
+                retention is maximized when information is recalled just before it would otherwise be forgotten.
               </p>
-            </div>
-
-            <div className="bg-[color:var(--color-bg-card)] p-6 border border-[color:var(--color-text-on-dark)]/10">
-              <div className="text-3xl mb-4">📝</div>
-              <h3 className="text-xl font-title text-[color:var(--color-accent-primary)] mb-2">Personal Flashcards</h3>
-              <p className="text-[color:var(--color-text-on-dark)]/80">
-                <span className="text-[color:var(--color-accent-primary)]">Coming soon™</span> - Create your own flashcards 
-                with our visual memory system. Fork our base deck and add your own commits.
+              <p className="mb-3">
+                This creates what cognitive scientists call the "spacing effect" - the phenomenon where learning is more 
+                effective when study sessions are spaced out over time. By scheduling reviews at increasing intervals, 
+                we force your brain to work harder to retrieve the information, which paradoxically strengthens the neural pathways.
+              </p>
+              <p>
+                Think of it as stress-testing your memory: each successful retrieval under difficulty strengthens the connection, 
+                similar to how distributed systems become more resilient through chaos engineering. The algorithm intentionally 
+                pushes you to the edge of forgetting, creating just enough cognitive friction to optimize for long-term retention.
               </p>
             </div>
           </div>

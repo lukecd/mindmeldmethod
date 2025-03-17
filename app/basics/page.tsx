@@ -5,6 +5,7 @@ import { useSpacedRepetition } from '../hooks/useSpacedRepetition'
 import { useEffect, useState, useMemo } from 'react'
 import { useAddress } from '@chopinframework/react'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { UserDeck } from '../types/deck'
 
 interface Unit {
   id: number
@@ -31,63 +32,172 @@ const UNIT_SUBTITLES = {
 
 export default function BasicsPage() {
   const { address } = useAddress()
-  const { getHighestCompletedUnit } = useSpacedRepetition(address)
+  const { deck } = useSpacedRepetition(address)
   const [units, setUnits] = useState<Unit[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const isDeckLoading = !deck
+  const [showRecoveryButton, setShowRecoveryButton] = useState(false)
 
-  // Get the highest completed unit
-  const highestCompleted = useMemo(() => {
-    return getHighestCompletedUnit()
-  }, [getHighestCompletedUnit])
-
-  // Fetch progress for all units
-  useEffect(() => {
-    async function fetchUnitProgress() {
-      setIsLoading(true)
+  // Function to recover progress
+  const recoverProgress = () => {
+    if (!address) return;
+    
+    try {
+      // Get the current deck from localStorage
+      const key = `deck-${address}`;
+      const saved = localStorage.getItem(key);
       
-      try {
-        // Create an array of promises to fetch progress for all units
-        const progressPromises = Array(10).fill(null).map((_, i) => {
-          const unitId = i + 1
-          return fetch(`/api/units/${unitId}/progress`)
-            .then(res => res.json())
-            .catch(err => {
-              console.error(`Error fetching progress for unit ${unitId}:`, err)
-              return { isStarted: false, completedWords: 0, totalWords: 0, canAccess: unitId === 1 }
-            })
-        })
+      if (saved) {
+        const currentDeck = JSON.parse(saved) as UserDeck;
         
-        // Wait for all promises to resolve
-        const progressResults = await Promise.all(progressPromises)
+        // Mark all Unit 1 cards as completed with repetitions > 0
+        const updatedDeck = {
+          ...currentDeck,
+          cards: currentDeck.cards.map(card => {
+            if (card.unit === 1) {
+              return {
+                ...card,
+                repetitions: 2, // Mark as completed
+                interval: 1,
+                lastReview: Date.now(),
+                nextReview: Date.now() + (1 * 24 * 60 * 60 * 1000) // 1 day in the future
+              };
+            }
+            return card;
+          }),
+          completedUnits: currentDeck.completedUnits.includes(1) 
+            ? currentDeck.completedUnits 
+            : [...currentDeck.completedUnits, 1],
+          xp: Math.max(currentDeck.xp, 300), // Ensure at least 300 XP
+          lastSyncedAt: Date.now()
+        };
         
-        // Create units array with progress data
-        const newUnits: Unit[] = progressResults.map((progress, i) => {
-          const id = i + 1
-          const progressPercentage = progress.totalWords > 0 
-            ? Math.round((progress.completedWords / progress.totalWords) * 100) 
-            : 0
-            
-          return {
-            id,
-            title: `Unit ${id}`,
-            subtitle: UNIT_SUBTITLES[id as keyof typeof UNIT_SUBTITLES],
-            isActive: progress.canAccess,
-            progress: progressPercentage,
-            completedWords: progress.completedWords || 0,
-            totalWords: progress.totalWords || 0
-          }
-        })
+        // Save the updated deck to localStorage
+        localStorage.setItem(key, JSON.stringify(updatedDeck));
+        
+        // Force a reload to apply changes
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Error recovering progress:', error);
+    }
+  };
 
-        setUnits(newUnits)
-      } catch (error) {
-        console.error('Error fetching unit progress:', error)
-      } finally {
-        setIsLoading(false)
+  // Check if recovery is needed
+  useEffect(() => {
+    if (deck && address) {
+      // Check if Unit 1 cards exist but none are completed
+      const unit1Cards = deck.cards.filter(card => card.unit === 1);
+      const unit1Completed = unit1Cards.some(card => card.repetitions > 0);
+      
+      if (unit1Cards.length > 0 && !unit1Completed && !deck.completedUnits.includes(1)) {
+        setShowRecoveryButton(true);
+      } else {
+        setShowRecoveryButton(false);
       }
     }
+  }, [deck, address]);
 
-    fetchUnitProgress()
-  }, [highestCompleted]) // Refetch when highest completed unit changes
+  // Determine unit access and progress directly from the deck
+  useEffect(() => {
+    if (isDeckLoading) {
+      return; // Wait until deck is loaded
+    }
+    
+    setIsLoading(true);
+    
+    try {
+      console.log('🔍 DEBUG - Loading units from deck:', {
+        deckLoaded: Boolean(deck),
+        userId: deck?.userId,
+        totalCards: deck?.cards.length || 0,
+        completedUnits: deck?.completedUnits || []
+      });
+      
+      // Create units array with data from the deck
+      const newUnits: Unit[] = Array(10).fill(null).map((_, i) => {
+        const id = i + 1;
+        
+        // Get cards for this unit
+        const unitCards = deck?.cards.filter(card => card.unit === id) || [];
+        const completedWords = unitCards.filter(card => card.repetitions > 0).length;
+        const totalWords = unitCards.length;
+        const progressPercentage = totalWords > 0 
+          ? Math.round((completedWords / totalWords) * 100) 
+          : 0;
+        
+        // Determine if this unit is accessible
+        let isActive = false;
+        
+        if (id === 1) {
+          // Unit 1 is always accessible
+          isActive = true;
+        } else if (deck) {
+          // For other units, check if the previous unit is completed
+          const previousUnitId = id - 1;
+          
+          // Check if previous unit is in completedUnits array
+          if (deck.completedUnits && deck.completedUnits.includes(previousUnitId)) {
+            isActive = true;
+          } else {
+            // Check if all cards in previous unit have repetitions > 0
+            const previousUnitCards = deck.cards.filter(card => card.unit === previousUnitId);
+            const allPreviousUnitCardsCompleted = previousUnitCards.length > 0 && 
+              previousUnitCards.every(card => card.repetitions > 0);
+            
+            if (allPreviousUnitCardsCompleted) {
+              isActive = true;
+            }
+          }
+          
+          // Only allow access to the next unit after the highest started unit
+          const highestStartedUnit = Math.max(1, ...deck.cards.map(card => card.unit));
+          if (id > highestStartedUnit + 1) {
+            isActive = false;
+          }
+        }
+        
+        // Log detailed information for debugging
+        if (id <= 3) {
+          console.log(`🔍 DEBUG - Unit ${id} access check:`, {
+            id,
+            isActive,
+            totalWords,
+            completedWords,
+            progressPercentage,
+            isPreviousUnitCompleted: id > 1 ? deck?.completedUnits?.includes(id - 1) : true,
+            allPreviousUnitCardsCompleted: id > 1 ? deck?.cards.filter(card => card.unit === id - 1).every(card => card.repetitions > 0) : true,
+            completedUnits: deck?.completedUnits
+          });
+        }
+        
+        return {
+          id,
+          title: `Unit ${id}`,
+          subtitle: UNIT_SUBTITLES[id as keyof typeof UNIT_SUBTITLES],
+          isActive,
+          progress: progressPercentage,
+          completedWords,
+          totalWords
+        };
+      });
+      
+      // Log the final units array for debugging
+      console.log('🔍 DEBUG - Final units array:', newUnits.map(unit => ({
+        id: unit.id,
+        isActive: unit.isActive,
+        progress: unit.progress,
+        completedWords: unit.completedWords,
+        totalWords: unit.totalWords
+      })));
+      
+      setUnits(newUnits);
+    } catch (error) {
+      console.error('Error determining unit access:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [deck, isDeckLoading]);
 
   return (
     <div className="min-h-screen bg-[color:var(--color-bg-main)] py-12 px-4">
@@ -101,14 +211,14 @@ export default function BasicsPage() {
         </div>
         
         {/* Loading state */}
-        {isLoading && (
+        {(isLoading || isDeckLoading) && (
           <div className="flex justify-center items-center py-20 h-64">
             <LoadingSpinner />
           </div>
         )}
         
         {/* Units Grid */}
-        {!isLoading && (
+        {!isLoading && !isDeckLoading && (
           <div className="relative">
             {/* Connecting line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-[color:var(--color-accent-primary)] -translate-x-1/2" />
