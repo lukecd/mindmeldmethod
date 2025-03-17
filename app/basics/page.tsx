@@ -2,33 +2,19 @@
 
 import Link from 'next/link'
 import { useSpacedRepetition } from '../hooks/useSpacedRepetition'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { useAddress } from '@chopinframework/react'
 import LoadingSpinner from '../components/LoadingSpinner'
-import { UserDeck } from '../types/deck'
 
 interface Unit {
   id: number
   title: string
-  subtitle: string
   isActive: boolean
   progress: number
   completedWords: number
   totalWords: number
 }
 
-const UNIT_SUBTITLES = {
-  1: "Essential Basics",
-  2: "Building Vocabulary",
-  3: "Common Phrases",
-  4: "Daily Conversations",
-  5: "Travel & Directions",
-  6: "Food & Dining",
-  7: "Work & Business",
-  8: "Social Situations",
-  9: "Culture & Entertainment",
-  10: "Advanced Topics"
-}
 
 export default function BasicsPage() {
   const { address } = useAddress()
@@ -36,67 +22,6 @@ export default function BasicsPage() {
   const [units, setUnits] = useState<Unit[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const isDeckLoading = !deck
-  const [showRecoveryButton, setShowRecoveryButton] = useState(false)
-
-  // Function to recover progress
-  const recoverProgress = () => {
-    if (!address) return;
-    
-    try {
-      // Get the current deck from localStorage
-      const key = `deck-${address}`;
-      const saved = localStorage.getItem(key);
-      
-      if (saved) {
-        const currentDeck = JSON.parse(saved) as UserDeck;
-        
-        // Mark all Unit 1 cards as completed with repetitions > 0
-        const updatedDeck = {
-          ...currentDeck,
-          cards: currentDeck.cards.map(card => {
-            if (card.unit === 1) {
-              return {
-                ...card,
-                repetitions: 2, // Mark as completed
-                interval: 1,
-                lastReview: Date.now(),
-                nextReview: Date.now() + (1 * 24 * 60 * 60 * 1000) // 1 day in the future
-              };
-            }
-            return card;
-          }),
-          completedUnits: currentDeck.completedUnits.includes(1) 
-            ? currentDeck.completedUnits 
-            : [...currentDeck.completedUnits, 1],
-          xp: Math.max(currentDeck.xp, 300), // Ensure at least 300 XP
-          lastSyncedAt: Date.now()
-        };
-        
-        // Save the updated deck to localStorage
-        localStorage.setItem(key, JSON.stringify(updatedDeck));
-        
-        // Force a reload to apply changes
-        window.location.reload();
-      }
-    } catch (error) {
-      console.error('Error recovering progress:', error);
-    }
-  };
-
-  // Check if recovery is needed
-  useEffect(() => {
-    if (deck && address) {
-      // Check if Unit 1 cards exist but none are completed
-      const unit1Cards = deck.cards.filter(card => card.unit === 1);
-      const unit1Completed = unit1Cards.some(card => card.repetitions > 0);
-      
-      if (unit1Cards.length > 0 && !unit1Completed && !deck.completedUnits.includes(1)) {
-        setShowRecoveryButton(true);
-      } else {
-        setShowRecoveryButton(false);
-      }
-    }
-  }, [deck, address]);
 
   // Determine unit access and progress directly from the deck
   useEffect(() => {
@@ -130,30 +55,39 @@ export default function BasicsPage() {
         let isActive = false;
         
         if (id === 1) {
-          // Unit 1 is always accessible
-          isActive = true;
+          // Unit 1 is always accessible, but only if not completed
+          const isUnitCompleted = deck.completedUnits && deck.completedUnits.includes(id);
+          isActive = !isUnitCompleted;
         } else if (deck) {
           // For other units, check if the previous unit is completed
           const previousUnitId = id - 1;
           
-          // Check if previous unit is in completedUnits array
-          if (deck.completedUnits && deck.completedUnits.includes(previousUnitId)) {
-            isActive = true;
-          } else {
-            // Check if all cards in previous unit have repetitions > 0
-            const previousUnitCards = deck.cards.filter(card => card.unit === previousUnitId);
-            const allPreviousUnitCardsCompleted = previousUnitCards.length > 0 && 
-              previousUnitCards.every(card => card.repetitions > 0);
-            
-            if (allPreviousUnitCardsCompleted) {
-              isActive = true;
-            }
-          }
+          // First check if this unit is already completed
+          const isUnitCompleted = deck.completedUnits && deck.completedUnits.includes(id);
           
-          // Only allow access to the next unit after the highest started unit
-          const highestStartedUnit = Math.max(1, ...deck.cards.map(card => card.unit));
-          if (id > highestStartedUnit + 1) {
+          if (isUnitCompleted) {
+            // If the unit is completed, it's not active (not clickable)
             isActive = false;
+          } else {
+            // Check if previous unit is in completedUnits array
+            if (deck.completedUnits && deck.completedUnits.includes(previousUnitId)) {
+              isActive = true;
+            } else {
+              // Check if all cards in previous unit have repetitions > 0
+              const previousUnitCards = deck.cards.filter(card => card.unit === previousUnitId);
+              const allPreviousUnitCardsCompleted = previousUnitCards.length > 0 && 
+                previousUnitCards.every(card => card.repetitions > 0);
+              
+              if (allPreviousUnitCardsCompleted) {
+                isActive = true;
+              }
+            }
+            
+            // Only allow access to the next unit after the highest started unit
+            const highestStartedUnit = Math.max(1, ...deck.cards.map(card => card.unit));
+            if (id > highestStartedUnit + 1) {
+              isActive = false;
+            }
           }
         }
         
@@ -174,7 +108,6 @@ export default function BasicsPage() {
         return {
           id,
           title: `Unit ${id}`,
-          subtitle: UNIT_SUBTITLES[id as keyof typeof UNIT_SUBTITLES],
           isActive,
           progress: progressPercentage,
           completedWords,
@@ -246,30 +179,54 @@ export default function BasicsPage() {
                     `}
                   >
                     {unit.isActive ? (
-                      <Link href={`/basics/unit/${unit.id}`} className="block group">
-                        <div className="bg-[color:var(--color-bg-nav)] p-4 mb-4">
-                          <h2 className="text-3xl font-title text-[color:var(--color-text-inverse)]">{unit.title}</h2>
-                          <p className="text-[color:var(--color-text-inverse)]/80 font-medium">{unit.subtitle}</p>
-                        </div>
-                        
-                        <div className="flex flex-col gap-2 bg-[color:var(--color-bg-card)] p-4 border border-[color:var(--color-text-on-dark)]/10">
-                          <div className="text-[color:var(--color-accent-secondary)] group-hover:text-[color:var(--color-bg-nav)] transition-colors">Begin Journey →</div>
-                          <div className="flex-1 h-3 bg-[color:var(--color-text-on-dark)]/5 overflow-hidden">
-                            <div 
-                              className="h-full bg-[color:var(--color-accent-primary)] transition-all duration-300" 
-                              style={{ width: `${unit.progress}%` }} 
-                            />
+                      unit.progress === 100 ? (
+                        // For completed units, show a non-clickable div instead of a link
+                        <div className="block group">
+                          <div className="bg-[color:var(--color-bg-nav)] p-4 mb-4">
+                            <h2 className="text-3xl font-title text-[color:var(--color-text-inverse)]">{unit.title}</h2>
                           </div>
-                          <div className="text-sm text-[color:var(--color-text-primary)]">
-                            {unit.completedWords} of {unit.totalWords} words completed
+                          
+                          <div className="flex flex-col gap-2 bg-[color:var(--color-bg-card)] p-4 border border-[color:var(--color-text-on-dark)]/10">
+                            <div className="text-[color:var(--color-accent-secondary)]">
+                              Unit Completed ✓
+                            </div>
+                            <div className="flex-1 h-3 bg-[color:var(--color-text-on-dark)]/5 overflow-hidden">
+                              <div 
+                                className="h-full bg-[color:var(--color-accent-primary)] transition-all duration-300" 
+                                style={{ width: `${unit.progress}%` }}
+                              />
+                            </div>
+                            <div className="text-sm text-[color:var(--color-text-primary)]">
+                              {unit.completedWords} of {unit.totalWords} words completed
+                            </div>
                           </div>
                         </div>
-                      </Link>
+                      ) : (
+                        <Link href={`/basics/unit/${unit.id}`} className="block group">
+                          <div className="bg-[color:var(--color-bg-nav)] p-4 mb-4">
+                            <h2 className="text-3xl font-title text-[color:var(--color-text-inverse)]">{unit.title}</h2>
+                          </div>
+                          
+                          <div className="flex flex-col gap-2 bg-[color:var(--color-bg-card)] p-4 border border-[color:var(--color-text-on-dark)]/10">
+                            <div className="text-[color:var(--color-accent-secondary)] group-hover:text-[color:var(--color-bg-nav)] transition-colors">
+                              {unit.completedWords > 0 ? 'Continue Learning →' : 'Begin Journey →'}
+                            </div>
+                            <div className="flex-1 h-3 bg-[color:var(--color-text-on-dark)]/5 overflow-hidden">
+                              <div 
+                                className="h-full bg-[color:var(--color-accent-primary)] transition-all duration-300" 
+                                style={{ width: `${unit.progress}%` }} 
+                              />
+                            </div>
+                            <div className="text-sm text-[color:var(--color-text-primary)]">
+                              {unit.completedWords} of {unit.totalWords} words completed
+                            </div>
+                          </div>
+                        </Link>
+                      )
                     ) : (
                       <div className="opacity-80">
                         <div className="bg-[color:var(--color-bg-card)] p-4 mb-4 border border-[color:var(--color-text-on-dark)]/10">
                           <h2 className="text-2xl font-title text-[color:var(--color-text-on-dark)]/60">{unit.title}</h2>
-                          <p className="text-[color:var(--color-text-on-dark)]/40">{unit.subtitle}</p>
                         </div>
                         <div className="bg-[color:var(--color-bg-card)] p-4 flex flex-col gap-2 border border-[color:var(--color-text-on-dark)]/10">
                           <div className="flex items-center gap-3">
@@ -292,5 +249,5 @@ export default function BasicsPage() {
         )}
       </div>
     </div>
-  )
-} 
+  );
+}

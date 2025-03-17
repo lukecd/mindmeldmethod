@@ -189,7 +189,7 @@ export function useSpacedRepetition(userId: string | null) {
 
   const getDueWords = useCallback(async (unit: number) => {
     const requestId = Math.random().toString(36).substring(7);
-    console.log(`getDueWords[${requestId}]: Getting due words for unit ${unit}`);
+    console.log(`getDueWords[${requestId}]: Getting due words for ${unit === 0 ? 'all units' : `unit ${unit}`}`);
     
     // Log the current time for comparison with nextReview times
     const now = Date.now();
@@ -198,24 +198,30 @@ export function useSpacedRepetition(userId: string | null) {
     console.log(`getDueWords[${requestId}]: Current deck state:`, deck ? {
       userId: deck.userId,
       totalCards: deck.cards.length,
-      unitCards: deck.cards.filter(card => card.unit === unit).length,
-      dueCards: deck.cards.filter(card => card.unit === unit && card.nextReview <= now).length
+      unitCards: unit === 0 ? deck.cards.length : deck.cards.filter(card => card.unit === unit).length,
+      dueCards: unit === 0 
+        ? deck.cards.filter(card => card.nextReview <= now).length 
+        : deck.cards.filter(card => card.unit === unit && card.nextReview <= now).length
     } : 'No deck');
     
     // If we have a deck, log more details about the cards for this unit
     if (deck) {
-      const unitCards = deck.cards.filter(card => card.unit === unit);
-      console.log(`getDueWords[${requestId}]: Unit ${unit} cards:`, unitCards.map(card => ({
+      const relevantCards = unit === 0 
+        ? deck.cards 
+        : deck.cards.filter(card => card.unit === unit);
+        
+      console.log(`getDueWords[${requestId}]: ${unit === 0 ? 'All' : `Unit ${unit}`} cards:`, relevantCards.map(card => ({
         wordId: card.wordId,
+        unit: card.unit,
         nextReview: new Date(card.nextReview).toLocaleString(),
         isDue: card.nextReview <= now,
         timeDifference: card.nextReview - now
       })));
     }
     
-    // Helper function to fetch words from JSON
-    const fetchWordsFromJson = async () => {
-      const url = `/data/${String(unit).padStart(2, '0')}_words.json`;
+    // Helper function to fetch words from JSON for a specific unit
+    const fetchWordsFromJson = async (unitNumber: number) => {
+      const url = `/data/${String(unitNumber).padStart(2, '0')}_words.json`;
       console.log(`getDueWords[${requestId}]: Fetching words from ${url}`);
       
       // Add cache busting to prevent caching issues
@@ -229,23 +235,92 @@ export function useSpacedRepetition(userId: string | null) {
       });
       
       if (!response.ok) {
-        throw new Error(`Failed to fetch words for unit ${unit} (status: ${response.status})`);
+        throw new Error(`Failed to fetch words for unit ${unitNumber} (status: ${response.status})`);
       }
       
       const data = await response.json();
       if (!data || !data.words || !Array.isArray(data.words)) {
-        throw new Error(`Invalid data format for unit ${unit}`);
+        throw new Error(`Invalid data format for unit ${unitNumber}`);
       }
       
       return data.words as WordItem[];
     };
+    
+    // If unit is 0, we need to handle all units
+    if (unit === 0) {
+      console.log(`getDueWords[${requestId}]: Handling all units`);
+      
+      if (!deck || deck.cards.length === 0) {
+        console.log(`getDueWords[${requestId}]: No deck or no cards, returning empty array`);
+        return [];
+      }
+      
+      try {
+        // Get all due cards across all units
+        const dueCards = deck.cards.filter(card => card.nextReview <= now);
+        console.log(`getDueWords[${requestId}]: Found ${dueCards.length} due cards across all units`);
+        
+        if (dueCards.length === 0) {
+          console.log(`getDueWords[${requestId}]: No due cards found across all units`);
+          return [];
+        }
+        
+        // Group due cards by unit
+        const dueCardsByUnit = dueCards.reduce((acc, card) => {
+          if (!acc[card.unit]) {
+            acc[card.unit] = [];
+          }
+          acc[card.unit].push(card);
+          return acc;
+        }, {} as Record<number, typeof dueCards>);
+        
+        console.log(`getDueWords[${requestId}]: Due cards by unit:`, 
+          Object.entries(dueCardsByUnit).map(([unit, cards]) => ({ 
+            unit, 
+            count: cards.length 
+          }))
+        );
+        
+        // Fetch words for each unit and map to due cards
+        const allDueWords: WordItem[] = [];
+        
+        for (const [unitStr, unitDueCards] of Object.entries(dueCardsByUnit)) {
+          const unitNumber = parseInt(unitStr);
+          try {
+            const unitWords = await fetchWordsFromJson(unitNumber);
+            console.log(`getDueWords[${requestId}]: Loaded ${unitWords.length} words from JSON for unit ${unitNumber}`);
+            
+            // Map due cards to their corresponding words
+            const unitDueWords = unitDueCards.map(card => {
+              const word = unitWords.find(w => w.id === card.wordId);
+              if (!word) {
+                console.warn(`getDueWords[${requestId}]: Word not found for card ${card.wordId} in unit ${unitNumber}`);
+                return null;
+              }
+              return word;
+            }).filter((word): word is WordItem => word !== null);
+            
+            allDueWords.push(...unitDueWords);
+          } catch (error) {
+            console.error(`getDueWords[${requestId}]: Error fetching words for unit ${unitNumber}:`, error);
+            // Continue with other units even if one fails
+          }
+        }
+        
+        console.log(`getDueWords[${requestId}]: Returning ${allDueWords.length} due words across all units`);
+        return allDueWords;
+      } catch (error) {
+        console.error(`getDueWords[${requestId}]: Error getting due words for all units:`, error);
+        return [];
+      }
+    }
     
     // If there's no deck or no cards for this unit, we need to fetch the words directly
     if (!deck || deck.cards.filter(card => card.unit === unit).length === 0) {
       console.log(`getDueWords[${requestId}]: No deck or no cards for unit ${unit}, fetching words directly`);
       
       try {
-        const words = await fetchWordsFromJson();
+        const words = await fetchWordsFromJson(unit);
         console.log(`getDueWords[${requestId}]: Loaded ${words.length} words directly from JSON`);
         return words;
       } catch (error) {
@@ -261,10 +336,17 @@ export function useSpacedRepetition(userId: string | null) {
       if (!dueCards || dueCards.length === 0) {
         console.log(`getDueWords[${requestId}]: No due cards found for unit ${unit}`);
         
-        // Remove the fallback that returns all cards for a unit
-        // Instead, just return an empty array when no cards are due
-        console.log(`getDueWords[${requestId}]: Returning empty array since no cards are due`);
-        return [];
+        // IMPORTANT FIX: Return all cards for the unit when no cards are due
+        // This ensures users can complete all cards in a unit
+        console.log(`getDueWords[${requestId}]: Fetching all words for unit ${unit} as fallback`);
+        try {
+          const allWords = await fetchWordsFromJson(unit);
+          console.log(`getDueWords[${requestId}]: Returning all ${allWords.length} words for unit ${unit} as fallback`);
+          return allWords;
+        } catch (error) {
+          console.error(`getDueWords[${requestId}]: Error fetching all words:`, error);
+          return [];
+        }
       }
       
       console.log(`getDueWords[${requestId}]: Found ${dueCards.length} due cards for unit ${unit}`);
@@ -272,7 +354,7 @@ export function useSpacedRepetition(userId: string | null) {
       
       // Fetch the word data for these cards
       try {
-        const words = await fetchWordsFromJson();
+        const words = await fetchWordsFromJson(unit);
         console.log(`getDueWords[${requestId}]: Loaded ${words.length} words from JSON`);
         
         // Map due cards to their corresponding words

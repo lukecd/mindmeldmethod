@@ -36,9 +36,10 @@ export default function Navbar() {
   const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'Spanish Basics', href: '/basics' },
+    { name: 'My Deck', href: '/my-deck' },
     { name: 'Crypto Podcasts', href: '/crypto-podcasts' },
     { name: 'Challenges', href: '/challenges' },
-    { name: 'Your Words', href: '/your-words' },
+    { name: 'Review', href: '/review' },
     { name: 'About', href: '/about' },
   ]
 

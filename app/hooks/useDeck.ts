@@ -22,18 +22,18 @@ export function useDeck(userId: string | null) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Load deck from API
+  // Load deck from localStorage only
   useEffect(() => {
     if (!userId) {
       setIsLoading(false)
       return
     }
 
-    async function loadDeck() {
+    function loadDeck() {
       try {
         console.log('🔄 DEBUG - Loading deck for user:', userId);
         
-        // First check localStorage for existing deck
+        // Only check localStorage for existing deck
         let localDeck: UserDeck | null = null;
         if (typeof window !== 'undefined') {
           try {
@@ -49,125 +49,42 @@ export function useDeck(userId: string | null) {
                 completedUnits: localDeck.completedUnits,
                 timestamp: new Date().toISOString()
               })
+              
+              // Use the localStorage deck
+              setDeck(localDeck)
             } else {
               console.log('🔄 DEBUG - No deck found in localStorage for user:', userId);
+              
+              // Create a new deck if none exists
+              const newDeck: UserDeck = {
+                userId: userId as string,
+                cards: [],
+                xp: 0,
+                completedUnits: [],
+                lastSyncedAt: Date.now()
+              }
+              
+              console.log('🔄 DEBUG - Created new empty deck:', {
+                userId,
+                timestamp: new Date().toISOString()
+              });
+              
+              setDeck(newDeck)
+              
+              // Save to localStorage
+              try {
+                localStorage.setItem(key, JSON.stringify(newDeck))
+                console.log('🔄 DEBUG - Saved new empty deck to localStorage:', { 
+                  userId, 
+                  timestamp: new Date().toISOString() 
+                })
+              } catch (storageError) {
+                console.error('Failed to save new deck to localStorage:', storageError)
+              }
             }
           } catch (error) {
             console.error('Error reading localStorage:', error)
-          }
-        }
-
-        // If we have a valid local deck, use it
-        if (localDeck && localDeck.userId === userId) {
-          console.log('🔄 DEBUG - Using deck from localStorage:', {
-            userId,
-            xp: localDeck.xp,
-            totalCards: localDeck.cards.length,
-            completedUnits: localDeck.completedUnits
-          });
-          setDeck(localDeck)
-          setIsLoading(false)
-          
-          // IMPORTANT: Save the localStorage deck to API to ensure it's synced
-          try {
-            await saveDeck(localDeck);
-            console.log('🔄 DEBUG - Synced localStorage deck to API on initial load');
-          } catch (syncError) {
-            console.error('Error syncing localStorage deck to API on initial load:', syncError);
-          }
-          
-          return
-        }
-        
-        // Otherwise, try to fetch from API
-        try {
-          console.log('🔄 DEBUG - Fetching deck from API for user:', userId);
-          const response = await fetch(`/api/deck/${userId}`)
-          
-          if (!response.ok) {
-            console.log('🔄 DEBUG - API response not OK:', response.status, response.statusText);
-            throw new Error('Failed to load deck')
-          }
-          
-          const data = await response.json()
-          console.log('🔄 DEBUG - Loaded deck from API:', { 
-            userId, 
-            xp: data.xp,
-            totalCards: data.cards.length,
-            completedUnits: data.completedUnits
-          })
-          
-          // IMPORTANT: Compare with localStorage deck before setting
-          if (localDeck) {
-            console.log('🔄 DEBUG - Comparing API deck with localStorage deck:', {
-              apiXP: data.xp,
-              localXP: localDeck.xp,
-              apiCards: data.cards.length,
-              localCards: localDeck.cards.length,
-              apiCompletedUnits: data.completedUnits,
-              localCompletedUnits: localDeck.completedUnits
-            });
-            
-            // If localStorage deck has more XP or cards, use that instead
-            if (localDeck.xp > data.xp || localDeck.cards.length > data.cards.length) {
-              console.log('🔄 DEBUG - localStorage deck has more progress, using that instead');
-              setDeck(localDeck);
-              
-              // Save the localStorage deck to API to sync it
-              try {
-                await saveDeck(localDeck);
-                console.log('🔄 DEBUG - Synced localStorage deck to API');
-              } catch (syncError) {
-                console.error('Error syncing localStorage deck to API:', syncError);
-              }
-              
-              setIsLoading(false);
-              return;
-            }
-          }
-          
-          setDeck(data)
-        } catch (apiError) {
-          console.error('Error loading deck from API:', apiError)
-          
-          // Create a new deck if API fails or returns no deck
-          console.log('🔄 DEBUG - API failed, creating new deck for user:', userId)
-          
-          // IMPORTANT: Check if we have a localStorage deck before creating a new one
-          if (localDeck) {
-            console.log('🔄 DEBUG - Using existing localStorage deck instead of creating new one');
-            setDeck(localDeck);
-            setIsLoading(false);
-            return;
-          }
-          
-          const newDeck: UserDeck = {
-            userId: userId as string,
-            cards: [],
-            xp: 0,
-            completedUnits: [],
-            lastSyncedAt: Date.now()
-          }
-          
-          console.log('🔄 DEBUG - Created new empty deck:', {
-            userId,
-            timestamp: new Date().toISOString()
-          });
-          
-          setDeck(newDeck)
-          
-          // Save to localStorage
-          if (typeof window !== 'undefined') {
-            try {
-              const key = `deck-${userId}`
-              localStorage.setItem(key, JSON.stringify(newDeck))
-              console.log('🔄 DEBUG - Saved new empty deck to localStorage:', { 
-                userId, 
-                timestamp: new Date().toISOString() 
-              })
-            } catch (storageError) {
-              console.error('Failed to save new deck to localStorage:', storageError)
-            }
+            setError(error instanceof Error ? error.message : 'Unknown error')
           }
         }
       } catch (error) {
@@ -181,77 +98,29 @@ export function useDeck(userId: string | null) {
     loadDeck()
   }, [userId])
 
-  // Save deck to API
-  const saveDeck = async (updatedDeck: UserDeck) => {
+  // Save deck to localStorage only
+  const saveDeck = (updatedDeck: UserDeck) => {
     if (!userId) return
 
     try {
-      // IMPORTANT: Before saving, check if localStorage has a more advanced deck
+      // Save to localStorage
       if (typeof window !== 'undefined') {
-        try {
-          const key = `deck-${userId}`
-          const saved = localStorage.getItem(key)
-          if (saved) {
-            const localDeck = JSON.parse(saved) as UserDeck
-            
-            // Compare the decks to see which has more progress
-            const localProgress = {
-              xp: localDeck.xp,
-              totalCards: localDeck.cards.length,
-              completedCards: localDeck.cards.filter(c => c.repetitions > 0).length,
-              completedUnits: localDeck.completedUnits.length
-            };
-            
-            const updatedProgress = {
-              xp: updatedDeck.xp,
-              totalCards: updatedDeck.cards.length,
-              completedCards: updatedDeck.cards.filter(c => c.repetitions > 0).length,
-              completedUnits: updatedDeck.completedUnits.length
-            };
-            
-            console.log('💾 DEBUG - Comparing decks before saving:', {
-              localProgress,
-              updatedProgress,
-              timestamp: new Date().toISOString()
-            });
-            
-            // If the local deck has more progress, don't overwrite it
-            if (localProgress.xp > updatedProgress.xp || 
-                localProgress.completedCards > updatedProgress.completedCards ||
-                localProgress.completedUnits > updatedProgress.completedUnits) {
-              console.warn('💾 WARNING - Preventing deck downgrade! Local deck has more progress than the one being saved.');
-              
-              // Use the local deck instead
-              setDeck(localDeck);
-              return;
-            }
-          }
-        } catch (error) {
-          console.error('Error checking localStorage before saving:', error);
-        }
+        const key = `deck-${userId}`
+        localStorage.setItem(key, JSON.stringify(updatedDeck))
+        
+        console.log('💾 Saved deck to localStorage:', {
+          userId: updatedDeck.userId,
+          totalCards: updatedDeck.cards.length,
+          cardsByUnit: updatedDeck.cards.reduce((acc: Record<number, number>, card: UserCard) => {
+            acc[card.unit] = (acc[card.unit] || 0) + 1
+            return acc
+          }, {}),
+          timestamp: formatDate(Date.now())
+        })
       }
-
-      const response = await fetch(`/api/deck/${userId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedDeck)
-      })
-
-      if (!response.ok) throw new Error('Failed to save deck')
-      
-      console.log('💾 Saved deck:', {
-        userId: updatedDeck.userId,
-        totalCards: updatedDeck.cards.length,
-        cardsByUnit: updatedDeck.cards.reduce((acc: Record<number, number>, card: UserCard) => {
-          acc[card.unit] = (acc[card.unit] || 0) + 1
-          return acc
-        }, {}),
-        timestamp: formatDate(Date.now())
-      })
     } catch (err) {
-      console.error('Error saving deck:', err)
+      console.error('Error saving deck to localStorage:', err)
       setError(err instanceof Error ? err.message : 'Unknown error')
-      throw err // Propagate error to recordAnswer
     }
   }
 
@@ -397,9 +266,6 @@ export function useDeck(userId: string | null) {
           }
         }
         
-        // Then save to API
-        await saveDeck(updatedDeck);
-        
         console.log(`addUnit: Updated ${existingCardIds.length} existing cards for unit ${unitNumber} to be due`);
         
         // Verify that cards are now due
@@ -432,9 +298,6 @@ export function useDeck(userId: string | null) {
           console.error('Failed to save to localStorage:', error);
         }
       }
-
-      // Then save to API
-      await saveDeck(updatedDeck);
       
       // Verify that cards are now due
       const dueCards = updatedDeck.cards.filter(card => 
@@ -450,7 +313,7 @@ export function useDeck(userId: string | null) {
     }
   }
 
-  // Get cards that are due for review
+  // Get cards that are due for review - ONLY show cards that are ready for review
   const getDueCards = (unitNumber?: number) => {
     if (!deck) {
       console.log('getDueCards: No deck available');
@@ -476,10 +339,10 @@ export function useDeck(userId: string | null) {
     unitCards.forEach(card => {
       const isDue = card.nextReview <= now;
       const timeDiff = card.nextReview - now;
-      console.log(`Card ${card.wordId} (Unit ${card.unit}): nextReview=${new Date(card.nextReview).toLocaleString()}, isDue=${isDue}, timeDiff=${timeDiff}ms`);
+      console.log(`Card ${card.wordId} (Unit ${card.unit}): nextReview=${new Date(card.nextReview).toLocaleString()}, isDue=${isDue}, timeDiff=${timeDiff}ms, repetitions=${card.repetitions}`);
     });
     
-    // Then filter for due cards
+    // Then filter for due cards - STRICTLY enforce due date
     const dueCards = unitCards.filter(card => {
       const isDue = card.nextReview <= now;
       return isDue;
@@ -512,6 +375,10 @@ export function useDeck(userId: string | null) {
         
         // Return all cards for this unit to ensure the user can start studying
         return unitCards;
+      } else {
+        // If some cards have been reviewed but none are due, don't force any to be due
+        console.log(`getDueCards: Some cards have been reviewed for unit ${unitNumber}, but none are due`);
+        return [];
       }
     }
 
@@ -543,33 +410,41 @@ export function useDeck(userId: string | null) {
       // Check if this card is the last one to be completed in the unit
       const willBeCompleted = quality >= 3 && oldCard?.repetitions === 0;
       
-      // Check if all other cards in the unit have repetitions > 0
-      const otherCardsCompleted = unitCards.filter(c => c.wordId !== wordId).every(c => c.repetitions > 0);
-      
-      // If this card will be completed and all others are already completed, mark unit as complete
-      isUnitComplete = willBeCompleted && otherCardsCompleted;
-      
-      // Also check if all cards (including this one) already have repetitions > 0
-      const allCardsAlreadyCompleted = unitCards.every(c => {
-        if (c.wordId === wordId) {
-          return c.repetitions > 0 || quality >= 3;
-        }
-        return c.repetitions > 0;
-      });
-      
-      if (allCardsAlreadyCompleted) {
-        isUnitComplete = true;
+      // Count cards that will have repetitions > 0 after this answer
+      let completedCardsCount = unitCards.filter(c => c.wordId !== wordId && c.repetitions > 0).length;
+      if (willBeCompleted) {
+        completedCardsCount++;
       }
+      
+      // Get the expected number of cards for this unit
+      // For Unit 1, we expect 30 cards
+      const expectedCardCount = unitCards.length;
       
       console.log('🔍 DETAILED Unit completion check:', {
         unit: oldUnit,
         totalCardsInUnit: unitCards.length,
+        expectedCardCount,
+        completedCardsCount,
         cardsWithRepetitions: unitCards.filter(c => c.repetitions > 0).length,
         thisCardWillBeCompleted: willBeCompleted,
-        otherCardsCompleted,
-        allCardsAlreadyCompleted,
-        isUnitComplete,
         currentCompletedUnits: deck.completedUnits
+      });
+      
+      // Mark unit as complete if all cards will have repetitions > 0
+      isUnitComplete = completedCardsCount >= expectedCardCount;
+      
+      // IMPORTANT: Log detailed information about unit completion status
+      console.log('🔍 UNIT COMPLETION STATUS:', {
+        unit: oldUnit,
+        isUnitComplete,
+        completedCardsCount,
+        expectedCardCount,
+        allCardsHaveRepetitions: unitCards.every(c => 
+          (c.wordId === wordId && willBeCompleted) || (c.wordId !== wordId && c.repetitions > 0)
+        ),
+        cardsWithoutRepetitions: unitCards
+          .filter(c => c.repetitions === 0 && c.wordId !== wordId)
+          .map(c => c.wordId)
       });
     }
 
@@ -625,8 +500,23 @@ export function useDeck(userId: string | null) {
         }
       }),
       xp: deck.xp + xpAward,
-      completedUnits: isUnitComplete ? [...deck.completedUnits, oldUnit as number] : deck.completedUnits,
+      completedUnits: isUnitComplete && oldUnit !== 1 ? [...deck.completedUnits, oldUnit as number] : deck.completedUnits,
       lastSyncedAt: Date.now()
+    }
+
+    // After updating the deck, check if the unit is now complete
+    if (oldUnit && !oldCompletedUnits.includes(oldUnit) && !isUnitComplete) {
+      // Double-check if all cards in the unit now have repetitions > 0
+      const unitCards = updatedDeck.cards.filter(c => c.unit === oldUnit);
+      const allCardsCompleted = unitCards.every(c => c.repetitions > 0);
+      
+      if (allCardsCompleted && unitCards.length > 0 && oldUnit !== 1) {
+        console.log(`🔍 Post-update check: All ${unitCards.length} cards in Unit ${oldUnit} are now completed`);
+        updatedDeck.completedUnits = [...updatedDeck.completedUnits, oldUnit];
+        isUnitComplete = true;
+      } else if (allCardsCompleted && unitCards.length > 0 && oldUnit === 1) {
+        console.log(`🔍 Post-update check: All ${unitCards.length} cards in Unit 1 are completed, but NOT marking as completed to allow continued access`);
+      }
     }
 
     // Log the updated completed units
@@ -659,19 +549,7 @@ export function useDeck(userId: string | null) {
       }
     }
 
-    // 3. Save to API
-    try {
-      await saveDeck(updatedDeck)
-      console.log('📊 Answer recorded successfully:', {
-        wordId,
-        newXP: updatedDeck.xp
-      })
-      return updatedDeck
-    } catch (error) {
-      // If API save fails, we keep the optimistic update
-      console.error('Failed to save deck to API:', error)
-      return updatedDeck
-    }
+    return updatedDeck
   }
 
   // Get statistics about the deck
@@ -762,15 +640,7 @@ export function useDeck(userId: string | null) {
       }
     }
     
-    // Then save to API
-    try {
-      await saveDeck(updatedDeck);
-      console.log('🏁 Saved finalized session to API');
-      return updatedDeck;
-    } catch (error) {
-      console.error('Failed to save finalized session to API:', error);
-      return updatedDeck;
-    }
+    return updatedDeck;
   };
 
   // Manually mark a unit as completed
@@ -809,15 +679,156 @@ export function useDeck(userId: string | null) {
       }
     }
     
-    // Then save to API
-    try {
-      await saveDeck(updatedDeck);
-      console.log(`markUnitAsCompleted: Saved updated deck to API with unit ${unitNumber} marked as completed`);
-      return updatedDeck;
-    } catch (error) {
-      console.error('Failed to save to API:', error);
-      return updatedDeck;
+    return updatedDeck;
+  };
+
+  // Start a unit - adds cards for the unit if they don't exist yet
+  const startUnit = async (unitId: number): Promise<UserDeck | null> => {
+    console.log(`🔄 Starting unit ${unitId} for user ${userId}`);
+    
+    if (!userId) {
+      console.log('🚫 No userId available, cannot start unit');
+      return null;
     }
+    
+    // Helper function to get words for a unit from JSON file
+    const getWordsForUnit = async (unitNumber: number) => {
+      try {
+        console.log(`🔄 Loading words for unit ${unitNumber} from JSON file`);
+        // Load unit words from JSON
+        const response = await fetch(`/data/${String(unitNumber).padStart(2, '0')}_words.json`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch words for unit ${unitNumber} (status: ${response.status})`);
+        }
+        
+        const data = await response.json();
+        
+        if (!data || !data.words || !Array.isArray(data.words)) {
+          throw new Error(`Invalid data format for unit ${unitNumber}`);
+        }
+        
+        return data.words;
+      } catch (error) {
+        console.error(`Error loading words for unit ${unitNumber}:`, error);
+        return null;
+      }
+    };
+    
+    try {
+      // CRITICAL: First, make sure we have the current deck from localStorage
+      // to ensure we don't lose existing progress
+      let currentDeck = deck;
+      
+      if (!currentDeck && typeof window !== 'undefined') {
+        try {
+          const key = `deck-${userId}`;
+          const saved = localStorage.getItem(key);
+          if (saved) {
+            currentDeck = JSON.parse(saved);
+            console.log('🔍 DEBUG - Found deck in localStorage:', { 
+              userId: currentDeck?.userId, 
+              totalCards: currentDeck?.cards?.length || 0,
+              completedUnits: currentDeck?.completedUnits || [] 
+            });
+          }
+        } catch (error) {
+          console.error('Error reading localStorage:', error);
+        }
+      }
+      
+      if (!currentDeck) {
+        console.log('🚫 No deck found, creating a new one');
+        // Create a new deck if none exists
+        const newDeck: UserDeck = {
+          userId: userId,
+          cards: [],
+          xp: 0,
+          completedUnits: [],
+          lastSyncedAt: Date.now()
+        };
+        
+        // Add cards for the requested unit
+        const unitWords = await getWordsForUnit(unitId);
+        
+        if (unitWords && unitWords.length > 0) {
+          console.log(`📚 Adding ${unitWords.length} cards for unit ${unitId}`);
+          
+          // Add cards for this unit
+          const now = Date.now();
+          const pastTime = now - (60 * 60 * 1000); // 1 hour in the past to make them due immediately
+          
+          newDeck.cards = unitWords.map((word: { id: string }) => ({
+            wordId: word.id,
+            addedAt: now,
+            unit: unitId,
+            easeFactor: 2.5,
+            interval: 0,
+            repetitions: 0,
+            nextReview: pastTime,
+            lastReview: 0
+          }));
+          
+          // Save the new deck
+          saveDeck(newDeck);
+          setDeck(newDeck);
+          return newDeck;
+        }
+      } else {
+        console.log('✅ Existing deck found, checking for unit cards');
+        
+        // Check if the unit already has cards
+        const unitCards = currentDeck.cards.filter(card => card.unit === unitId);
+        
+        if (unitCards.length === 0) {
+          console.log(`📚 No cards found for unit ${unitId}, adding them`);
+          
+          // Add cards for the requested unit
+          const unitWords = await getWordsForUnit(unitId);
+          
+          if (unitWords && unitWords.length > 0) {
+            console.log(`📚 Adding ${unitWords.length} cards for unit ${unitId}`);
+            
+            // Add cards for this unit
+            const now = Date.now();
+            const pastTime = now - (60 * 60 * 1000); // 1 hour in the past to make them due immediately
+            
+            const newCards = unitWords.map((word: { id: string }) => ({
+              wordId: word.id,
+              addedAt: now,
+              unit: unitId,
+              easeFactor: 2.5,
+              interval: 0,
+              repetitions: 0,
+              nextReview: pastTime,
+              lastReview: 0
+            }));
+            
+            // CRITICAL: Preserve existing cards and add new ones
+            const updatedDeck = {
+              ...currentDeck,
+              cards: [...currentDeck.cards, ...newCards],
+              lastSyncedAt: now
+            };
+            
+            // Log the updated deck for debugging
+            console.log(`📊 Updated deck: ${updatedDeck.cards.length} total cards, ${updatedDeck.cards.filter(c => c.unit === unitId).length} cards for unit ${unitId}`);
+            
+            // Save the updated deck
+            saveDeck(updatedDeck);
+            setDeck(updatedDeck);
+            return updatedDeck;
+          }
+        } else {
+          console.log(`✅ Unit ${unitId} already has ${unitCards.length} cards`);
+          return currentDeck;
+        }
+      }
+    } catch (error) {
+      console.error('Error starting unit:', error);
+    }
+    
+    return null;
   };
 
   return {
@@ -831,6 +842,7 @@ export function useDeck(userId: string | null) {
     hasStartedUnit,
     getHighestStartedUnit,
     finalizeSession,
-    markUnitAsCompleted
+    markUnitAsCompleted,
+    startUnit
   }
 } 

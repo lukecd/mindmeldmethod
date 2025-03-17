@@ -32,7 +32,7 @@ export default function Flashcard({ imageUrl, english, spanish, clue, onRate }: 
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* Header is in UnitContent */}
+      {/* Header is handled by parent component */}
       
       {/* Main bento box layout */}
       <div className="grid grid-cols-12 gap-2">
