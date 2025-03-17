@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMeld Method Debug Tool</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>MindMeld Method Debug Tool</h1>
+  
+  <div class="section">
+    <h2>Deck Information</h2>
+    <button id="showDeck">Show Deck Info</button>
+    <button id="clearDeck">Clear Deck (Danger!)</button>
+    <pre id="deckInfo"></pre>
+  </div>
+  
+  <div class="section">
+    <h2>Unit Data</h2>
+    <div>
+      <label for="unitNumber">Unit Number:</label>
+      <input type="number" id="unitNumber" min="1" max="10" value="1">
+      <button id="checkUnit">Check Unit Data</button>
+    </div>
+    <pre id="unitInfo"></pre>
+  </div>
+  
+  <div class="section">
+    <h2>Fix Cards</h2>
+    <div>
+      <label for="fixUnitNumber">Unit Number:</label>
+      <input type="number" id="fixUnitNumber" min="1" max="10" value="1">
+      <button id="fixCards">Force All Cards Due</button>
+    </div>
+    <pre id="fixInfo"></pre>
+  </div>
+  
+  <div class="section">
+    <h2>Reset Unit</h2>
+    <div>
+      <label for="resetUnitNumber">Unit Number:</label>
+      <input type="number" id="resetUnitNumber" min="1" max="10" value="1">
+      <button id="resetUnit">Reset Unit</button>
+    </div>
+    <pre id="resetInfo"></pre>
+  </div>
+  
+  <div class="section">
+    <h2>Create Fresh Deck</h2>
+    <div>
+      <label for="freshUserId">User ID (leave empty to use current):</label>
+      <input type="text" id="freshUserId" placeholder="0x...">
+      <button id="createFreshDeck">Create Fresh Deck</button>
+    </div>
+    <pre id="freshDeckInfo"></pre>
+  </div>
+
+  <div class="section">
+    <h2>Direct Fix</h2>
+    <button id="directFix">Apply Direct Fix</button>
+    <pre id="directFixInfo"></pre>
+  </div>
+
+  <script>
+    // Helper function to get user ID from localStorage
+    function getUserId() {
+      // Look for any deck in localStorage
+      const keys = Object.keys(localStorage);
+      for (const key of keys) {
+        if (key.startsWith('deck-')) {
+          return key.replace('deck-', '');
+        }
+      }
+      return null;
+    }
+    
+    // Helper function to get deck from localStorage
+    function getDeck() {
+      const userId = getUserId();
+      if (!userId) return null;
+      
+      const key = `deck-${userId}`;
+      const saved = localStorage.getItem(key);
+      if (!saved) return null;
+      
+      try {
+        return JSON.parse(saved);
+      } catch (error) {
+        console.error('Error parsing deck:', error);
+        return null;
+      }
+    }
+    
+    // Helper function to save deck to localStorage
+    function saveDeck(deck) {
+      if (!deck || !deck.userId) return false;
+      
+      const key = `deck-${deck.userId}`;
+      try {
+        localStorage.setItem(key, JSON.stringify(deck));
+        return true;
+      } catch (error) {
+        console.error('Error saving deck:', error);
+        return false;
+      }
+    }
+    
+    // Show deck info
+    document.getElementById('showDeck').addEventListener('click', function() {
+      const deck = getDeck();
+      const output = document.getElementById('deckInfo');
+      
+      if (!deck) {
+        output.innerHTML = '<span class="error">No deck found in localStorage</span>';
+        return;
+      }
+      
+      // Group cards by unit
+      const cardsByUnit = {};
+      deck.cards.forEach(card => {
+        if (!cardsByUnit[card.unit]) {
+          cardsByUnit[card.unit] = [];
+        }
+        cardsByUnit[card.unit].push(card);
+      });
+      
+      // Create summary
+      let summary = `<strong>User ID:</strong> ${deck.userId}\n`;
+      summary += `<strong>Total XP:</strong> ${deck.xp}\n`;
+      summary += `<strong>Total Cards:</strong> ${deck.cards.length}\n`;
+      summary += `<strong>Completed Units:</strong> ${deck.completedUnits.join(', ') || 'None'}\n\n`;
+      
+      summary += '<strong>Cards by Unit:</strong>\n';
+      Object.keys(cardsByUnit).sort((a, b) => Number(a) - Number(b)).forEach(unit => {
+        const cards = cardsByUnit[unit];
+        const dueCards = cards.filter(card => card.nextReview <= Date.now());
+        summary += `Unit ${unit}: ${cards.length} cards (${dueCards.length} due)\n`;
+      });
+      
+      output.innerHTML = summary;
+    });
+    
+    // Clear deck
+    document.getElementById('clearDeck').addEventListener('click', function() {
+      if (!confirm('WARNING: This will delete your entire deck. Are you sure?')) {
+        return;
+      }
+      
+      const userId = getUserId();
+      if (!userId) {
+        document.getElementById('deckInfo').innerHTML = '<span class="error">No deck found to clear</span>';
+        return;
+      }
+      
+      const key = `deck-${userId}`;
+      localStorage.removeItem(key);
+      document.getElementById('deckInfo').innerHTML = '<span class="success">Deck cleared successfully</span>';
+    });
+    
+    // Check unit data
+    document.getElementById('checkUnit').addEventListener('click', function() {
+      const unitNumber = document.getElementById('unitNumber').value;
+      const output = document.getElementById('unitInfo');
+      
+      // Format unit number with leading zero
+      const formattedUnit = String(unitNumber).padStart(2, '0');
+      const url = `/data/${formattedUnit}_words.json?t=${Date.now()}`;
+      
+      output.innerHTML = `Checking unit ${unitNumber} data from ${url}...`;
+      
+      fetch(url, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch unit data (status: ${response.status})`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data || !data.words || !Array.isArray(data.words)) {
+            output.innerHTML = '<span class="error">Invalid data format</span>';
+            return;
+          }
+          
+          output.innerHTML = `<span class="success">Unit ${unitNumber} has ${data.words.length} words</span>\n\n`;
+          output.innerHTML += `First 3 words:\n`;
+          
+          data.words.slice(0, 3).forEach(word => {
+            output.innerHTML += `- ${word.id}: ${word.english} / ${word.spanish}\n`;
+          });
+        })
+        .catch(error => {
+          output.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+        });
+    });
+    
+    // Force all cards due
+    document.getElementById('fixCards').addEventListener('click', function() {
+      const unitNumber = parseInt(document.getElementById('fixUnitNumber').value);
+      const output = document.getElementById('fixInfo');
+      
+      const deck = getDeck();
+      if (!deck) {
+        output.innerHTML = '<span class="error">No deck found in localStorage</span>';
+        return;
+      }
+      
+      // Get all cards for this unit
+      const unitCards = deck.cards.filter(card => card.unit === unitNumber);
+      
+      if (unitCards.length === 0) {
+        output.innerHTML = `<span class="error">No cards found for unit ${unitNumber}</span>`;
+        return;
+      }
+      
+      // Create a modified deck with all cards in this unit set to be due
+      const now = Date.now();
+      const updatedDeck = {
+        ...deck,
+        cards: deck.cards.map(card => {
+          if (card.unit === unitNumber) {
+            return {
+              ...card,
+              nextReview: now - 1000, // Set to slightly in the past to ensure they're due
+              actualNextReview: undefined // Clear any session state
+            };
+          }
+          return card;
+        })
+      };
+      
+      // Save the updated deck to localStorage
+      if (saveDeck(updatedDeck)) {
+        output.innerHTML = `<span class="success">Successfully forced ${unitCards.length} cards for unit ${unitNumber} to be due</span>`;
+      } else {
+        output.innerHTML = '<span class="error">Failed to save updated deck to localStorage</span>';
+      }
+    });
+    
+    // Reset unit
+    document.getElementById('resetUnit').addEventListener('click', function() {
+      const unitNumber = parseInt(document.getElementById('resetUnitNumber').value);
+      const output = document.getElementById('resetInfo');
+      
+      if (!confirm(`WARNING: This will remove all cards for unit ${unitNumber}. Are you sure?`)) {
+        return;
+      }
+      
+      const deck = getDeck();
+      if (!deck) {
+        output.innerHTML = '<span class="error">No deck found in localStorage</span>';
+        return;
+      }
+      
+      // Count cards for this unit
+      const unitCards = deck.cards.filter(card => card.unit === unitNumber);
+      
+      if (unitCards.length === 0) {
+        output.innerHTML = `<span class="error">No cards found for unit ${unitNumber}</span>`;
+        return;
+      }
+      
+      // Create a modified deck with all cards for this unit removed
+      const updatedDeck = {
+        ...deck,
+        cards: deck.cards.filter(card => card.unit !== unitNumber),
+        completedUnits: deck.completedUnits.filter(unit => unit !== unitNumber)
+      };
+      
+      // Save the updated deck to localStorage
+      if (saveDeck(updatedDeck)) {
+        output.innerHTML = `<span class="success">Successfully removed ${unitCards.length} cards for unit ${unitNumber}</span>`;
+      } else {
+        output.innerHTML = '<span class="error">Failed to save updated deck to localStorage</span>';
+      }
+    });
+    
+    // Create a fresh deck
+    document.getElementById('createFreshDeck').addEventListener('click', function() {
+      const output = document.getElementById('freshDeckInfo');
+      
+      // Get user ID (use existing or provided)
+      let userId = document.getElementById('freshUserId').value.trim();
+      if (!userId) {
+        userId = getUserId();
+        if (!userId) {
+          // Generate a random user ID if none exists
+          userId = '0x' + Math.random().toString(36).substring(2, 15);
+        }
+      }
+      
+      // Create a new deck with unit 1 cards
+      const now = Date.now();
+      
+      // First, fetch the unit 1 words to get their IDs
+      const formattedUnit = '01';
+      const url = `/data/${formattedUnit}_words.json?t=${now}`;
+      
+      output.innerHTML = `Fetching unit 1 words from ${url}...`;
+      
+      fetch(url, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch unit data (status: ${response.status})`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data || !data.words || !Array.isArray(data.words)) {
+            output.innerHTML = '<span class="error">Invalid data format</span>';
+            return;
+          }
+          
+          // Create cards for each word
+          const cards = data.words.map(word => ({
+            wordId: word.id,
+            unit: 1,
+            easeFactor: 2.5,
+            interval: 1,
+            repetitions: 0,
+            lastReview: now - 86400000, // 1 day ago
+            nextReview: now - 3600000,  // 1 hour ago (to make them due)
+            actualNextReview: undefined
+          }));
+          
+          // Create the deck
+          const freshDeck = {
+            userId: userId,
+            cards: cards,
+            xp: 0,
+            completedUnits: [],
+            lastSyncedAt: now
+          };
+          
+          // Save to localStorage
+          const key = `deck-${userId}`;
+          try {
+            localStorage.setItem(key, JSON.stringify(freshDeck));
+            output.innerHTML = `<span class="success">Successfully created fresh deck with ${cards.length} cards for unit 1</span>\n\n`;
+            output.innerHTML += `User ID: ${userId}\n`;
+            output.innerHTML += `All cards are set to be due for review.\n`;
+            output.innerHTML += `Please reload the main application page.`;
+          } catch (error) {
+            output.innerHTML = `<span class="error">Error saving deck: ${error.message}</span>`;
+          }
+        })
+        .catch(error => {
+          output.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+        });
+    });
+
+    // Direct fix for deck issues
+    document.getElementById('directFix').addEventListener('click', function() {
+      const output = document.getElementById('directFixInfo');
+      
+      // Create a simple user ID
+      const userId = '0x123456789';
+      const now = Date.now();
+      
+      // First, fetch the unit 1 words
+      const url = `/data/01_words.json?t=${now}`;
+      
+      output.innerHTML = `Applying direct fix...`;
+      
+      fetch(url, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch unit data (status: ${response.status})`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data || !data.words || !Array.isArray(data.words)) {
+            output.innerHTML = '<span class="error">Invalid data format</span>';
+            return;
+          }
+          
+          // Create cards for each word
+          const cards = data.words.map(word => ({
+            wordId: word.id,
+            unit: 1,
+            easeFactor: 2.5,
+            interval: 1,
+            repetitions: 0,
+            lastReview: now - 86400000,
+            nextReview: now - 3600000,
+            actualNextReview: undefined
+          }));
+          
+          // Create a simple deck structure
+          const simpleDeck = {
+            userId: userId,
+            cards: cards,
+            xp: 0,
+            completedUnits: [],
+            lastSyncedAt: now
+          };
+          
+          // Clear all localStorage first
+          localStorage.clear();
+          
+          // Save the new deck
+          const key = `deck-${userId}`;
+          localStorage.setItem(key, JSON.stringify(simpleDeck));
+          
+          output.innerHTML = `<span class="success">Direct fix applied!</span>\n\n`;
+          output.innerHTML += `Created a new deck with ID: ${userId}\n`;
+          output.innerHTML += `Added ${cards.length} cards for unit 1\n`;
+          output.innerHTML += `All cards are due for review\n\n`;
+          output.innerHTML += `<strong>Please reload the main application page and try Unit 1 again.</strong>`;
+        })
+        .catch(error => {
+          output.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+        });
+    });
+  </script>
+</body>
+</html> 

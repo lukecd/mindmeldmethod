@@ -1,84 +1,164 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import LoadingSpinner from './LoadingSpinner'
 
 interface FlashcardProps {
   imageUrl: string
   english: string
   spanish: string
+  clue?: string
   onRate: (rating: 'no-clue' | 'got-one' | 'got-both') => void
 }
 
-export default function Flashcard({ imageUrl, english, spanish, onRate }: FlashcardProps) {
-  const [flipped, setFlipped] = useState<'front' | 'english' | 'spanish'>('front')
+export default function Flashcard({ imageUrl, english, spanish, clue, onRate }: FlashcardProps) {
+  const [isEnglishFlipped, setIsEnglishFlipped] = useState(false)
+  const [isSpanishFlipped, setIsSpanishFlipped] = useState(false)
+  const [showClue, setShowClue] = useState(false)
+  const [imageLoading, setImageLoading] = useState(true)
+  
+  // Reset flipped states when card content changes
+  useEffect(() => {
+    setIsEnglishFlipped(false)
+    setIsSpanishFlipped(false)
+    setShowClue(false)
+    setImageLoading(true)
+  }, [english, spanish, imageUrl])
+
+  // Determine if rating buttons should be enabled
+  const canRate = isEnglishFlipped && isSpanishFlipped
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="bg-mindmeld-navy rounded-3xl p-6 border border-white/10">
-        {/* Card content */}
-        <div className="relative aspect-[4/3] mb-6">
-          {flipped === 'front' ? (
-            <>
-              <Image
-                src={imageUrl}
-                alt="Flashcard image"
-                fill
-                className="object-contain rounded-2xl"
-              />
-              <div className="absolute bottom-4 left-4 right-4 flex gap-4">
+    <div className="max-w-3xl mx-auto">
+      {/* Header is handled by parent component */}
+      
+      {/* Main bento box layout */}
+      <div className="grid grid-cols-12 gap-2">
+        {/* Left column - Image (7 columns wide) */}
+        <div className="col-span-7 bg-white overflow-hidden">
+          <div className="relative aspect-square w-full">
+            {imageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+                <LoadingSpinner />
+              </div>
+            )}
+            <Image
+              src={imageUrl}
+              alt="Flashcard image"
+              fill
+              className="object-cover"
+              onLoadingComplete={() => setImageLoading(false)}
+              onLoad={() => setImageLoading(false)}
+              priority
+            />
+          </div>
+        </div>
+        
+        {/* Right column - Controls (5 columns wide) */}
+        <div className="col-span-5 grid grid-rows-6 gap-2">
+          {/* Show Clue button (2 rows tall) */}
+          <div className="row-span-2">
+            <button
+              onClick={() => setShowClue(!showClue)}
+              className="w-full h-full bg-[color:var(--color-bg-card)] text-white font-body hover:bg-opacity-90 transition-colors flex items-center justify-center"
+            >
+              {showClue && clue ? clue : "Show Clue"}
+            </button>
+          </div>
+          
+          {/* Language buttons (2 rows tall) */}
+          <div className="row-span-2 grid grid-cols-2 gap-2">
+            {/* English Button with flip effect */}
+            <div className="relative h-full perspective">
+              <div 
+                className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${
+                  isEnglishFlipped ? 'rotate-y-180' : 'rotate-y-0'
+                }`}
+              >
                 <button
-                  onClick={() => setFlipped('english')}
-                  className="flex-1 bg-mindmeld-coral text-white py-3 rounded-xl font-title hover:bg-mindmeld-coral/80 transition-colors"
+                  onClick={() => setIsEnglishFlipped(!isEnglishFlipped)}
+                  className="absolute w-full h-full bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-body hover:bg-opacity-90 transition-colors flex items-center justify-center backface-hidden"
                 >
                   English
                 </button>
+                <div 
+                  className="absolute w-full h-full bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-body flex items-center justify-center backface-hidden rotate-y-180"
+                >
+                  {english}
+                </div>
+              </div>
+            </div>
+            
+            {/* Spanish Button with flip effect */}
+            <div className="relative h-full perspective">
+              <div 
+                className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${
+                  isSpanishFlipped ? 'rotate-y-180' : 'rotate-y-0'
+                }`}
+              >
                 <button
-                  onClick={() => setFlipped('spanish')}
-                  className="flex-1 bg-mindmeld-yellow text-mindmeld-navy py-3 rounded-xl font-title hover:bg-mindmeld-yellow/80 transition-colors"
+                  onClick={() => setIsSpanishFlipped(!isSpanishFlipped)}
+                  className="absolute w-full h-full bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-body hover:bg-opacity-90 transition-colors flex items-center justify-center backface-hidden"
                 >
                   Español
                 </button>
-              </div>
-            </>
-          ) : (
-            <div className="h-full flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl font-title mb-4 text-white">
-                  {flipped === 'english' ? english : spanish}
-                </div>
-                <button
-                  onClick={() => setFlipped('front')}
-                  className="text-mindmeld-coral hover:text-mindmeld-coral/80 transition-colors"
+                <div 
+                  className="absolute w-full h-full bg-[color:var(--color-accent-primary)] text-[color:var(--color-text-primary)] font-body flex items-center justify-center backface-hidden rotate-y-180"
                 >
-                  ← Back to image
-                </button>
+                  {spanish}
+                </div>
               </div>
             </div>
-          )}
+          </div>
+          
+          {/* Rating buttons (2 rows tall) */}
+          <div className="row-span-2 grid grid-cols-3 gap-2">
+            <button
+              onClick={() => onRate('no-clue')}
+              disabled={!canRate}
+              className={`h-full bg-pink-300 text-[color:var(--color-text-primary)] font-body flex items-center justify-center ${
+                canRate 
+                  ? 'hover:bg-opacity-90 transition-colors' 
+                  : 'opacity-50 cursor-not-allowed'
+              }`}
+            >
+              No Idea
+            </button>
+            <button
+              onClick={() => onRate('got-one')}
+              disabled={!canRate}
+              className={`h-full bg-[color:var(--color-button-primary)] text-white font-body flex items-center justify-center ${
+                canRate 
+                  ? 'hover:bg-opacity-90 transition-colors' 
+                  : 'opacity-50 cursor-not-allowed'
+              }`}
+            >
+              Got One
+            </button>
+            <button
+              onClick={() => onRate('got-both')}
+              disabled={!canRate}
+              className={`h-full bg-[color:var(--color-button-primary)] text-white font-body flex items-center justify-center ${
+                canRate 
+                  ? 'hover:bg-opacity-90 transition-colors' 
+                  : 'opacity-50 cursor-not-allowed'
+              }`}
+            >
+              Got Both
+            </button>
+          </div>
         </div>
+      </div>
 
-        {/* Rating buttons */}
-        <div className="flex gap-4">
-          <button
-            onClick={() => onRate('no-clue')}
-            className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3 rounded-xl transition-colors"
-          >
-            No Clue
-          </button>
-          <button
-            onClick={() => onRate('got-one')}
-            className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3 rounded-xl transition-colors"
-          >
-            Got One
-          </button>
-          <button
-            onClick={() => onRate('got-both')}
-            className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3 rounded-xl transition-colors"
-          >
-            Got Both
-          </button>
-        </div>
+      {/* Footer message */}
+      <div className="mt-2 py-3 bg-[color:var(--color-bg-nav)] text-center mb-2">
+        <p className="font-title text-lg text-[color:var(--color-text-primary)]">Our flashcards use visual cues to help trick your brain into memorizing faster.</p>
+      </div>
+      
+      <div className="text-center text-xs font-body text-[color:var(--color-text-muted)]">
+        Learn more about our method in the <Link href="/about" className="text-[color:var(--color-text-primary)] hover:underline">About page</Link>
       </div>
     </div>
   )
