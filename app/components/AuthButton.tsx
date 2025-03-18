@@ -4,7 +4,7 @@ import * as Tooltip from '@radix-ui/react-tooltip'
 import { useAddress } from "@chopinframework/react"
 import LoadingSpinner from './LoadingSpinner'
 import { useState } from 'react'
-
+import Link from 'next/link'
 export default function AuthButton() {
   const { address, isLoading: hookLoading, isLoginError, login: _login, logout: _logout } = useAddress()
   const [isLoading, setIsLoading] = useState(false)
@@ -86,11 +86,20 @@ export default function AuthButton() {
   }
 
   return (
-    <button 
-      onClick={login}
-      className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] px-4 py-2 hover:bg-[color:var(--color-button-hover)] transition-colors"
-    >
-      Login
-    </button>
+    process.env.NODE_ENV === 'production' ? (
+      <Link
+        href="/_chopin/login"
+        className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] px-4 py-2 hover:bg-[color:var(--color-button-hover)] transition-colors"
+      >
+        Login
+      </Link>
+    ) : (
+      <button
+        onClick={login}
+        className="bg-[color:var(--color-button-primary)] text-[color:var(--color-text-inverse)] px-4 py-2 hover:bg-[color:var(--color-button-hover)] transition-colors"
+      >
+        Login
+      </button>
+    )
   )
 } 
